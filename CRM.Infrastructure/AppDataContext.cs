@@ -7,17 +7,15 @@ namespace CRM.Infrastructure
 {
     public class AppDataContext : IdentityDbContext
     {
-        public DbSet<Customer> Companies { get; set; }
+        public DbSet<Customer> Customers { get; set; }
 
         public DbSet<CustomerAddressDetails> AddressDetails { get; set; }
 
         public DbSet<Country> Countries { get; set; }
 
-        public DbSet<CompanyRole> CompanyRoles { get; set; }
+        public DbSet<CustomerContactInformation> CustomerContactInformations { get; set; }
 
-        public DbSet<CustomerContactInformation> CompanyContactInformations { get; set; }
-
-        public DbSet<CustomerContact> CompanyContacts { get; set; }
+        public DbSet<CustomerContact> CustomerContacts { get; set; }
 
         public DbSet<ContactType> ContactTypes { get; set; }
 
