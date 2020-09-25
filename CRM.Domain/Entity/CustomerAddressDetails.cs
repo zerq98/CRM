@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CRM.Domain.Entity
 {
-    public class CompanyAddressDetails
+    public class CustomerAddressDetails
     {
         public int Id { get; set; }
 
@@ -22,6 +22,6 @@ namespace CRM.Domain.Entity
 
         public int CompanyId { get; set; }
 
-        public Company Company { get; set; }
+        public Customer Company { get; set; }
     }
 }

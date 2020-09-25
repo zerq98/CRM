@@ -6,7 +6,7 @@ namespace CRM.Domain.Entity
     {
         public int CompanyId { get; set; }
 
-        public Company Company { get; set; }
+        public Customer Company { get; set; }
 
         public int CompanyRoleId { get; set; }
 

@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CRM.Domain.Entity
 {
-    public class CompanyRole
+    public class ContactType
     {
         public int Id { get; set; }
 

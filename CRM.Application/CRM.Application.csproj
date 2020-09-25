@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Folder Include="Interface\" />
+    <Folder Include="Exception\" />
     <Folder Include="Service\" />
   </ItemGroup>
 

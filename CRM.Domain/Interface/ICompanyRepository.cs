@@ -6,11 +6,9 @@ using System.Threading.Tasks;
 
 namespace CRM.Domain.Interface
 {
-    public interface ICompanyRepository : IBaseRepository<Company>
+    public interface ICompanyRepository : IBaseRepository<Customer>
     {
         Task<List<ApplicationUser>> GetAllEmployeesForCompanyAsync(int companyId);
-
-        Task<string> AddEmployee(int companyId, ApplicationUser user);
 
         Task RemoveEmployee(string employeeId);
 
