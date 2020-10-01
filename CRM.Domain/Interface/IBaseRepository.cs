@@ -1,6 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CRM.Domain.Interface
@@ -9,7 +8,7 @@ namespace CRM.Domain.Interface
     {
         Task<int> AddAsync(T entity);
 
-        Task<List<T>> GetAllAsync();
+        IQueryable<T> GetAll();
 
         Task SaveAsync();
 

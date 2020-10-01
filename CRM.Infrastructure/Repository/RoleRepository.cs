@@ -1,5 +1,4 @@
-﻿using CRM.Domain.Entity;
-using CRM.Domain.Interface;
+﻿using CRM.Domain.Interface;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
@@ -33,9 +32,9 @@ namespace CRM.Infrastructure.Repository
             return role.Id;
         }
 
-        public Task<List<IdentityRole>> GetAllAsync()
+        public IQueryable<IdentityRole> GetAllAsync()
         {
-            return _context.Roles.ToListAsync();
+            return _context.Roles.AsQueryable();
         }
 
         public async Task<IdentityRole> GetById(string roleId)

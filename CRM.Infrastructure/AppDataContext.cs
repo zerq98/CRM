@@ -1,7 +1,6 @@
 ﻿using CRM.Domain.Entity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System.Security.Cryptography.X509Certificates;
 
 namespace CRM.Infrastructure
 {
@@ -19,10 +18,11 @@ namespace CRM.Infrastructure
 
         public DbSet<ContactType> ContactTypes { get; set; }
 
+        public DbSet<CustomerStatus> CustomerStatuses { get; set; }
+
         public AppDataContext(DbContextOptions<AppDataContext> options)
             : base(options)
         {
-
         }
 
         protected override void OnModelCreating(ModelBuilder builder)

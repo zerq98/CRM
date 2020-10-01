@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CRM.Domain.Entity
+﻿namespace CRM.Domain.Entity
 {
-    public class CustomerContact
+    public class CustomerContact : Base
     {
-        public int Id { get; set; }
-
         public int CompanyContactInformationId { get; set; }
 
-        public CustomerContactInformation CompanyContactInformation { get; set; }
+        public CustomerContactInformation CustomerContactInformation { get; set; }
+
+        public string ContactDetail { get; set; }
 
         public int ContactTypeId { get; set; }
 

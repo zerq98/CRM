@@ -1,19 +1,24 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Text;
 
 namespace CRM.Domain.Entity
 {
-    public class Customer
+    public class Customer : Base
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string NIP { get; set; }
 
         public string REGON { get; set; }
+
+        public string KRSNumber { get; set; }
+
+        public int DealSize { get; set; }
+
+        public int StatusId { get; set; }
+
+        public CustomerStatus CustomerStatus { get; set; }
+
+        public bool IsActive { get; set; }
 
         public int AddressDetailsId { get; set; }
 

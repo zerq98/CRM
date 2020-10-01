@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CRM.Domain.Entity
+﻿namespace CRM.Domain.Entity
 {
-    public class CustomerAddressDetails
+    public class CustomerAddressDetails : Base
     {
-        public int Id { get; set; }
-
         public string City { get; set; }
 
         public string Street { get; set; }

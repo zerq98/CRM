@@ -1,6 +1,5 @@
 ﻿using CRM.Domain.Entity;
 using CRM.Domain.Interface;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
@@ -44,14 +43,44 @@ namespace CRM.Infrastructure.Repository
             return entity.Id;
         }
 
-        public async Task<List<Customer>> GetAllAsync()
+        public async Task EditCustomer(Customer model)
         {
-            return await _context.Customers.ToListAsync();
+            using (var transaction = await _context.Database.BeginTransactionAsync())
+
+                try
+                {
+                    if (model != null)
+                    {
+                        _context.Customers.Update(model);
+                    }
+
+                    await transaction.CommitAsync();
+                }
+                catch (Exception)
+                {
+                    await transaction.RollbackAsync();
+                    _logger.Log(LogLevel.Error, "Error during editing customer");
+                }
+        }
+
+        public IQueryable<Customer> GetAll()
+        {
+            return _context.Customers.AsQueryable();
+        }
+
+        public IQueryable<Customer> GetAllActive()
+        {
+            return _context.Customers.Where(x => x.IsActive).AsQueryable();
         }
 
         public async Task<Customer> GetById(int id)
         {
             return await _context.Customers.SingleOrDefaultAsync(x => x.Id == id);
+        }
+
+        public IQueryable<Customer> GetCustomerWithStatus(int statusId)
+        {
+            return _context.Customers.Where(x => x.StatusId == statusId && x.IsActive);
         }
 
         public async Task SaveAsync()

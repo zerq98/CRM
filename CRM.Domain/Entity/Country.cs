@@ -1,13 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CRM.Domain.Entity
+﻿namespace CRM.Domain.Entity
 {
-    public class Country
+    public class Country : Base
     {
-        public int Id { get; set; }
-
         public string Name { get; set; }
 
         public string Code { get; set; }

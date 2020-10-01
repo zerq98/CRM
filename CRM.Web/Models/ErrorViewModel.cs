@@ -1,5 +1,3 @@
-using System;
-
 namespace CRM.Web.Models
 {
     public class ErrorViewModel

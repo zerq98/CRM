@@ -1,10 +1,8 @@
 ﻿using CRM.Domain.Entity;
 using CRM.Domain.Interface;
 using Microsoft.EntityFrameworkCore;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CRM.Infrastructure.Repository
@@ -25,9 +23,9 @@ namespace CRM.Infrastructure.Repository
             return entity.Id;
         }
 
-        public async Task<List<Country>> GetAllAsync()
+        public IQueryable<Country> GetAll()
         {
-            return await _context.Countries.ToListAsync();
+            return _context.Countries.AsQueryable();
         }
 
         public async Task<Country> GetById(int id)
