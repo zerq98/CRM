@@ -39,9 +39,18 @@ namespace CRM.Application.Service
             await _customerRepostiory.SaveAsync();
         }
 
-        public Task EditCustomerData(CustomerEditDto model)
+        public async Task EditCustomerData(CustomerEditDto model)
         {
-            throw new NotImplementedException();
+            var customer = await _customerRepostiory.GetById(model.Id);
+
+            customer.ModificationDate = DateTime.Now;
+            customer.DealSize = model.DealSize;
+            customer.AddressDetails = _mapper.Map<CustomerAddressDetails>(model.customerAddress);
+            customer.Description = model.Description;
+            customer.Name = model.Name;
+
+            await _customerRepostiory.EditCustomer(customer);
+            await _customerRepostiory.SaveAsync();
         }
 
         public async Task<CustomersListDto> GetAllActiveCustomers()

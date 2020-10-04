@@ -22,7 +22,7 @@ namespace CRM.Application.Dto
 
         public bool IsActive { get; set; }
 
-        public CustomerAddressViewDto AddressDetails { get; set; }
+        public CustomerAddressDto AddressDetails { get; set; }
 
         public List<CustomerContactViewDto> ContactInformation { get; set; }
 
@@ -30,8 +30,9 @@ namespace CRM.Application.Dto
 
         private void Mapping(MappingProfile profile)
         {
-            profile.CreateMap<Customer, CustomerViewDto>();
-            profile.CreateMap<CustomerAddressDetails, CustomerAddressViewDto>();
+            profile.CreateMap<Customer, CustomerViewDto>()
+                .ForMember(s => s.ContactInformation, opt => opt.MapFrom(x => x.ContactInformation.CustomerContacts));
+            profile.CreateMap<CustomerAddressDetails, CustomerAddressDto>();
             profile.CreateMap<CustomerContact, CustomerContactViewDto>();
         }
     }

@@ -3,7 +3,7 @@ using CRM.Domain.Entity;
 
 namespace CRM.Application.Dto
 {
-    public class CustomerAddressViewDto : IMapFrom<CustomerAddressDetails>
+    public class CustomerAddressDto : IMapFrom<CustomerAddressDetails>
     {
         public int Id { get; set; }
         public string City { get; set; }
@@ -18,7 +18,7 @@ namespace CRM.Application.Dto
 
         public void Mapping(MappingProfile profile)
         {
-            profile.CreateMap<CustomerAddressDetails, CustomerAddressViewDto>()
+            profile.CreateMap<CustomerAddressDetails, CustomerAddressDto>()
                 .ForMember(d => d.Country, opt => opt.MapFrom(s => s.Country.Name));
         }
     }
