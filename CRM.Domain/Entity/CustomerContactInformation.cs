@@ -4,7 +4,7 @@ namespace CRM.Domain.Entity
 {
     public class CustomerContactInformation : Base
     {
-        public int CompanyId { get; set; }
+        public int CustomerId { get; set; }
 
         public Customer Customer { get; set; }
 

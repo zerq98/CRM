@@ -31,18 +31,13 @@ namespace CRM.Infrastructure
 
             builder.Entity<Customer>()
                 .HasOne(x => x.AddressDetails)
-                .WithOne(x => x.Company)
-                .HasForeignKey<CustomerAddressDetails>(x => x.CompanyId);
-
-            builder.Entity<Customer>()
-                .HasOne(x => x.CEO)
-                .WithOne(x => x.Company)
-                .HasForeignKey<ApplicationUser>(x => x.CompanyId);
+                .WithOne(x => x.Customer)
+                .HasForeignKey<CustomerAddressDetails>(x => x.CustomerId);
 
             builder.Entity<Customer>()
                 .HasOne(x => x.ContactInformation)
-                .WithOne(x => x.Company)
-                .HasForeignKey<CustomerContactInformation>(x => x.CompanyId);
+                .WithOne(x => x.Customer)
+                .HasForeignKey<CustomerContactInformation>(x => x.CustomerId);
 
             builder.Seed();
         }

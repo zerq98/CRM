@@ -6,9 +6,6 @@ using CRM.Domain.Entity;
 using CRM.Domain.Interface;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
-using System.Security.Cryptography.X509Certificates;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace CRM.Application.Service
@@ -24,6 +21,7 @@ namespace CRM.Application.Service
             _customerRepostiory = customerRepository;
             _mapper = mapper;
         }
+
         public async Task AddNewCustomer(CustomerCreateDto model)
         {
             var customer = _mapper.Map<Customer>(model);

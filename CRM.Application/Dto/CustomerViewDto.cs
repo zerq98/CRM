@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace CRM.Application.Dto
 {
-    public class CustomerViewDto :IMapFrom<Customer>
+    public class CustomerViewDto : IMapFrom<Customer>
     {
         public int Id { get; set; }
 

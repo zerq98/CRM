@@ -14,8 +14,8 @@
 
         public string PostCode { get; set; }
 
-        public int CompanyId { get; set; }
+        public int CustomerId { get; set; }
 
-        public Customer Company { get; set; }
+        public Customer Customer { get; set; }
     }
 }

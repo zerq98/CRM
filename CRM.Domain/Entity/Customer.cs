@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CRM.Domain.Entity
+﻿namespace CRM.Domain.Entity
 {
     public class Customer : Base
     {
