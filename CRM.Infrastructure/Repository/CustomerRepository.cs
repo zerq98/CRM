@@ -22,44 +22,21 @@ namespace CRM.Infrastructure.Repository
 
         public async Task<int> AddAsync(Customer entity)
         {
-            using (var transaction = await _context.Database.BeginTransactionAsync())
-
-                try
-                {
-                    if (entity != null)
-                    {
-                        await _context.Customers.AddAsync(entity);
-                    }
-
-                    await transaction.CommitAsync();
-                }
-                catch (Exception)
-                {
-                    await transaction.RollbackAsync();
-                    _logger.Log(LogLevel.Error, "Error during adding customer");
-                }
+            if (entity != null)
+            {
+                await _context.Customers.AddAsync(entity);
+            }
 
             return entity.Id;
         }
 
         public async Task EditCustomer(Customer model)
         {
-            using (var transaction = await _context.Database.BeginTransactionAsync())
-
-                try
-                {
-                    if (model != null)
-                    {
-                        _context.Customers.Update(model);
-                    }
-
-                    await transaction.CommitAsync();
-                }
-                catch (Exception)
-                {
-                    await transaction.RollbackAsync();
-                    _logger.Log(LogLevel.Error, "Error during editing customer");
-                }
+            if (model != null)
+            {
+                _context.Customers.Update(model);
+                await _context.SaveChangesAsync();
+            }
         }
 
         public IQueryable<Customer> GetAll()

@@ -22,11 +22,11 @@ namespace CRM.Application.Service
             _mapper = mapper;
         }
 
-        public async Task AddNewCustomer(CustomerCreateDto model)
+        public async Task<int> AddNewCustomer(CustomerCreateDto model)
         {
             var customer = _mapper.Map<Customer>(model);
 
-            await _customerRepostiory.AddAsync(customer);
+            return await _customerRepostiory.AddAsync(customer);
         }
 
         public async Task ChangeCustomerStatus(int customerId, int statusId)

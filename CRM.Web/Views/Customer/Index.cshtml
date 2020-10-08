@@ -1,0 +1,41 @@
+﻿@model CRM.Application.Dto.CustomersListDto
+@{
+    ViewData["Title"] = "Your customers";
+    var statusTypes = ViewData["StatusList"] as List<string>;
+}
+
+<div class="container p-0 m-0">
+    <div class="row col-2 rounded" style="color:gray">
+        Count of customers: @Model.Count
+    </div>
+    <div class="row">
+        <div class="row" id="board1">
+            <div class="card" data-k="a">
+                <div class="item">item 1</div>
+                <div class="item">item 2</div>
+                <div class="item">item 3</div>
+            </div>
+
+            <div class="card" data-k="b">
+                <div class="item">item 4</div>
+                <div class="item">item 5</div>
+            </div>
+
+            <div class="card" data-k="c">
+                <div class="item">item 6</div>
+                <div class="item">item 7</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts{
+    <script src="~/js/DragDrop.js"></script>
+}
+
+@*@foreach (var customer in Model.Customers.Where(x => x.Status == statusTypes[0]))
+    {
+        <div class="item">
+            @customer.Name @customer.DealSize
+        </div>
+    }*@

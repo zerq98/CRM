@@ -41,24 +41,12 @@ namespace CRM.Infrastructure.Repository
 
         public async Task RemoveRoleAsync(string roleId)
         {
-            using (var transaction = await _context.Database.BeginTransactionAsync())
+            var role = await _roleManager.FindByIdAsync(roleId);
 
-                try
-                {
-                    var role = await _roleManager.FindByIdAsync(roleId);
-
-                    if (role != null)
-                    {
-                        await _roleManager.DeleteAsync(role);
-                    }
-
-                    await transaction.CommitAsync();
-                }
-                catch (Exception)
-                {
-                    await transaction.RollbackAsync();
-                    _logger.Log(LogLevel.Error, "Error during user role removing");
-                }
+            if (role != null)
+            {
+                await _roleManager.DeleteAsync(role);
+            }
         }
 
         public async Task SaveAsync()

@@ -1,4 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
 
 namespace CRM.Domain.Entity
 {
@@ -6,11 +8,11 @@ namespace CRM.Domain.Entity
     {
         public static void Seed(this ModelBuilder builder)
         {
-            builder.Entity<Country>()
-                .HasData(
-                    new Country { Code = "US", Name = "United States" },
+            List<Country> countries = new List<Country>()
+            {
+                new Country { Code = "US", Name = "United States" },
                     new Country { Code = "CA", Name = "Canada" },
-                    new Country { Code = "AF", Name = "Afghanistan" },
+                    new Country {Code = "AF", Name = "Afghanistan" },
                     new Country { Code = "AL", Name = "Albania" },
                     new Country { Code = "DZ", Name = "Algeria" },
                     new Country { Code = "AS", Name = "American Samoa" },
@@ -250,7 +252,17 @@ namespace CRM.Domain.Entity
                     new Country { Code = "ZR", Name = "Zaire" },
                     new Country { Code = "ZM", Name = "Zambia" },
                     new Country { Code = "ZW", Name = "Zimbabwe" }
-            );
+            };
+
+            int i = 1;
+            foreach(var country in countries)
+            {
+                country.Id = i;
+                i += 1;
+            }
+
+            builder.Entity<Country>()
+                .HasData(countries);
         }
     }
 }

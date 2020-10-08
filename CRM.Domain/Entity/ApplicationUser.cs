@@ -1,11 +1,10 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace CRM.Domain.Entity
 {
     public class ApplicationUser : IdentityUser
     {
-        public int CompanyId { get; set; }
-
-        public Customer Company { get; set; }
+        public List<Customer> Customers { get; set; }
     }
 }

@@ -5,7 +5,7 @@ namespace CRM.Application.Interface
 {
     public interface ICustomerService
     {
-        Task AddNewCustomer(CustomerCreateDto model);
+        Task<int> AddNewCustomer(CustomerCreateDto model);
 
         Task ChangeCustomerStatus(int customerId, int statusId);
 
