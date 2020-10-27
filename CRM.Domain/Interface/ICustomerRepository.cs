@@ -6,7 +6,7 @@ namespace CRM.Domain.Interface
 {
     public interface ICustomerRepository : IBaseRepository<Customer>
     {
-        IQueryable<Customer> GetAllActive();
+        IQueryable<Customer> GetAllActive(string userName);
 
         IQueryable<Customer> GetCustomerWithStatus(int statusId);
 

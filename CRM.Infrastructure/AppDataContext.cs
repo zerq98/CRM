@@ -1,6 +1,8 @@
 ﻿using CRM.Domain.Entity;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using System;
 
 namespace CRM.Infrastructure
 {
@@ -40,6 +42,41 @@ namespace CRM.Infrastructure
                 .HasForeignKey<CustomerContactInformation>(x => x.CustomerId);
 
             builder.Seed();
+
+            const string ADMIN_ID = "a18be9c0-aa65-4af8-bd17-00bd9344e575";
+            const string ROLE_ID = ADMIN_ID;
+
+            var hasher = new PasswordHasher<ApplicationUser>();
+            builder.Entity<ApplicationUser>()
+                .HasData(new ApplicationUser
+                {
+                    Id = ADMIN_ID,
+                    UserName = "admin@arctech.com",
+                    NormalizedUserName = "admin@arctech.com",
+                    Email = "admin@arctech.com",
+                    NormalizedEmail = "admin@arctech.com",
+                    EmailConfirmed = true,
+                    PasswordHash = hasher.HashPassword(null, "zaq1@WSX21"),
+                    SecurityStamp = string.Empty,
+                    FirstName = "Mateusz",
+                    LastName = "Trybuła",
+                    IsActive = true
+                });
+
+            builder.Entity<IdentityRole>()
+                .HasData(new IdentityRole
+                {
+                    Id = ROLE_ID,
+                    Name = "Admin",
+                    NormalizedName = "Admin"
+                });
+
+            builder.Entity<IdentityUserRole<string>>()
+                .HasData(new IdentityUserRole<string>
+                {
+                    RoleId = ROLE_ID,
+                    UserId = ADMIN_ID
+                });
         }
     }
 }

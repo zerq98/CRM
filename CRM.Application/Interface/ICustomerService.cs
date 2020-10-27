@@ -1,4 +1,5 @@
 ﻿using CRM.Application.Dto;
+using CRM.Application.Dto.Customer;
 using System.Threading.Tasks;
 
 namespace CRM.Application.Interface
@@ -11,7 +12,7 @@ namespace CRM.Application.Interface
 
         Task EditCustomerData(CustomerEditDto model);
 
-        Task<CustomersListDto> GetAllActiveCustomers();
+        Task<CustomersListDto> GetAllActiveCustomers(string userName);
 
         Task<CustomersListDto> GetAllCustomers();
 

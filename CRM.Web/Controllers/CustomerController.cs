@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CRM.Application.Dto;
+using CRM.Application.Dto.Customer;
 using CRM.Application.Interface;
 using Microsoft.AspNetCore.Mvc;
 
@@ -18,17 +19,18 @@ namespace CRM.Web.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> IndexAsync()
+        public async Task<IActionResult> IndexAsync(string username)
         {
-            //var customers = await _customerService.GetAllActiveCustomers();
+            var customers = await _customerService.GetAllActiveCustomers(username);
             ViewData["StatusList"] = new List<string>() { "Verification" };
-            return View(new CustomersListDto
-            {
-                Customers = new List<CustomerViewDto>() {
-                new CustomerViewDto{Id=1,Name="Test",NIP= "123-456-32-18", REGON="12-345-678-90",KRSNumber="", DealSize=1231,Status="Verification", Description="Test company" }
-            },
-                Count = 1
-            });
+            return View(customers);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> ChangeStatusAsync(int id,int statusId)
+        {
+            await _customerService.ChangeCustomerStatus(id, statusId);
+            return null;
         }
 
         [HttpGet]

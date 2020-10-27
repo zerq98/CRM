@@ -44,9 +44,16 @@ namespace CRM.Infrastructure.Repository
             return _context.Customers.AsQueryable();
         }
 
-        public IQueryable<Customer> GetAllActive()
+        public IQueryable<Customer> GetAllActive(string userName)
         {
-            return _context.Customers.Where(x => x.IsActive).AsQueryable();
+            if (userName != "0")
+            {
+                return _context.Customers.Where(x => x.IsActive && x.Name == userName).AsQueryable();
+            }
+            else
+            {
+                return _context.Customers.Where(x => x.IsActive).AsQueryable();
+            }
         }
 
         public async Task<Customer> GetById(int id)

@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using AutoMapper.QueryableExtensions;
 using CRM.Application.Dto;
+using CRM.Application.Dto.Customer;
 using CRM.Application.Interface;
 using CRM.Domain.Entity;
 using CRM.Domain.Interface;
@@ -51,9 +52,9 @@ namespace CRM.Application.Service
             await _customerRepostiory.SaveAsync();
         }
 
-        public async Task<CustomersListDto> GetAllActiveCustomers()
+        public async Task<CustomersListDto> GetAllActiveCustomers(string userName)
         {
-            var customers = await _customerRepostiory.GetAllActive()
+            var customers = await _customerRepostiory.GetAllActive(userName)
                             .ProjectTo<CustomerViewDto>(_mapper.ConfigurationProvider)
                             .ToListAsync();
 

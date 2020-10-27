@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 
@@ -255,7 +256,7 @@ namespace CRM.Domain.Entity
             };
 
             int i = 1;
-            foreach(var country in countries)
+            foreach (var country in countries)
             {
                 country.Id = i;
                 i += 1;

@@ -9,33 +9,26 @@
         Count of customers: @Model.Count
     </div>
     <div class="row">
-        <div class="row" id="board1">
-            <div class="card" data-k="a">
-                <div class="item">item 1</div>
-                <div class="item">item 2</div>
-                <div class="item">item 3</div>
-            </div>
+        <div class="statusCol col-sm-4" style="width:auto 100%" id="1">
+            <p style="background-color:white "> statusTypes[0]</p>
+            @foreach (var customer in Model.Customers.Where(x => x.Status == statusTypes[0]))
+            {
+                <p class="draggable" draggable="true">
+                    @customer.Name @customer.DealSize
+                </p>
+            }
+        </div>
 
-            <div class="card" data-k="b">
-                <div class="item">item 4</div>
-                <div class="item">item 5</div>
-            </div>
+        <div class="statusCol col-sm-4" id="2">
 
-            <div class="card" data-k="c">
-                <div class="item">item 6</div>
-                <div class="item">item 7</div>
-            </div>
+        </div>
+
+        <div class="statusCol col-sm-4" id="3">
+
         </div>
     </div>
 </div>
 
-@section Scripts{
+@section scripts{
     <script src="~/js/DragDrop.js"></script>
 }
-
-@*@foreach (var customer in Model.Customers.Where(x => x.Status == statusTypes[0]))
-    {
-        <div class="item">
-            @customer.Name @customer.DealSize
-        </div>
-    }*@
