@@ -1,0 +1,15 @@
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiApplication.deps.json
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiApplication.dll
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ref\ApiApplication.dll
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiApplication.pdb
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiDomain.dll
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiDomain.pdb
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.csprojAssemblyReference.cache
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.GeneratedMSBuildEditorConfig.editorconfig
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.AssemblyInfoInputs.cache
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.AssemblyInfo.cs
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.csproj.CoreCompileInputs.cache
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.csproj.CopyComplete
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.dll
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ref\ApiApplication.dll
+F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.pdb

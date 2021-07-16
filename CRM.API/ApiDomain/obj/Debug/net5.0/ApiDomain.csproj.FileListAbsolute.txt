@@ -1,0 +1,12 @@
+F:\CRM\CRM.API\ApiDomain\bin\Debug\net5.0\ApiDomain.deps.json
+F:\CRM\CRM.API\ApiDomain\bin\Debug\net5.0\ApiDomain.dll
+F:\CRM\CRM.API\ApiDomain\bin\Debug\net5.0\ref\ApiDomain.dll
+F:\CRM\CRM.API\ApiDomain\bin\Debug\net5.0\ApiDomain.pdb
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.csprojAssemblyReference.cache
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.GeneratedMSBuildEditorConfig.editorconfig
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.AssemblyInfoInputs.cache
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.AssemblyInfo.cs
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.csproj.CoreCompileInputs.cache
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.dll
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ref\ApiDomain.dll
+F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.pdb
