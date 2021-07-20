@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ApiApplication.Helpers.JWT
+﻿namespace ApiApplication.Helpers.JWT
 {
     public class JwtConfig
     {

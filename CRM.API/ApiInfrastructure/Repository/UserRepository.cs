@@ -1,19 +1,19 @@
 ﻿using ApiDomain.Entity;
 using ApiDomain.Interface;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApiInfrastructure.Repository
 {
-    public class UserRepository : BaseRepository,IUserRepository
+    public class UserRepository : BaseRepository, IUserRepository
     {
         private readonly UserManager<ApplicationUser> _userManager;
 
-        public UserRepository(AppDbContext context,UserManager<ApplicationUser> userManager) : base(context)
+        public UserRepository(AppDbContext context, UserManager<ApplicationUser> userManager) : base(context)
         {
             _userManager = userManager;
         }
@@ -26,7 +26,7 @@ namespace ApiInfrastructure.Repository
 
                 if (user != null)
                 {
-                    foreach(var claim in claims)
+                    foreach (var claim in claims)
                     {
                         await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim(claim, claim));
                     }
@@ -40,6 +40,7 @@ namespace ApiInfrastructure.Repository
                     ModuleName = "UserRepository/AssignClaimsAsync"
                 });
                 await _context.SaveChangesAsync();
+                throw;
             }
         }
 
@@ -68,7 +69,7 @@ namespace ApiInfrastructure.Repository
                 });
                 await _context.SaveChangesAsync();
 
-                return false;
+                throw;
             }
         }
 
@@ -93,7 +94,7 @@ namespace ApiInfrastructure.Repository
                 });
                 await _context.SaveChangesAsync();
 
-                return false;
+                throw;
             }
         }
 
@@ -105,7 +106,7 @@ namespace ApiInfrastructure.Repository
 
                 return result.Succeeded;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await _context.Logs.AddAsync(new Log
                 {
@@ -114,15 +115,15 @@ namespace ApiInfrastructure.Repository
                 });
                 await _context.SaveChangesAsync();
 
-                return false;
+                throw;
             }
         }
 
-        public async Task<ApplicationUser> CreateUserAsync(ApplicationUser user,string password)
+        public async Task<ApplicationUser> CreateUserAsync(ApplicationUser user, string password)
         {
             try
             {
-                await _userManager.CreateAsync(user,password);
+                await _userManager.CreateAsync(user, password);
 
                 return user;
             }
@@ -135,13 +136,54 @@ namespace ApiInfrastructure.Repository
                 });
                 await _context.SaveChangesAsync();
 
-                return null;
+                throw;
+            }
+        }
+
+        public async Task DeleteUserAsync(string userId)
+        {
+            try
+            {
+                var user = await _context.Users.FirstOrDefaultAsync(x => x.Id == userId);
+                if (user != null)
+                {
+                    _context.Users.Remove(user);
+                    _context.UserClaims.RemoveRange(await _context.UserClaims.Where(x => x.UserId == userId).ToListAsync());
+                    await _context.SaveChangesAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                await _context.Logs.AddAsync(new Log
+                {
+                    LogMessage = ex.Message,
+                    ModuleName = "UserRepository/DeleteUserAsync"
+                });
+                await _context.SaveChangesAsync();
+
+                throw;
             }
         }
 
         public async Task<string> GenerateEmailConfirmationTokenAsync(ApplicationUser user)
         {
-            return await _userManager.GenerateEmailConfirmationTokenAsync(user);
+            try
+            {
+                var token = await _userManager.GenerateEmailConfirmationTokenAsync(user);
+
+                return token;
+            }
+            catch (Exception ex)
+            {
+                await _context.Logs.AddAsync(new Log
+                {
+                    LogMessage = ex.Message,
+                    ModuleName = "UserRepository/GenerateEmailConfirmationTokenAsync"
+                });
+                await _context.SaveChangesAsync();
+
+                throw;
+            }
         }
 
         public async Task<ApplicationUser> GetUserByEmailAsync(string email)
@@ -149,9 +191,19 @@ namespace ApiInfrastructure.Repository
             return await _userManager.FindByEmailAsync(email);
         }
 
+        public async Task<ApplicationUser> GetUserByIdAsync(string userId)
+        {
+            return await _userManager.FindByIdAsync(userId);
+        }
+
         public async Task<ApplicationUser> GetUserByLoginAsync(string login)
         {
             return await _userManager.FindByNameAsync(login);
+        }
+
+        public async Task<List<string>> GetUserClaims(string userId)
+        {
+            return await _context.UserClaims.Where(x => x.UserId == userId).Select(x => x.ClaimType).ToListAsync();
         }
     }
 }

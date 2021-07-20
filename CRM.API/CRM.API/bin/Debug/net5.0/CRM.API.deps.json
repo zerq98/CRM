@@ -35,6 +35,8 @@
         "dependencies": {
           "ApiApplication": "1.0.0",
           "ApiInfrastructure": "1.0.0",
+          "MediatR": "9.0.0",
+          "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
           "Microsoft.AspNetCore.Authentication.JwtBearer": "5.0.8",
           "Microsoft.EntityFrameworkCore.Design": "5.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.7",

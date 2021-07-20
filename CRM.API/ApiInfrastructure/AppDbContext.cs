@@ -1,11 +1,6 @@
 ﻿using ApiDomain.Entity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApiInfrastructure
 {
@@ -17,7 +12,9 @@ namespace ApiInfrastructure
         public DbSet<Log> Logs { get; set; }
         public DbSet<ApplicationClaim> ApplicationClaims { get; set; }
 
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options) { }
+        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        {
+        }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

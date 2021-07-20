@@ -1,16 +1,16 @@
 ﻿using ApiDomain.Entity;
 using ApiDomain.Interface;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApiInfrastructure.Repository
 {
     public class CompanyRepository : BaseRepository, ICompanyRepository
     {
-        public CompanyRepository(AppDbContext context) : base(context) { }
+        public CompanyRepository(AppDbContext context) : base(context)
+        {
+        }
+
         public async Task<Company> CreateCompanyAsync(Company company)
         {
             try
@@ -19,7 +19,7 @@ namespace ApiInfrastructure.Repository
                 await _context.SaveChangesAsync();
                 return company;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await _context.Logs.AddAsync(new Log
                 {
@@ -28,8 +28,13 @@ namespace ApiInfrastructure.Repository
                 });
                 await _context.SaveChangesAsync();
 
-                return null;
+                throw;
             }
+        }
+
+        public Task DeleteCompanyAsync(int companyId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

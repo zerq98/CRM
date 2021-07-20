@@ -1,16 +1,16 @@
 ﻿using ApiDomain.Entity;
 using ApiDomain.Interface;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApiInfrastructure.Repository
 {
     public class DepartmentRepository : BaseRepository, IDepartmentRepository
     {
-        public DepartmentRepository(AppDbContext context) : base(context) { }
+        public DepartmentRepository(AppDbContext context) : base(context)
+        {
+        }
+
         public async Task<Department> CreateDepartmentAsync(Department department)
         {
             try
@@ -28,8 +28,13 @@ namespace ApiInfrastructure.Repository
                 });
                 await _context.SaveChangesAsync();
 
-                return null;
+                throw;
             }
+        }
+
+        public Task DeleteDepartmentAsync(int departmentId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

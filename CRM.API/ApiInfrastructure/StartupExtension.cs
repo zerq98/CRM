@@ -4,10 +4,6 @@ using ApiInfrastructure.Repository;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ApiInfrastructure
 {
@@ -15,13 +11,16 @@ namespace ApiInfrastructure
     {
         public static void AddInfrastructure(this IServiceCollection services)
         {
+            services.AddTransient<IBaseRepository, BaseRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IClaimRepository, ClaimRepository>();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>().AddEntityFrameworkStores<AppDbContext>();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+                .AddEntityFrameworkStores<AppDbContext>()
+                .AddDefaultTokenProviders();
             services.Configure<IdentityOptions>(options =>
             {
                 //Password settings
@@ -42,6 +41,8 @@ namespace ApiInfrastructure
                 "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*().-_";
                 options.User.RequireUniqueEmail = true;
                 options.SignIn.RequireConfirmedEmail = true;
+                options.Lockout.MaxFailedAccessAttempts = 3;
+                options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromDays(2);
             });
         }
     }

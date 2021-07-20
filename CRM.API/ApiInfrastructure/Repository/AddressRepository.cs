@@ -1,18 +1,14 @@
 ﻿using ApiDomain.Entity;
 using ApiDomain.Interface;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApiInfrastructure.Repository
 {
-    public class AddressRepository : BaseRepository,IAddressRepository
+    public class AddressRepository : BaseRepository, IAddressRepository
     {
         public AddressRepository(AppDbContext context) : base(context)
         {
-
         }
 
         public async Task<Address> CreateAddressAsync(Address address)
@@ -25,7 +21,7 @@ namespace ApiInfrastructure.Repository
 
                 return address;
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 await _context.Logs.AddAsync(new Log
                 {
@@ -34,8 +30,13 @@ namespace ApiInfrastructure.Repository
                 });
                 await _context.SaveChangesAsync();
 
-                return null;
+                throw;
             }
+        }
+
+        public Task DeleteAddressAsync(int addressId)
+        {
+            throw new NotImplementedException();
         }
     }
 }

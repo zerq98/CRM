@@ -6673,6 +6673,8 @@
     "net5.0": [
       "ApiApplication >= 1.0.0",
       "ApiInfrastructure >= 1.0.0",
+      "MediatR >= 9.0.0",
+      "MediatR.Extensions.Microsoft.DependencyInjection >= 9.0.0",
       "Microsoft.AspNetCore.Authentication.JwtBearer >= 5.0.8",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.7",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.7",
@@ -6735,6 +6737,14 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "MediatR": {
+            "target": "Package",
+            "version": "[9.0.0, )"
+          },
+          "MediatR.Extensions.Microsoft.DependencyInjection": {
+            "target": "Package",
+            "version": "[9.0.0, )"
+          },
           "Microsoft.AspNetCore.Authentication.JwtBearer": {
             "target": "Package",
             "version": "[5.0.8, )"

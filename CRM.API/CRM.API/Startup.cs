@@ -1,23 +1,17 @@
-using ApiApplication;
+﻿using ApiApplication;
 using ApiApplication.Helpers.JWT;
 using ApiInfrastructure;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace CRM.API
 {
@@ -40,6 +34,12 @@ namespace CRM.API
             services.AddApplication();
 
             services.Configure<JwtConfig>(Configuration.GetSection("JwtConfig"));
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("CompanyManagement", policy => policy.RequireClaim("Zarząd", "IT"));
+                options.AddPolicy("PeopleManagement", policy => policy.RequireClaim("Zarząd", "IT", "HR"));
+            });
 
             services.AddAuthentication(options =>
             {
@@ -65,7 +65,7 @@ namespace CRM.API
 
             services.AddControllers().AddJsonOptions(options =>
             {
-                options.JsonSerializerOptions.MaxDepth = 128;
+                options.JsonSerializerOptions.MaxDepth = 1024;
             });
             services.AddCors(options =>
             {
@@ -77,7 +77,7 @@ namespace CRM.API
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "CRM.API", Version = "v1" });
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
                 {
-                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n 
+                    Description = @"JWT Authorization header using the Bearer scheme. \r\n\r\n
                       Enter 'Bearer' [space] and then your token in the text input below.
                       \r\n\r\nExample: 'Bearer 12345abcdef'",
                     Name = "Authorization",
@@ -102,7 +102,6 @@ namespace CRM.API
                     new List<string>()
                     }
                 });
-
             });
         }
 
@@ -126,7 +125,9 @@ namespace CRM.API
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
+                endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "api/{controller}/{action}/{id?}");
             });
         }
     }

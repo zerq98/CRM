@@ -1,17 +1,12 @@
 ﻿using Microsoft.AspNetCore.Identity.UI.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net;
 using System.Net.Mail;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApiApplication.Helpers.Email
 {
     public class EmailSender : IEmailSender
     {
-
         public async Task SendEmailAsync(string email, string subject, string htmlMessage)
         {
             string fromMail = "gamifycrm@gmail.com";
@@ -32,6 +27,5 @@ namespace ApiApplication.Helpers.Email
             };
             smtpClient.Send(message);
         }
-
     }
 }

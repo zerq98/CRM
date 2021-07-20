@@ -1,8 +1,4 @@
 ﻿using ApiDomain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace ApiDomain.Interface
@@ -11,5 +7,6 @@ namespace ApiDomain.Interface
     {
         Task<Company> CreateCompanyAsync(Company company);
 
+        Task DeleteCompanyAsync(int companyId);
     }
 }
