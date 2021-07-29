@@ -2,6 +2,15 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false,
   theme: {
+    opacity: {
+      '015': '0.015',
+      '35': '0.35',
+      '65': '0.65',
+     },
+    backdropFilter: {
+      'none': 'none',
+      'blur': 'blur(20px)',
+    },
     fontSize: {
       'xxs':'.50rem',
       'xs': '.75rem',
@@ -19,12 +28,10 @@ module.exports = {
      },
      extend: {
       backgroundImage: theme => ({
-       'bgImg': "url('/browShape1.png')",
+       'loginBG': "url('/loginBG.jpeg')",
       })
     },
     colors: {
-      'nav-color': '#e7e0d9',
-      'hover-color': '#e2e0d0',
       'bold-color': '#c5b4a3',
       'white': '#FFFFFF',
       'gray': '#555555',
@@ -44,7 +51,23 @@ module.exports = {
       sans: ['Open sans', 'sans-serif'],
     },
     spacing:{
+      auto:'auto',
       px: '1px',
+      '2p': '2%',
+      '5p': '5%',
+      '10p': '10%',
+      '20p': '20%',
+      '25p': '25%',
+      '30p': '30%',
+      '35p': '35%',
+      '40p': '40%',
+      '50p': '50%',
+      '60p': '60%',
+      '70p': '70%',
+      '75p': '75%',
+      '80p': '80%',
+      '90p': '90%',
+      '100p': '100%',
       0: '0',
       0.5: '0.125rem',
       1: '0.25rem',
@@ -83,13 +106,16 @@ module.exports = {
       108: '36rem',
       112: '42rem',
       120: '48rem',
+      
     }
   },
   variants: {
     extend: {
       animation: ['hover', 'focus'],
       ringColor: ['hover'],
+      outline: ['hover', 'active'],
     },
   },
-  plugins: [],
+  plugins: [
+  ],
 }
