@@ -12,7 +12,7 @@ export default function login(){
         event.stopPropagation();
 
         const ret = logIn(event.target.login.value,event.target.password.value);
-
+        console.log(ret);
         if(ret === 'Wrong data'){
             setLogin='';
             setPassword='';
@@ -22,8 +22,8 @@ export default function login(){
 
     return (
         <div className="bg-loginBG h-screen bg-cover bg-no-repeat bg-center">
-            <div className="bg-opacity-015 backdrop-filter backdrop-blur-lg bg-gray md:inset-x-30p inset-y-10p xs:inset-x-20p
-            h-70p md:w-35p xs:w-60p flex flex-col rounded-3xl relative bg-clip-padding flex flex-col justify-start items-center xs:pt-5p md:pt-2p">
+            <div className="bg-opacity-015 backdrop-filter backdrop-blur-lg bg-gray md:inset-x-30p inset-y-20p xs:inset-x-20p
+             md:w-35p xs:w-60p flex flex-col rounded-3xl relative bg-clip-padding flex flex-col justify-start items-center xs:py-5p md:py-2p">
                 <div className="xs:text-sm md:text-xl lg:text-2xl font-bold">Bierzmy się do pracy</div>
                 <div className="xs:text-xs md:text-md lg:text-lg">Zaloguj się do systemu</div>
                 <div className="flex flex-col w-75p mx-10p h-50p">
@@ -37,6 +37,10 @@ export default function login(){
                             Zaloguj się
                         </button>
                     </form>
+                <Link href="/register">
+                    <div className="xs:text-xs md:text-md lg:text-lg cursor-pointer md:mt-5 text-blue 
+                    transition duration-500 ease-in-out transform hover:-translate-y-1 hover:scale-125 mx-auto">Nie masz konta? Zarejestruj swoją firmę.</div>
+                </Link>
                 </div>
             </div>
         </div>

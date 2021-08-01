@@ -16,3 +16,21 @@ F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.dll
 F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ref\ApiInfrastructure.dll
 F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.pdb
 F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.genruntimeconfig.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiInfrastructure.deps.json
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiInfrastructure.runtimeconfig.json
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiInfrastructure.runtimeconfig.dev.json
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiInfrastructure.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ref\ApiInfrastructure.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiInfrastructure.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiDomain.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiDomain.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.csproj.AssemblyReference.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.AssemblyInfoInputs.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.AssemblyInfo.cs
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.csproj.CoreCompileInputs.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.csproj.CopyComplete
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ref\ApiInfrastructure.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.genruntimeconfig.cache

@@ -1,4 +1,3 @@
-import axios from 'axios';
 import ApiRestService from './ApiRestService';
 
 export const logIn = async (login,password)=>{
@@ -20,6 +19,10 @@ export const logIn = async (login,password)=>{
         }).catch(error =>{
             if(error.response.status === 401){
                 alert('Sprawdź ponownie dane logowania')
+                return 'Wrong data';
+            }
+            if(error.response.status === 500){
+                alert('Nastąpił problem z połączeniem z serwerem.\r\nSkontaktuj się z administracją')
                 return 'Wrong data';
             }
         })

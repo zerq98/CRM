@@ -10,3 +10,15 @@ F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.csproj.CoreCompileInputs.cac
 F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.dll
 F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ref\ApiDomain.dll
 F:\CRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\bin\Debug\net5.0\ApiDomain.deps.json
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\bin\Debug\net5.0\ApiDomain.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\bin\Debug\net5.0\ref\ApiDomain.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\bin\Debug\net5.0\ApiDomain.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.csproj.AssemblyReference.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.AssemblyInfoInputs.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.AssemblyInfo.cs
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.csproj.CoreCompileInputs.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ref\ApiDomain.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiDomain\obj\Debug\net5.0\ApiDomain.pdb

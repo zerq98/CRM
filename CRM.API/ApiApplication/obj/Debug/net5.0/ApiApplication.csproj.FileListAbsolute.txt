@@ -13,3 +13,18 @@ F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.csproj.CopyComplet
 F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.dll
 F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ref\ApiApplication.dll
 F:\CRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiApplication.deps.json
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiApplication.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\bin\Debug\net5.0\ref\ApiApplication.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiApplication.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiDomain.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiDomain.pdb
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.csproj.AssemblyReference.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.AssemblyInfoInputs.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.AssemblyInfo.cs
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.csproj.CoreCompileInputs.cache
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.csproj.CopyComplete
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ref\ApiApplication.dll
+C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.pdb

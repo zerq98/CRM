@@ -32,12 +32,13 @@ module.exports = {
       })
     },
     colors: {
-      'bold-color': '#c5b4a3',
+      'registerBorder': '#54567a',
       'white': '#FFFFFF',
       'gray': '#555555',
       'light-gray': '#aaaaaa',
       'black': '#000000',
-      'red': '#FF0000'
+      'red': '#FF0000',
+      'blue': '#0000FF'
     },
     screens:{
       'xs':'320px',

@@ -83,6 +83,14 @@ namespace ApiApplication.Account.Register
                     };
                     var createdDepartment = await _departmentRepository.CreateDepartmentAsync(department);
 
+                    department = new Department
+                    {
+                        Company = createdCompany,
+                        Name = "IT",
+                        Users = new List<ApplicationUser>()
+                    };
+                    createdDepartment = await _departmentRepository.CreateDepartmentAsync(department);
+
                     var user = new ApplicationUser
                     {
                         Address = createdUserAddress,
@@ -97,7 +105,7 @@ namespace ApiApplication.Account.Register
                         PhoneNumber = request.Data.User.PhoneNumber
                     };
                     var createdUser = await _userRepository.CreateUserAsync(user, request.Data.User.Password);
-                    await _userRepository.AssignClaimsAsync(new List<string> { "CEO" }, createdUser.Id);
+                    await _userRepository.AssignClaimsAsync(new List<string> { "IT Administrator" }, createdUser.Id);
 
                     var token = await _userRepository.GenerateEmailConfirmationTokenAsync(createdUser);
                     var confirmationLink = $"http://localhost:44395/Account/ConfirmEmail?userId={createdUser.Id}&token={token}";

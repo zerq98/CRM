@@ -13,6 +13,9 @@ const Navbar = () =>{
                     <Link href="/login">
                         <a className="text-left place-content-center fit-content h-auto cursor-pointer">Logowanie</a>
                     </Link>
+                    <Link href="/register">
+                        <a className="text-left place-content-center fit-content h-auto cursor-pointer">Dołącz do nas</a>
+                    </Link>
                 </div>
             </div>
         </nav>
