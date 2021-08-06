@@ -1,6 +1,6 @@
 import 'tailwindcss/tailwind.css'
 import { useState } from 'react'
-import { logIn } from './api/account';
+import { register } from './api/account';
 import 'react-phone-number-input/style.css'
 import Select from 'react-select'
 
@@ -29,6 +29,24 @@ export default function login(){
     const handleRegister = function (event) {
         event.preventDefault();
         event.stopPropagation();
+
+        const data ={
+            login:event.target.login.value,
+            mail:event.target.mail.value,
+            password:event.target.password.value,
+            firstName:event.target.firstName.value,
+            lastName:event.target.lastName.value,
+            phone:event.target.phone.value,
+            companyName:event.target.companyName.value,
+            postCode:event.target.postCode.value,
+            city:event.target.city.value,
+            street:event.target.address.value,
+            houseNo:(event.target.address2.value.split('/'))[0],
+            flatNo:(event.target.address2.value.split('/'))[1],
+            province:province
+        }
+
+        register(data);
     }
 
 
@@ -64,11 +82,11 @@ export default function login(){
                             className="shadow-inner w-40p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5 mt-2"/>
                             <input id="city" name="city" type="city" placeholder="Miasto" required
                             className="shadow-inner w-40p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5 mt-2"/>
-                            <input id="address" name="address" type="text" placeholder="Adres" required
+                            <input id="address" name="address" type="text" placeholder="Ulica" required
                             className="shadow-inner w-40p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5 mt-2"/>
                             <Select options={provinces} onChange={value => setProvince(value.value)} placeholder="Województwo" required
                             className="shadow-inner w-40p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none mt-2"/>
-                            <input id="address2" name="address2" type="text" placeholder="Adres cz.2" required
+                            <input id="address2" name="address2" type="text" placeholder="Nr. domu/mieszkania" required
                             className="shadow-inner w-40p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5 mt-2"/>
                         </div>
                         

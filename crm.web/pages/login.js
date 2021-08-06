@@ -12,7 +12,6 @@ export default function login(){
         event.stopPropagation();
 
         const ret = logIn(event.target.login.value,event.target.password.value);
-        console.log(ret);
         if(ret === 'Wrong data'){
             setLogin='';
             setPassword='';
