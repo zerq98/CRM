@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\CRM.API\\CRM.API.csproj": {}
+    "F:\\CRM\\CRM.API\\CRM.API\\CRM.API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiApplication\\ApiApplication.csproj": {
+    "F:\\CRM\\CRM.API\\ApiApplication\\ApiApplication.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiApplication\\ApiApplication.csproj",
+        "projectUniqueName": "F:\\CRM\\CRM.API\\ApiApplication\\ApiApplication.csproj",
         "projectName": "ApiApplication",
-        "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiApplication\\ApiApplication.csproj",
-        "packagesPath": "C:\\Users\\MTrybula\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiApplication\\obj\\",
+        "projectPath": "F:\\CRM\\CRM.API\\ApiApplication\\ApiApplication.csproj",
+        "packagesPath": "C:\\Users\\crompp\\.nuget\\packages\\",
+        "outputPath": "F:\\CRM\\CRM.API\\ApiApplication\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -19,7 +19,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MTrybula\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\crompp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -29,16 +29,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nuget.grapecity.com/nuget": {},
-          "https://dpssoft.pkgs.visualstudio.com/_packaging/DPS/nuget/v3/index.json": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\ApiDomain.csproj": {
-                "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\ApiDomain.csproj"
+              "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj": {
+                "projectPath": "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj"
               }
             }
           }
@@ -97,18 +95,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.205\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\ApiDomain.csproj": {
+    "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\ApiDomain.csproj",
+        "projectUniqueName": "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj",
         "projectName": "ApiDomain",
-        "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\ApiDomain.csproj",
-        "packagesPath": "C:\\Users\\MTrybula\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\obj\\",
+        "projectPath": "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj",
+        "packagesPath": "C:\\Users\\crompp\\.nuget\\packages\\",
+        "outputPath": "F:\\CRM\\CRM.API\\ApiDomain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -116,7 +114,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MTrybula\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\crompp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -126,9 +124,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nuget.grapecity.com/nuget": {},
-          "https://dpssoft.pkgs.visualstudio.com/_packaging/DPS/nuget/v3/index.json": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
@@ -166,18 +162,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.205\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj": {
+    "F:\\CRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj",
+        "projectUniqueName": "F:\\CRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj",
         "projectName": "ApiInfrastructure",
-        "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj",
-        "packagesPath": "C:\\Users\\MTrybula\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiInfrastructure\\obj\\",
+        "projectPath": "F:\\CRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj",
+        "packagesPath": "C:\\Users\\crompp\\.nuget\\packages\\",
+        "outputPath": "F:\\CRM\\CRM.API\\ApiInfrastructure\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -185,7 +181,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MTrybula\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\crompp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -195,16 +191,14 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nuget.grapecity.com/nuget": {},
-          "https://dpssoft.pkgs.visualstudio.com/_packaging/DPS/nuget/v3/index.json": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\ApiDomain.csproj": {
-                "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiDomain\\ApiDomain.csproj"
+              "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj": {
+                "projectPath": "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj"
               }
             }
           }
@@ -263,18 +257,18 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.205\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\CRM.API\\CRM.API.csproj": {
+    "F:\\CRM\\CRM.API\\CRM.API\\CRM.API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\CRM.API\\CRM.API.csproj",
+        "projectUniqueName": "F:\\CRM\\CRM.API\\CRM.API\\CRM.API.csproj",
         "projectName": "CRM.API",
-        "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\CRM.API\\CRM.API.csproj",
-        "packagesPath": "C:\\Users\\MTrybula\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\CRM.API\\obj\\",
+        "projectPath": "F:\\CRM\\CRM.API\\CRM.API\\CRM.API.csproj",
+        "packagesPath": "C:\\Users\\crompp\\.nuget\\packages\\",
+        "outputPath": "F:\\CRM\\CRM.API\\CRM.API\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -282,7 +276,7 @@
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\MTrybula\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\crompp\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
@@ -292,19 +286,17 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "http://nuget.grapecity.com/nuget": {},
-          "https://dpssoft.pkgs.visualstudio.com/_packaging/DPS/nuget/v3/index.json": {},
-          "https://www.nuget.org/api/v2/": {}
+          "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
           "net5.0": {
             "targetAlias": "net5.0",
             "projectReferences": {
-              "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiApplication\\ApiApplication.csproj": {
-                "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiApplication\\ApiApplication.csproj"
+              "F:\\CRM\\CRM.API\\ApiApplication\\ApiApplication.csproj": {
+                "projectPath": "F:\\CRM\\CRM.API\\ApiApplication\\ApiApplication.csproj"
               },
-              "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj": {
-                "projectPath": "C:\\Users\\MTrybula\\Desktop\\prywatne projekty\\GamifyCRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj"
+              "F:\\CRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj": {
+                "projectPath": "F:\\CRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj"
               }
             }
           }
@@ -364,7 +356,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.205\\RuntimeIdentifierGraph.json"
         }
       }
     }

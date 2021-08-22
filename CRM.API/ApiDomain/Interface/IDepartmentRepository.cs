@@ -8,5 +8,6 @@ namespace ApiDomain.Interface
         Task<Department> CreateDepartmentAsync(Department department);
 
         Task DeleteDepartmentAsync(int departmentId);
+        Task<Department> GetDepartmentByIdAsync(int departmentId);
     }
 }

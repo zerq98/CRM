@@ -1,5 +1,6 @@
 ﻿using ApiDomain.Entity;
 using ApiDomain.Interface;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Threading.Tasks;
 
@@ -35,6 +36,11 @@ namespace ApiInfrastructure.Repository
         public Task DeleteDepartmentAsync(int departmentId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Department> GetDepartmentByIdAsync(int departmentId)
+        {
+            return await _context.Departments.FirstOrDefaultAsync(x => x.Id == departmentId);
         }
     }
 }

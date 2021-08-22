@@ -10,14 +10,14 @@ namespace ApiApplication.Helpers.JWT
 {
     public static class TokenGenerator
     {
-        public static string Generate(ApplicationUser user, List<string> claims, JwtConfig config)
+        public static string Generate(ApplicationUser user, List<string> claims, JwtConfig config,DateTime expireDate)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
             var key = Encoding.ASCII.GetBytes(config.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id) }),
-                Expires = DateTime.UtcNow.AddDays(1),
+                Expires = expireDate,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };
 

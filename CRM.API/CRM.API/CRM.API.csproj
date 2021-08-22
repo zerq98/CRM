@@ -21,4 +21,8 @@
     <ProjectReference Include="..\ApiInfrastructure\ApiInfrastructure.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Resources\ProfilePictures\" />
+  </ItemGroup>
+
 </Project>

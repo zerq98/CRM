@@ -1,10 +1,17 @@
+const plugin = require('tailwindcss/plugin')
+
 module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false,
   theme: {
     opacity: {
       '015': '0.015',
+      '10':'0.1',
+      '15':'0.15',
+      '20':'0.2',
+      '25':'0.25',
       '35': '0.35',
+      '45': '0.45',
       '65': '0.65',
      },
     backdropFilter: {
@@ -38,7 +45,11 @@ module.exports = {
       'light-gray': '#aaaaaa',
       'black': '#000000',
       'red': '#FF0000',
-      'blue': '#0000FF'
+      'blue': '#0000FF',
+      'sidebarBG': '#242424',
+      'sidebarBGHover': '#999999',
+      'layoutBG': '#326cfc',
+      'markAsRead': '#3c3c3c'
     },
     screens:{
       'xs':'320px',
@@ -46,7 +57,8 @@ module.exports = {
       'md':'768px',
       'lg':'1024px',
       'xl':'1280px',
-      '2xl':'1536px'
+      '2xl':'1536px',
+      '4k':'2560px'
     },
     fontFamily: {
       sans: ['Open sans', 'sans-serif'],
@@ -54,20 +66,30 @@ module.exports = {
     spacing:{
       auto:'auto',
       px: '1px',
+      '1p': '1%',
       '2p': '2%',
       '5p': '5%',
       '10p': '10%',
+      '15p': '15%',
       '20p': '20%',
       '25p': '25%',
       '30p': '30%',
       '35p': '35%',
       '40p': '40%',
+      '45p': '45%',
+      '46p': '46%',
+      '47p': '47%',
+      '48p': '48%',
       '50p': '50%',
+      '55p': '55%',
       '60p': '60%',
       '70p': '70%',
       '75p': '75%',
       '80p': '80%',
+      '85p': '85%',
       '90p': '90%',
+      '95p': '95%',
+      '96p': '96%',
       '100p': '100%',
       0: '0',
       0.5: '0.125rem',
@@ -107,6 +129,7 @@ module.exports = {
       108: '36rem',
       112: '42rem',
       120: '48rem',
+      fullScreen: '100vh'
       
     }
   },
@@ -115,8 +138,9 @@ module.exports = {
       animation: ['hover', 'focus'],
       ringColor: ['hover'],
       outline: ['hover', 'active'],
+      display: ['hover', 'focus','group-hover'],
     },
   },
   plugins: [
-  ],
+  ]
 }

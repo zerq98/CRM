@@ -17,6 +17,7 @@ namespace ApiInfrastructure
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IClaimRepository, ClaimRepository>();
+            services.AddScoped<ITodoTaskRepository, TodoTaskRepository>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()

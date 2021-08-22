@@ -1,4 +1,5 @@
-﻿using ApiApplication.Helpers.Email;
+﻿using ApiApplication.Helpers;
+using ApiApplication.Helpers.Email;
 using ApiDomain.Entity;
 using ApiDomain.Interface;
 using MediatR;
@@ -18,7 +19,8 @@ namespace ApiApplication.Account.Register
         private readonly IBaseRepository _baseRepository;
 
         public RegisterUserHandler(IUserRepository userRepository, ICompanyRepository companyRepository,
-                                   IAddressRepository addressRepository, IDepartmentRepository departmentRepository, IBaseRepository baseRepository)
+                                   IAddressRepository addressRepository, IDepartmentRepository departmentRepository,
+                                   IBaseRepository baseRepository)
         {
             _userRepository = userRepository;
             _addressRepository = addressRepository;
@@ -35,12 +37,22 @@ namespace ApiApplication.Account.Register
                 {
                     if (await _userRepository.GetUserByEmailAsync(request.Data.User.Email) != null)
                     {
-                        return new JsonResult("Email exists");
+                        return new JsonResult(new ApiResponse<object>
+                        {
+                            Code = 409,
+                            ErrorMessage = "Ten adres email jest już w użyciu.",
+                            Data = null
+                        });
                     }
 
                     if (await _userRepository.GetUserByLoginAsync(request.Data.User.Login) != null)
                     {
-                        return new JsonResult("Login exists");
+                        return new JsonResult(new ApiResponse<object>
+                        {
+                            Code = 409,
+                            ErrorMessage = "Ta nazwa użytkownika jest już w użyciu.",
+                            Data = null
+                        });
                     }
 
                     var userAddress = new Address
@@ -95,6 +107,7 @@ namespace ApiApplication.Account.Register
                     {
                         Address = createdUserAddress,
                         Department = createdDepartment,
+                        CompanyPosition="IT Team Leader",
                         Email = request.Data.User.Email,
                         EmailConfirmed = false,
                         FirstName = request.Data.User.FirstName,
@@ -115,12 +128,22 @@ namespace ApiApplication.Account.Register
                         $"Twój link do potwierdzenia konta:<br>{confirmationLink}<br>Dziękujemy za skorzystanie z naszych usług");
 
                     transaction.Commit();
-                    return new StatusCodeResult(201);
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Code = 201,
+                        Data = null,
+                        ErrorMessage = ""
+                    });
                 }
                 catch
                 {
                     transaction.Rollback();
-                    return new StatusCodeResult(500);
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Code = 500,
+                        Data = null,
+                        ErrorMessage = "Nastąpił problem z serwerem, skontaktuj się z działem IT."
+                    });
                 }
             }
         }

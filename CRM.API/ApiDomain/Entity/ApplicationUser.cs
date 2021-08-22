@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Identity;
+using System.Collections.Generic;
 
 namespace ApiDomain.Entity
 {
@@ -6,9 +7,11 @@ namespace ApiDomain.Entity
     {
         public string FirstName { get; set; }
         public string LastName { get; set; }
+        public string CompanyPosition { get; set; }
         public Address Address { get; set; }
         public int AddressId { get; set; }
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
+        public List<TodoTask> TodoTasks { get; set; }
     }
 }

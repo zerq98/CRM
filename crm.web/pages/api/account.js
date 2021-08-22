@@ -1,7 +1,12 @@
 import ApiRestService from './ApiRestService';
+import Router from 'next/router';
+import { useEffect } from 'react';
+import axios from 'axios'
+import cookieCutter from 'cookie-cutter'
 
 export const logIn = async (login,password)=>{
     const httpService = new ApiRestService();
+    
     httpService.getInstance().post('api/Account/Login',
             JSON.stringify({
                     login: login,
@@ -9,27 +14,22 @@ export const logIn = async (login,password)=>{
                 }
             )
         ).then(function (response){
-            if (typeof response.data !== object){
-                alert('Sprawdź ponownie dane logowania')
-                return 'Wrong data';
+            console.log(response);
+            if(response.data.code===200){
+                cookieCutter.set('userToken',response.data.data.token,{expires: new Date(response.data.data.expireDate)})
+                cookieCutter.set('userId',response.data.data.id,{expires: new Date(response.data.data.expireDate)})
+                cookieCutter.set('tokenExpiration',new Date(response.data.data.expireDate),{expires: new Date(response.data.data.expireDate)})
+                Router.push('/dashboard')
             }
-            return{
-                redirect: {
-                    source: '/login',
-                    destination: '/home',
-                    permanent: true,
-                  }
+            if(response.data.code===401){
+                alert(response.data.errorMessage)
+                return 'Wrong data'
             }
+            
         }).catch(function (error){
-            console.log(error.response);
-            if(error.response.status === 401){
-                alert('Sprawdź ponownie dane logowania')
-                return 'Wrong data';
-            }
-            if(error.response.status === 500){
-                alert('Nastąpił problem z połączeniem z serwerem.\r\nSkontaktuj się z administracją')
-                return 'Wrong data';
-            }
+            alert('Nastąpił problem. Zgłoś się do działu IT.')
+            return 'Wrong data'
+            
         })
 }
 
@@ -69,21 +69,42 @@ export const register = async (data)=>{
                 }
             )
         ).then(response => {
-            if (response.status === 201){
-                return{
-                    redirect: {
-                        source: '/register',
-                        destination: '/registered',
-                        permanent: true,
-                      }
-                }
+            if (response.data.code === 201){
+                Router.push('/registerConfirmed')
             }
-
-            alert('Zalogowano');
-        }).catch(error =>{
-            if(error.response.status === 500){
-                alert('Nastąpił problem z połączeniem z serwerem.\r\nSkontaktuj się z administracją')
+            if(response.data.code === 500){
+                alert(response.data.errorMessage)
                 return 'Wrong data';
             }
+        }).catch(error =>{
+            alert('Nastąpił problem. Zgłoś się do działu IT.')
+            return 'Wrong data'
         })
+}
+
+export async function getDashboardData(userId,token){
+
+    let headers = {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjllZWMzNWY0LTRiOTctNDBkZi04ZDYzLWM1NjE1NzNlNDc1MiIsIklUIEFkbWluaXN0cmF0b3IiOiJJVCBBZG1pbmlzdHJhdG9yIiwibmJmIjoxNjI5NTgzMTUxLCJleHAiOjE2Mjk2Njk1NTAsImlhdCI6MTYyOTU4MzE1MX0.zeg2IPil1KDVkdpk1oC0Hxgs0-JmCJEBX6AFhYA5w7k`
+    }
+
+    var ax = axios.create({
+        baseURL: 'https://localhost:44395/',
+        timeout: 60000,
+        headers: headers
+    })
+
+    process.env["NODE_TLS_REJECT_UNAUTHORIZED"] = 0;
+    var data = {
+        "name":"",
+        "department": "",
+        "position": ""
+    }
+
+    const res = await ax.get(`api/Account/DashboardInfo?id=${userId}`)
+    
+    data=await res
+    console.log(data.data)
+    return data.data.data
 }

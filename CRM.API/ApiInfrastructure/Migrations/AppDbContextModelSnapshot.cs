@@ -145,6 +145,35 @@ namespace ApiInfrastructure.Migrations
                     b.ToTable("Logs");
                 });
 
+            modelBuilder.Entity("ApiDomain.Entity.TodoTask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("IsFinished")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTime>("TaskDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TodoTasks");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
@@ -354,6 +383,9 @@ namespace ApiInfrastructure.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CompanyPosition")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
@@ -390,6 +422,15 @@ namespace ApiInfrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.TodoTask", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.ApplicationUser", "User")
+                        .WithMany("TodoTasks")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -470,6 +511,11 @@ namespace ApiInfrastructure.Migrations
             modelBuilder.Entity("ApiDomain.Entity.Department", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.ApplicationUser", b =>
+                {
+                    b.Navigation("TodoTasks");
                 });
 #pragma warning restore 612, 618
         }

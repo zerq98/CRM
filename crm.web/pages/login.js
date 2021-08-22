@@ -1,11 +1,26 @@
 import 'tailwindcss/tailwind.css'
 import Link from 'next/link'
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { logIn } from './api/account';
+import { useRouter } from 'next/router'
+import cookieCutter from 'cookie-cutter'
 
 export default function login(){
+    const router = useRouter()
     const [login,setLogin] = useState('');
     const [password,setPassword]=useState('');
+
+    useEffect(()=>{
+        var userLogged = cookieCutter.get('tokenExpiration')
+        const today= new Date();
+        if(userLogged!==null){
+            const expireDate = new Date(userLogged);
+            if(today<=expireDate){
+                router.push('/dashboard')
+            }
+        }
+    })
+    
 
     const handleLogin = function (event) {
         event.preventDefault();
@@ -21,7 +36,7 @@ export default function login(){
 
     return (
         <div className="bg-loginBG h-screen bg-cover bg-no-repeat bg-center">
-            <div className="bg-opacity-015 backdrop-filter backdrop-blur-lg bg-gray md:inset-x-30p inset-y-20p xs:inset-x-20p
+            <div className="bg-opacity-015 backdrop-filter backdrop-blur-lg bg-gray md:inset-x-30p top-10p xs:inset-x-20p
              md:w-35p xs:w-60p flex flex-col rounded-3xl relative bg-clip-padding flex flex-col justify-start items-center xs:py-5p md:py-2p">
                 <div className="xs:text-sm md:text-xl lg:text-2xl font-bold">Bierzmy się do pracy</div>
                 <div className="xs:text-xs md:text-md lg:text-lg">Zaloguj się do systemu</div>
