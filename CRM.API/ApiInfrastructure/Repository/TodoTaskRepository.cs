@@ -34,17 +34,29 @@ namespace ApiInfrastructure.Repository
             }
         }
 
-        public Task<List<TodoTask>> GetTodoTasksForUserAsync(string userId)
+        public async Task<TodoTask> GetTodoTaskByIdAsync(int todoTaskId)
         {
-            throw new NotImplementedException();
+            return await _context.TodoTasks.FirstOrDefaultAsync(x => x.Id == todoTaskId);
+        }
+
+        public async Task<List<TodoTask>> GetTodoTasksForUserAsync(string userId)
+        {
+            return await _context.TodoTasks.Where(x => x.UserId==userId).ToListAsync();
         }
 
         public async Task<List<TodoTask>> GetTodoTasksForUserWithinDateRangeAsync(DateTime start, DateTime end, string userId)
         {
-            return await _context.TodoTasks.Where(x => x.UserId == userId && x.TaskDate.Date <= end.Date && x.TaskDate >= start.Date).ToListAsync();
+            try
+            {
+                return await _context.TodoTasks.Where(x => x.UserId == userId && x.TaskDate <= end && x.TaskDate >= start).ToListAsync();
+            }
+            catch(Exception ex)
+            {
+                return new List<TodoTask>();
+            }
         }
 
-        public async Task MarkTodoTaskAsFinishedAsync(int todoTaskId)
+        public async Task<bool> MarkTodoTaskAsFinishedAsync(int todoTaskId)
         {
             try
             {
@@ -52,9 +64,11 @@ namespace ApiInfrastructure.Repository
 
                 if (task != null)
                 {
-                    task.IsFinished = true;
+                    task.Completed = true;
+                    await _context.SaveChangesAsync();
+                    return true;
                 }
-                await _context.SaveChangesAsync();
+                return false;
             }
             catch (Exception ex)
             {

@@ -12,6 +12,7 @@ namespace ApiDomain.Interface
         Task<TodoTask> CreateTodoTaskAsync(TodoTask todoTask);
         Task<List<TodoTask>> GetTodoTasksForUserAsync(string userId);
         Task<List<TodoTask>> GetTodoTasksForUserWithinDateRangeAsync(DateTime start, DateTime end, string userId);
-        Task MarkTodoTaskAsFinishedAsync(int todoTaskId);
+        Task<bool> MarkTodoTaskAsFinishedAsync(int todoTaskId);
+        Task<TodoTask> GetTodoTaskByIdAsync(int todoTaskId);
     }
 }

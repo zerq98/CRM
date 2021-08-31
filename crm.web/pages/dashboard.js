@@ -2,12 +2,10 @@ import Layout from "../components/layout";
 import React, { useState, useEffect } from 'react';
 import {Bar, Doughnut} from 'react-chartjs-2';
 import Image from 'next/image'
-import { getDashboardData } from "./api/account";
-import Cookies from "cookies";
-
-var executed = false
+import { getSession,useSession } from "next-auth/client";
 
 function Dashboard(data){
+    const [session, loading] = useSession()
     const [dashboardData,setDashboardData]=useState({
         "name":"",
         "department":"",
@@ -16,7 +14,7 @@ function Dashboard(data){
     const[todoList,setTodoList]=useState([
         {
         "id":0,
-        "title":"",
+        "title":"Test",
         "completed":false
         }
     ]);
@@ -26,21 +24,32 @@ function Dashboard(data){
             setDashboardData(data.data)
             setTodoList(data.data.todoTasks)
         }
-    })
-    console.log(data)
+    },[])
 
-    function toggle(id){
+    async function toggle(id){
+
+        const res = await fetch("https://localhost:44395/api/TodoTask/MarkAsCompleted?todoTaskId="+id, {
+            method: 'POST',
+            body:{},
+            headers: { 
+              accept: '*/*',
+              "Content-Type": "application/json",
+              "Authorization": "Bearer "+session.accessToken
+            }
+          })
+          const resData = await res.json()
+
         const completeSelectedTodo = todoList.map((todo) => {
-            if (todo.id === id) {
+            if (todo.id === id && resData.code===200) {
               return {
                   ...todo,
                   completed: true
-                }
             }
-            return todo
+          }
+          return todo
         })
     
-        setTodoList(() => completeSelectedTodo );
+        setTodoList(completeSelectedTodo)
     };
 
     const saleChances={
@@ -194,15 +203,30 @@ function Dashboard(data){
     )
 }
 
-export async function getServerSideProps({ req, res }) {
-    const cookies = new Cookies(req, res)
-    var userId = cookies.get('userId');
-    var token = cookies.get('userToken');
+export async function getServerSideProps(context) {
+    const sess = await getSession(context)
+    if(sess){
+        if(process.env.NODE_TLS_REJECT_UNAUTHORIZED !== "0"){
+            process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
+        }
+        const res = await fetch("https://localhost:44395/api/Account/DashboardInfo", {
+            method: 'GET',
+            headers: { 
+              accept: '*/*',
+              "Content-Type": "application/json",
+              "Authorization": "Bearer "+sess.accessToken
+            }
+          })
 
-    const response = await getDashboardData(userId,token)
-    const data = response
-  
-    return { props: { data } }
+          const resData = await res.json()
+          const data=resData.data
+    
+        return { props: { data } }
+    }else{
+        context.res.writeHead(302,{Location:"/login"})
+        context.res.end();
+    }
+    return null
   }
 
 export default Dashboard;

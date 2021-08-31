@@ -162,3 +162,4 @@ C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\obj\Debug\
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\obj\Debug\net5.0\ref\CRM.API.dll
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.pdb
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.genruntimeconfig.cache
+F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll

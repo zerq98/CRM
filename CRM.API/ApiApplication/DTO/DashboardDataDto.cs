@@ -11,6 +11,6 @@ namespace ApiApplication.DTO
         public string Name { get; set; }
         public string Department { get; set; }
         public string Position { get; set; }
-        public List<DashboardTodoTaskDto> TodoTasks { get; set; }
+        public List<TodoTaskDto> TodoTasks { get; set; }
     }
 }

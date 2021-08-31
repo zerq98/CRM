@@ -1,36 +1,62 @@
-﻿using MediatR;
+﻿using ApiApplication.DTO;
+using ApiApplication.Helpers;
+using ApiApplication.TodoTasks;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CRM.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    [Authorize]
     public class TodoTaskController : Controller
     {
-        private readonly IMediator _mediator;
+        private readonly ITodoTaskService _todoTaskService;
 
-        public TodoTaskController(IMediator mediator)
+        public TodoTaskController(ITodoTaskService todoTaskService)
         {
-            _mediator = mediator;
+            _todoTaskService = todoTaskService;
         }
 
-        [HttpPut("MarkAsCompleted")]
+        [HttpPost("MarkAsCompleted")]
+        [EnableCors("AllowAnyOrigin")]
+        [Authorize]
         public async Task<IActionResult> MarkAsCompleted(int todoTaskId)
         {
-            //var command = new GetDashboardDataQuery
-            //{
-            //    UserId = id
-            //};
+            var result = await _todoTaskService.MarkAsCompletedAsync(todoTaskId);
 
-            //return await _mediator.Send(command);
+            var response = new ApiResponse<bool>();
 
-            return null;
+            response.Code = result?200:400;
+            response.Data = result;
+            response.ErrorMessage = "";
+
+            return new JsonResult(response);
+        }
+
+        [HttpGet("GetAllUserTasks")]
+        [EnableCors("AllowAnyOrigin")]
+        [Authorize]
+        public async Task<IActionResult> GetAllUserTasks()
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
+
+            var result = await _todoTaskService.GetTodoTasksForUserAsync(userId);
+
+            var response = new ApiResponse<List<TodoTaskDto>>();
+
+            response.Code = 200;
+            response.Data = result;
+            response.ErrorMessage = "";
+
+            return new JsonResult(response);
         }
     }
 }

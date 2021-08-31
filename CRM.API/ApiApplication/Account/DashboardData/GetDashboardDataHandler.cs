@@ -36,22 +36,22 @@ namespace ApiApplication.Account.DashboardData
                 {
                     Department department = await _departmentRepository.GetDepartmentByIdAsync(user.DepartmentId);
 
-                    var todoTasks = await _todoTaskRepository.GetTodoTasksForUserWithinDateRangeAsync(DateTime.Now, DateTime.Now, request.UserId);
+                    var todoTasks = await _todoTaskRepository.GetTodoTasksForUserWithinDateRangeAsync(DateTime.Now.Date, DateTime.Now.Date, request.UserId);
 
                     var dashboardData = new DashboardDataDto
                     {
                         Name = user.FirstName + " " + user.LastName,
                         Department = department.Name,
                         Position = user.CompanyPosition,
-                        TodoTasks = new List<DashboardTodoTaskDto>()
+                        TodoTasks = new List<TodoTaskDto>()
                     };
 
                     foreach(var task in todoTasks)
                     {
-                        dashboardData.TodoTasks.Add(new DashboardTodoTaskDto
+                        dashboardData.TodoTasks.Add(new TodoTaskDto
                         {
                             Id = task.Id,
-                            Completed = task.IsFinished,
+                            Completed = task.Completed,
                             Title = task.Title
                         });
                     }

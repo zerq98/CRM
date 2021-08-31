@@ -69,7 +69,10 @@ namespace CRM.API
             });
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAnyOrigin", builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+                options.AddPolicy("AllowAnyOrigin", builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyHeader()
+                .AllowAnyMethod());
             });
 
             services.AddSwaggerGen(c =>
@@ -118,10 +121,9 @@ namespace CRM.API
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseCors("AllowAnyOrigin");
             app.UseAuthentication();
             app.UseAuthorization();
-            app.UseCors("AllowAnyOrigin");
 
             app.UseEndpoints(endpoints =>
             {

@@ -8,6 +8,8 @@ using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 
 namespace CRM.API.Controllers
@@ -84,11 +86,14 @@ namespace CRM.API.Controllers
 
         [HttpGet("DashboardInfo")]
         [Authorize]
-        public async Task<IActionResult> GetDashboardData(string id)
+        public async Task<IActionResult> GetDashboardData()
         {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x=>x.Type=="id").Value;
+
             var command = new GetDashboardDataQuery
             {
-                UserId=id
+                UserId = userId
             };
 
             return await _mediator.Send(command);

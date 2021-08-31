@@ -1,36 +1,33 @@
 import 'tailwindcss/tailwind.css'
 import Link from 'next/link'
-import { useState,useEffect } from 'react'
-import { logIn } from './api/account';
 import { useRouter } from 'next/router'
-import cookieCutter from 'cookie-cutter'
+import { getProviders, signIn,getSession,providers } from 'next-auth/client'
 
-export default function login(){
+export default function login({ providers}){
     const router = useRouter()
-    const [login,setLogin] = useState('');
-    const [password,setPassword]=useState('');
 
-    useEffect(()=>{
-        var userLogged = cookieCutter.get('tokenExpiration')
-        const today= new Date();
-        if(userLogged!==null){
-            const expireDate = new Date(userLogged);
-            if(today<=expireDate){
-                router.push('/dashboard')
-            }
-        }
-    })
+    // useEffect(()=>{
+    //     var userLogged = cookieCutter.get('tokenExpiration')
+    //     const today= new Date();
+    //     if(userLogged!==null){
+    //         const expireDate = new Date(userLogged);
+    //         if(today<=expireDate){
+    //             router.push('/dashboard')
+    //         }
+    //     }
+    // })
     
 
     const handleLogin = function (event) {
         event.preventDefault();
         event.stopPropagation();
 
-        const ret = logIn(event.target.login.value,event.target.password.value);
-        if(ret === 'Wrong data'){
-            setLogin='';
-            setPassword='';
-        }
+        signIn('credentials',
+            {
+                login:event.target.login.value,
+                password:event.target.password.value,
+                callbackUrl: '/dashboard'
+            })
     }
 
 
@@ -59,4 +56,22 @@ export default function login(){
             </div>
         </div>
     )
+}
+
+login.getInitialProps = async(context)=>{
+    const {req,res} = context;
+    const session = await getSession({req});
+
+    if(session && res && session.accessToken){
+        res.writeHead(302,{
+            Location: "/dashboard",
+        })
+        res.end()
+        return;
+    }
+
+    return{
+        session: undefined,
+        providers: await providers(context)
+    }
 }

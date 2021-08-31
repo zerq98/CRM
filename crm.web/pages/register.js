@@ -24,7 +24,23 @@ export default function login(){
         }
 
         if(validate(data,event.target.confirmPassword.value)){
-            register(data);
+            const res = await fetch("https://localhost:44395/api/Account/RegisterCompany", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: { 
+              accept: '*/*',
+              "Content-Type": "application/json"
+            }
+          })
+
+          const resData = await res.json()
+
+          if (resData.code === 201){
+            Router.push('/registerConfirmed')
+            }else{
+                alert(resData.errorMessage)
+                return 'Wrong data';
+            }
         }
         event.target.login.value='';
         event.target.mail.value='';
