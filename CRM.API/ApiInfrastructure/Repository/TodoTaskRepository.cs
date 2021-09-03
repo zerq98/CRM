@@ -82,5 +82,32 @@ namespace ApiInfrastructure.Repository
                 throw;
             }
         }
+
+        public async Task<bool> RemoveTodoTaskAsync(int todoTaskId)
+        {
+            try
+            {
+                var task = await _context.TodoTasks.FirstOrDefaultAsync(x => x.Id == todoTaskId);
+
+                if (task != null)
+                {
+                    _context.Remove(task);
+                    await _context.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch (Exception ex)
+            {
+                await _context.Logs.AddAsync(new Log
+                {
+                    LogMessage = ex.Message,
+                    ModuleName = "TodoTaskRepository/RemoveTodoTaskAsync"
+                });
+                await _context.SaveChangesAsync();
+
+                throw;
+            }
+        }
     }
 }

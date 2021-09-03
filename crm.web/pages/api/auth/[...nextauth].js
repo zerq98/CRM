@@ -1,4 +1,5 @@
 import NextAuth from "next-auth";
+import { signIn, signOut } from "next-auth/client";
 import Providers from "next-auth/providers";
 
 const providers = [
@@ -17,6 +18,7 @@ const providers = [
 
           const resData = await res.json()
           const user = resData.data
+          console.log(user)
           if (resData.code===200) {
             return user
           } else {
@@ -37,7 +39,6 @@ const callbacks = {
   async jwt(token, user) {
     if (user) {
       token.accessToken = user.token
-      token.expires = Date.now()+1*24*60*60
     }
 
     return token
@@ -58,7 +59,15 @@ const options = {
   },
   session:{
     jwt:true,
-    maxAge:1*24*60*60
+    maxAge:1*26*60*60
+  },
+  events:{
+    async signIn(req,res){
+      res.writeHead(302,{
+        Location: "/dashboard",
+      })
+      res.end()
+    }
   }
 }
 

@@ -56,5 +56,17 @@ namespace ApiApplication.TodoTasks
                 return false;
             }
         }
+
+        public async Task<bool> RemoveTaskAsync(int todoTaskId)
+        {
+            try
+            {
+                return await _todoTaskRepository.RemoveTodoTaskAsync(todoTaskId);
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

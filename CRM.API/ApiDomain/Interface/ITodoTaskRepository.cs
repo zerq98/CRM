@@ -14,5 +14,6 @@ namespace ApiDomain.Interface
         Task<List<TodoTask>> GetTodoTasksForUserWithinDateRangeAsync(DateTime start, DateTime end, string userId);
         Task<bool> MarkTodoTaskAsFinishedAsync(int todoTaskId);
         Task<TodoTask> GetTodoTaskByIdAsync(int todoTaskId);
+        Task<bool> RemoveTodoTaskAsync(int todoTaskId);
     }
 }

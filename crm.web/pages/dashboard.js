@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import React, { useState, useEffect } from 'react';
 import {Bar, Doughnut} from 'react-chartjs-2';
 import Image from 'next/image'
-import { getSession,useSession } from "next-auth/client";
+import { getSession,useSession,signOut } from "next-auth/client";
 
 function Dashboard(data){
     const [session, loading] = useSession()
@@ -218,8 +218,8 @@ export async function getServerSideProps(context) {
             }
           })
 
-          const resData = await res.json()
-          const data=resData.data
+        const resData = await res.json()
+        const data=resData.data
     
         return { props: { data } }
     }else{

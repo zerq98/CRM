@@ -58,5 +58,41 @@ namespace CRM.API.Controllers
 
             return new JsonResult(response);
         }
+
+        [HttpPost("AddNewTask")]
+        [EnableCors("AllowAnyOrigin")]
+        [Authorize]
+        public async Task<IActionResult> AddNewTask(CreateTodoTaskDto createTodoTaskDto)
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
+            createTodoTaskDto.UserId = userId;
+
+            var result = await _todoTaskService.AddTodoTaskAsync(createTodoTaskDto);
+
+            var response = new ApiResponse<TodoTaskDto>();
+
+            response.Code = result!=null?201:500;
+            response.Data = result;
+            response.ErrorMessage = result!=null?"":"Coś poszło nie tak, sprawdź wszystkie dane i spróbuj ponownie.";
+
+            return new JsonResult(response);
+        }
+
+        [HttpPost("Remove")]
+        [EnableCors("AllowAnyOrigin")]
+        [Authorize]
+        public async Task<IActionResult> RemoveTask(int todoTaskId)
+        {
+            var result = await _todoTaskService.RemoveTaskAsync(todoTaskId);
+
+            var response = new ApiResponse<bool>();
+
+            response.Code = result ? 200 : 400;
+            response.Data = result;
+            response.ErrorMessage = "";
+
+            return new JsonResult(response);
+        }
     }
 }

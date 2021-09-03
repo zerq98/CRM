@@ -13,5 +13,6 @@ namespace ApiApplication.TodoTasks
         Task<TodoTaskDto> AddTodoTaskAsync(CreateTodoTaskDto todoTask);
         Task<List<TodoTaskDto>> GetTodoTasksForUserAsync(string userId);
         Task<TodoTaskDto> GetByIdAsync(int todoTaskId);
+        Task<bool> RemoveTaskAsync(int todoTaskId);
     }
 }
