@@ -16,7 +16,7 @@ namespace ApiApplication.Helpers.JWT
             var key = Encoding.ASCII.GetBytes(config.Secret);
             var tokenDescriptor = new SecurityTokenDescriptor
             {
-                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id) }),
+                Subject = new ClaimsIdentity(new[] { new Claim("id", user.Id),new Claim("companyId", user.Department.CompanyId.ToString()) }),
                 Expires = expireDate,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)
             };

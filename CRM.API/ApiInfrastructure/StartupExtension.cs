@@ -13,6 +13,7 @@ namespace ApiInfrastructure
         {
             services.AddTransient<IBaseRepository, BaseRepository>();
             services.AddTransient<IUserRepository, UserRepository>();
+            services.AddTransient<ILeadRepository, LeadRepository>();
             services.AddScoped<IDepartmentRepository, DepartmentRepository>();
             services.AddScoped<ICompanyRepository, CompanyRepository>();
             services.AddScoped<IAddressRepository, AddressRepository>();

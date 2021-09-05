@@ -198,7 +198,13 @@ namespace ApiInfrastructure.Repository
 
         public async Task<ApplicationUser> GetUserByLoginAsync(string login)
         {
-            return await _userManager.FindByNameAsync(login);
+            var user = await _userManager.FindByNameAsync(login);
+
+            if (user != null)
+            {
+                user.Department = await _context.Departments.FirstOrDefaultAsync(x => x.Id == user.DepartmentId);
+            }
+            return user;
         }
 
         public async Task<List<string>> GetUserClaims(string userId)

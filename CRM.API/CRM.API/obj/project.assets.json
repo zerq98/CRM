@@ -1989,6 +1989,7 @@
         "framework": ".NETCoreApp,Version=v5.0",
         "dependencies": {
           "ApiDomain": "1.0.0",
+          "ApiInfrastructure": "1.0.0",
           "AutoMapper": "10.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
           "MediatR": "9.0.0",

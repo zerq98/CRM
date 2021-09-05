@@ -17,10 +17,9 @@ const providers = [
           })
 
           const resData = await res.json()
-          const user = resData.data
-          console.log(user)
-          if (resData.code===200) {
-            return user
+          const token = resData.data
+          if (token) {
+            return token
           } else {
             return null
           }
@@ -29,24 +28,29 @@ const providers = [
 ]
 
 const callbacks = {
-  async signIn(user, account, profile) {
-    if (user) {
-      return '/dashboard'
-    } else {
-      return '/login'
-    }
+  async signIn() {
+    return '/dashboard'
   },
-  async jwt(token, user) {
-    if (user) {
-      token.accessToken = user.token
+  async jwt(prevToken, token) {
+    if (token) {
+      return {
+        accessToken: token.token,
+        accessTokenExpires: Date.now() + 1*26*60*60*1000,
+      };
+    }
+    if (Date.now() < prevToken.accessTokenExpires) {
+      
+      return prevToken;
     }
 
-    return token
+    return null;
   },
-
   async session(session, token) {
-    session.accessToken = token.accessToken
-    return session
+    if(token){
+      session.accessToken = token.accessToken
+      return session
+    }
+    return null
   }
 }
 
@@ -58,7 +62,6 @@ const options = {
     error: '/login'
   },
   session:{
-    jwt:true,
     maxAge:1*26*60*60
   },
   events:{

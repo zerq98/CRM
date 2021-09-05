@@ -12,6 +12,12 @@ namespace ApiInfrastructure
         public DbSet<Log> Logs { get; set; }
         public DbSet<ApplicationClaim> ApplicationClaims { get; set; }
         public DbSet<TodoTask> TodoTasks { get; set; }
+        public DbSet<LeadStatus> LeadStatuses { get; set; }
+        public DbSet<LeadContact> LeadContacts { get; set; }
+        public DbSet<LeadAddress> LeadAddresses { get; set; }
+        public DbSet<Lead> Leads { get; set; }
+        public DbSet<ActivityType> ActivityTypes { get; set; }
+        public DbSet<Activity> Activities { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

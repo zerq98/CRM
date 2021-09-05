@@ -28,3 +28,5 @@ C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.dll
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ref\ApiApplication.dll
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiApplication\obj\Debug\net5.0\ApiApplication.pdb
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiInfrastructure.dll
+F:\CRM\CRM.API\ApiApplication\bin\Debug\net5.0\ApiInfrastructure.pdb

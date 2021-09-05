@@ -205,6 +205,7 @@ function Dashboard(data){
 
 export async function getServerSideProps(context) {
     const sess = await getSession(context)
+    console.log(sess)
     if(sess){
         if(process.env.NODE_TLS_REJECT_UNAUTHORIZED !== "0"){
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";

@@ -13,5 +13,7 @@ namespace ApiDomain.Entity
         public Department Department { get; set; }
         public int DepartmentId { get; set; }
         public List<TodoTask> TodoTasks { get; set; }
+        public List<Lead> Leads { get; set; }
+        public List<Activity> Activities { get; set; }
     }
 }

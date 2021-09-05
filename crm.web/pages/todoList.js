@@ -178,56 +178,56 @@ function todoList(data) {
               </div>
             </Tab.List>
             <Tab.Panels className="h-100p xs:w-55p md:w-100p">
-              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col items-center pt-2 overflow-auto overscroll-contain">
+              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col items-center pt-2 overflow-auto overscroll-contain xs:space-y-4 md:space-y-0">
                 {todoList.map((d, idx) => (
                   d.taskRange === "Overdue" &&
                   <div key={d.id} className='group rounded-lg w-90p mx-2 px-2 items-center py-2 xs:h-8 md:h-20 flex flex-row space-x-2 cursor-pointer hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white'>
                     <i className='bx bx-circle hover:bx-check-circle' onClick={() => toggle(d.id)} onMouseOver={changeCircleSet} onMouseLeave={changeCircleUnset}></i>
                     <div className="w-100p flex flex-col">
-                      <div className="xs:text-sm md:text-lg font-bold">{d.title}</div>
-                      <span className="xs:text-xs md:text-md">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
+                      <div className="xs:text-sm md:text-lg md:font-bold overflow-hidden">{d.title}</div>
+                      <span className="xs:text-xs md:text-md xs:hidden md:block">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
                       <div className="text-lg overflow-hidden xs:hidden md:block">{d.description}</div>
                     </div>
                     <i className='bx bxs-trash' onClick={() => removeTask(d.id)} onMouseOver={changeTrashSet} onMouseLeave={changeTrashUnset}></i>
                   </div>
                 ))}
               </Tab.Panel>
-              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col items-center pt-2 overflow-auto overscroll-contain">
+              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col items-center pt-2 overflow-auto overscroll-contain xs:space-y-4 md:space-y-0">
                 {todoList.map((d, idx) => (
                   d.taskRange === "Today" &&
                   <div key={d.id} className='group rounded-lg w-90p mx-2 px-2 items-center py-2 xs:h-8 md:h-20 flex flex-row space-x-2 cursor-pointer hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white'>
                     {!d.completed ? <i onClick={() => toggle(d.id)} className='bx bx-circle' onMouseOver={changeCircleSet} onMouseLeave={changeCircleUnset}></i> : <i class='bx bxs-check-circle' ></i>}
                     <div className="w-100p flex flex-col">
-                      <div className="xs:text-sm md:text-lg font-bold">{d.title}</div>
-                      <span className="xs:text-xs md:text-md">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
+                      <div className="xs:text-sm md:text-lg md:font-bold">{d.title}</div>
+                      <span className="xs:text-xs md:text-md xs:hidden md:block">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
                       <div className="text-lg overflow-hidden xs:hidden md:block">{d.description}</div>
                     </div>
                     <i className='bx bxs-trash' onClick={() => removeTask(d.id)} onMouseOver={changeTrashSet} onMouseLeave={changeTrashUnset}></i>
                   </div>
                 ))}
               </Tab.Panel>
-              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col items-center pt-2 overflow-auto overscroll-contain">
+              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col items-center pt-2 overflow-auto overscroll-contain xs:space-y-4 md:space-y-0">
                 {todoList.map((d, idx) => (
                   (d.taskRange === "This week" || d.taskRange === "Today") &&
                   <div key={d.id} className='group rounded-lg w-90p mx-2 px-2 items-center py-2 xs:h-8 md:h-20 flex flex-row space-x-2 cursor-pointer hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white'>
                     {!d.completed ? <i onClick={() => toggle(d.id)} className='bx bx-circle' onMouseOver={changeCircleSet} onMouseLeave={changeCircleUnset}></i> : <i class='bx bxs-check-circle' ></i>}
                     <div className="w-100p flex flex-col">
-                      <div className="xs:text-sm md:text-lg font-bold">{d.title}</div>
-                      <span className="xs:text-xs md:text-md">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
+                      <div className="xs:text-sm md:text-lg md:font-bold">{d.title}</div>
+                      <span className="xs:text-xs md:text-md xs:hidden md:block">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
                       <div className="text-lg overflow-hidden xs:hidden md:block">{d.description}</div>
                     </div>
                     <i className='bx bxs-trash' onClick={() => removeTask(d.id)} onMouseOver={changeTrashSet} onMouseLeave={changeTrashUnset}></i>
                   </div>
                 ))}
               </Tab.Panel>
-              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col flex-nowrap items-center pt-2 overflow-auto overscroll-contain">
+              <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col flex-nowrap items-center pt-2 overflow-auto overscroll-contain xs:space-y-4 md:space-y-0">
                 {todoList.map((d, idx) => (
                   (d.taskRange === "This month" || d.taskRange === "This week" || d.taskRange === "Today") &&
                   <div key={d.id} className='group rounded-lg w-90p mx-2 px-2 items-center py-2 xs:h-8 md:h-20 flex flex-row space-x-2 cursor-pointer hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white'>
                     {!d.completed ? <i onClick={() => toggle(d.id)} className='bx bx-circle' onMouseOver={changeCircleSet} onMouseLeave={changeCircleUnset}></i> : <i class='bx bxs-check-circle' ></i>}
                     <div className="w-100p flex flex-col">
-                      <div className="xs:text-sm md:text-lg font-bold">{d.title}</div>
-                      <span className="xs:text-xs md:text-md">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
+                      <div className="xs:text-sm md:text-lg md:font-bold">{d.title}</div>
+                      <span className="xs:text-xs md:text-md xs:hidden md:block">{(new Date(d.taskDate)).getDate()+'.'+(new Date(d.taskDate)).getMonth()+'.'+(new Date(d.taskDate)).getFullYear()}</span>
                       <div className="text-lg overflow-hidden xs:hidden md:block">{d.description}</div>
                     </div>
                     <i className='bx bxs-trash' onClick={() => removeTask(d.id)} onMouseOver={changeTrashSet} onMouseLeave={changeTrashUnset}></i>

@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiInfrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210716185757_Initial DB")]
-    partial class InitialDB
+    [Migration("20210905080701_Initial migration")]
+    partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,75 @@ namespace ApiInfrastructure.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("ApiDomain.Entity.Activity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("ActivityTypeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LeadId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ActivityTypeId");
+
+                    b.HasIndex("LeadId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Activities");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.ActivityType", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ActivityTypes");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Rozmowa telefoniczna"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Wiadmość Email"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Rozmowa online"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Spotkanie z klientem"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Wysłanie oferty"
+                        });
+                });
 
             modelBuilder.Entity("ApiDomain.Entity.Address", b =>
                 {
@@ -129,6 +198,153 @@ namespace ApiInfrastructure.Migrations
                     b.ToTable("Departments");
                 });
 
+            modelBuilder.Entity("ApiDomain.Entity.Lead", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LeadAddressId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("LeadStatusId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NIP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Regon")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("LeadAddressId");
+
+                    b.HasIndex("LeadStatusId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Leads");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.LeadAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ApartmentNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("HouseNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostCode")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Province")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Street")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeadAddresses");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.LeadContact", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Department")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("LeadId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("LeadId");
+
+                    b.ToTable("LeadContacts");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.LeadStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LeadStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Nowy"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Oferta"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Stracony"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Odłożony"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Wygrany"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Name = "Kontrahent"
+                        });
+                });
+
             modelBuilder.Entity("ApiDomain.Entity.Log", b =>
                 {
                     b.Property<int>("Id")
@@ -145,6 +361,35 @@ namespace ApiInfrastructure.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Logs");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.TodoTask", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<bool>("Completed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("TaskDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("TodoTasks");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -356,6 +601,9 @@ namespace ApiInfrastructure.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<string>("CompanyPosition")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
@@ -370,6 +618,31 @@ namespace ApiInfrastructure.Migrations
                     b.HasIndex("DepartmentId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.Activity", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.ActivityType", "ActivityType")
+                        .WithMany()
+                        .HasForeignKey("ActivityTypeId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.Lead", "Lead")
+                        .WithMany("Activities")
+                        .HasForeignKey("LeadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.ApplicationUser", "User")
+                        .WithMany("Activities")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("ActivityType");
+
+                    b.Navigation("Lead");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.Company", b =>
@@ -392,6 +665,59 @@ namespace ApiInfrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.Lead", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.Company", "Company")
+                        .WithMany("Leads")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.LeadAddress", "LeadAddress")
+                        .WithMany()
+                        .HasForeignKey("LeadAddressId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.LeadStatus", "LeadStatus")
+                        .WithMany()
+                        .HasForeignKey("LeadStatusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.ApplicationUser", "User")
+                        .WithMany("Leads")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("LeadAddress");
+
+                    b.Navigation("LeadStatus");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.LeadContact", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.Lead", "Lead")
+                        .WithMany("LeadContacts")
+                        .HasForeignKey("LeadId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Lead");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.TodoTask", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.ApplicationUser", "User")
+                        .WithMany("TodoTasks")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -467,11 +793,29 @@ namespace ApiInfrastructure.Migrations
             modelBuilder.Entity("ApiDomain.Entity.Company", b =>
                 {
                     b.Navigation("Departments");
+
+                    b.Navigation("Leads");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.Department", b =>
                 {
                     b.Navigation("Users");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.Lead", b =>
+                {
+                    b.Navigation("Activities");
+
+                    b.Navigation("LeadContacts");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.ApplicationUser", b =>
+                {
+                    b.Navigation("Activities");
+
+                    b.Navigation("Leads");
+
+                    b.Navigation("TodoTasks");
                 });
 #pragma warning restore 612, 618
         }

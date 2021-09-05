@@ -1,6 +1,9 @@
 ﻿using ApiDomain.Entity;
 using ApiDomain.Interface;
+using Microsoft.EntityFrameworkCore;
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiInfrastructure.Repository
@@ -35,6 +38,11 @@ namespace ApiInfrastructure.Repository
         public Task DeleteCompanyAsync(int companyId)
         {
             throw new NotImplementedException();
+        }
+
+        public async Task<Company> GetByIdAsync(int companyId)
+        {
+            return await _context.Companies.FirstOrDefaultAsync(x => x.Id == companyId);
         }
     }
 }

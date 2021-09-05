@@ -1,4 +1,5 @@
 ﻿using ApiDomain.Interface;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Storage;
 
 namespace ApiInfrastructure.Repository
