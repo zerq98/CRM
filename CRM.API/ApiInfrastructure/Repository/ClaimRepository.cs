@@ -2,6 +2,7 @@
 using ApiDomain.Interface;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace ApiInfrastructure.Repository
@@ -12,9 +13,9 @@ namespace ApiInfrastructure.Repository
         {
         }
 
-        public async Task<List<ApplicationClaim>> GetApplicationClaimsAsync()
+        public async Task<List<string>> GetApplicationClaimsAsync()
         {
-            return await _context.ApplicationClaims.ToListAsync();
+            return await _context.ApplicationClaims.Where(x=>x.Id!=1).Select(x=>x.Name).ToListAsync();
         }
     }
 }

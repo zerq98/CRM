@@ -6,6 +6,6 @@ namespace ApiDomain.Interface
 {
     public interface IClaimRepository
     {
-        Task<List<ApplicationClaim>> GetApplicationClaimsAsync();
+        Task<List<string>> GetApplicationClaimsAsync();
     }
 }

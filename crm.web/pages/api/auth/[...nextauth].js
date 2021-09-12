@@ -39,7 +39,6 @@ const callbacks = {
       };
     }
     if (Date.now() < prevToken.accessTokenExpires) {
-      
       return prevToken;
     }
 

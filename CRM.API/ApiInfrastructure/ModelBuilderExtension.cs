@@ -14,16 +14,6 @@ namespace ApiInfrastructure
         private static void CreateRelations(ModelBuilder builder)
         {
             builder.Entity<Company>()
-                .HasMany(x => x.Departments)
-                .WithOne(x => x.Company)
-                .OnDelete(DeleteBehavior.Cascade);
-
-            builder.Entity<Department>()
-                .HasMany(x => x.Users)
-                .WithOne(x => x.Department)
-                .OnDelete(DeleteBehavior.SetNull);
-
-            builder.Entity<Company>()
                 .HasOne<Address>(x => x.Address)
                 .WithMany()
                 .HasForeignKey(x => x.AddressId)
@@ -65,6 +55,11 @@ namespace ApiInfrastructure
                     {
                         Id=3,
                         Name="IT Administrator"
+                    },
+                    new ApplicationClaim
+                    {
+                        Id=4,
+                        Name="Trader"
                     }
                 });
 

@@ -1,7 +1,9 @@
 import 'tailwindcss/tailwind.css'
+import { useRouter } from 'next/router'
 
 export default function login() {
 
+    const router = useRouter()
     const handleRegister = async function (event) {
         event.preventDefault();
         event.stopPropagation();
@@ -49,7 +51,7 @@ export default function login() {
             const resData = await res.json()
 
             if (resData.code === 201) {
-                Router.push('/registerConfirmed')
+                router.push('/registerConfirmed')
             } else {
                 alert(resData.errorMessage)
                 return 'Wrong data';

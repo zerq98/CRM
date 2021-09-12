@@ -6,8 +6,9 @@ using System.Threading.Tasks;
 
 namespace ApiApplication.DTO
 {
-    public class CreateLeadAddressDto
+    public class LeadAddressDto
     {
+        public int Id { get; set; }
         public string PostCode { get; set; }
         public string City { get; set; }
         public string Street { get; set; }

@@ -15,18 +15,18 @@ namespace ApiApplication.Account.Register
         private readonly IUserRepository _userRepository;
         private readonly IAddressRepository _addressRepository;
         private readonly ICompanyRepository _companyRepository;
-        private readonly IDepartmentRepository _departmentRepository;
         private readonly IBaseRepository _baseRepository;
+        private readonly IClaimRepository _claimRepository;
 
         public RegisterUserHandler(IUserRepository userRepository, ICompanyRepository companyRepository,
-                                   IAddressRepository addressRepository, IDepartmentRepository departmentRepository,
+                                   IAddressRepository addressRepository, IClaimRepository claimRepository,
                                    IBaseRepository baseRepository)
         {
             _userRepository = userRepository;
             _addressRepository = addressRepository;
             _companyRepository = companyRepository;
-            _departmentRepository = departmentRepository;
             _baseRepository = baseRepository;
+            _claimRepository = claimRepository;
         }
 
         public async Task<IActionResult> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
@@ -82,31 +82,14 @@ namespace ApiApplication.Account.Register
                         Address = createdCompanyAddress,
                         CompanyName = request.Data.Company.CompanyName,
                         NIP = request.Data.Company.NIP,
-                        Departments = new List<Department>(),
+                        Employees = new List<ApplicationUser>(),
                         Regon = request.Data.Company.Regon
                     };
                     var createdCompany = await _companyRepository.CreateCompanyAsync(company);
 
-                    var department = new Department
-                    {
-                        Company = createdCompany,
-                        Name = "Zarząd",
-                        Users = new List<ApplicationUser>()
-                    };
-                    var createdDepartment = await _departmentRepository.CreateDepartmentAsync(department);
-
-                    department = new Department
-                    {
-                        Company = createdCompany,
-                        Name = "IT",
-                        Users = new List<ApplicationUser>()
-                    };
-                    createdDepartment = await _departmentRepository.CreateDepartmentAsync(department);
-
                     var user = new ApplicationUser
                     {
                         Address = createdUserAddress,
-                        Department = createdDepartment,
                         CompanyPosition="IT Team Leader",
                         Email = request.Data.User.Email,
                         EmailConfirmed = false,
@@ -115,10 +98,13 @@ namespace ApiApplication.Account.Register
                         NormalizedEmail = request.Data.User.Email,
                         NormalizedUserName = request.Data.User.Login,
                         UserName = request.Data.User.Login,
-                        PhoneNumber = request.Data.User.PhoneNumber
+                        PhoneNumber = request.Data.User.PhoneNumber,
+                        Company=createdCompany
                     };
                     var createdUser = await _userRepository.CreateUserAsync(user, request.Data.User.Password);
-                    await _userRepository.AssignClaimsAsync(new List<string> { "IT Administrator" }, createdUser.Id);
+                    var appClaims = await _claimRepository.GetApplicationClaimsAsync();
+
+                    await _userRepository.AssignClaimsAsync(appClaims, createdUser.Id);
 
                     var token = await _userRepository.GenerateEmailConfirmationTokenAsync(createdUser);
                     var confirmationLink = $"http://localhost:44395/Account/ConfirmEmail?userId={createdUser.Id}&token={token}";

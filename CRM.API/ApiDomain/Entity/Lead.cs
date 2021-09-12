@@ -12,6 +12,8 @@ namespace ApiDomain.Entity
         public string Name { get; set; }
         public string NIP { get; set; }
         public string Regon { get; set; }
+        public DateTime CreateDate { get; set; }
+        public DateTime ModificationDate { get; set; }
         public LeadStatus LeadStatus { get; set; }
         public int LeadStatusId { get; set; }
         public List<LeadContact> LeadContacts { get; set; }

@@ -4,6 +4,15 @@ module.exports = {
   purge: ['./pages/**/*.{js,ts,jsx,tsx}', './components/**/*.{js,ts,jsx,tsx}'],
   darkMode: false,
   theme: {
+    borderWidth:{
+      '0': '0',
+      '1':'1px',
+      '2': '2px',
+      '3': '3px',
+      '4': '4px',
+      '6': '6px',
+      '8': '8px',
+    },
     opacity: {
       '015': '0.015',
       '10':'0.1',
@@ -124,6 +133,7 @@ module.exports = {
       48: '12rem',
       52: '13rem',
       56: '14rem',
+      58: '14.5rem',
       60: '15rem',
       64: '16rem',
       72: '18rem',
@@ -146,5 +156,6 @@ module.exports = {
     },
   },
   plugins: [
+    require('tailwind-scrollbar-hide')
   ]
 }

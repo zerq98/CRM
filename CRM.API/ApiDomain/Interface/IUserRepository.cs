@@ -27,5 +27,8 @@ namespace ApiDomain.Interface
         Task DeleteUserAsync(string userId);
 
         Task<List<string>> GetUserClaims(string userId);
+
+        Task<List<ApplicationUser>> GetCompanyTraders(int companyId);
+        Task<ApplicationUser> GetUserByNameAsync(string name);
     }
 }

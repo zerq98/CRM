@@ -8,7 +8,6 @@ function Dashboard(data){
     const [session, loading] = useSession()
     const [dashboardData,setDashboardData]=useState({
         "name":"",
-        "department":"",
         "position":""
     });
     const[todoList,setTodoList]=useState([
@@ -122,14 +121,8 @@ function Dashboard(data){
                             <div className="xs:text-sm md:text-2xl font-bold ">{dashboardData.name}</div>
                             <div className="xs:text-xs md:text-md flex flex-row justify-between">
                                 <div>{dashboardData.position}</div>
-                                <div className="xs:block md:hidden">
-                                    Dział: <span className="font-bold ">{dashboardData.department}</span>
-                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="xs:hidden md:block text-xl mx-2 flex flex-row">
-                        Dział: <span className="font-bold ml-2">{dashboardData.department}</span>
                     </div>
                 </div>
                 <div className="w-100p h-90p flex flex-row md:space-x-2 items-stretch">
@@ -205,7 +198,6 @@ function Dashboard(data){
 
 export async function getServerSideProps(context) {
     const sess = await getSession(context)
-    console.log(sess)
     if(sess){
         if(process.env.NODE_TLS_REJECT_UNAUTHORIZED !== "0"){
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";

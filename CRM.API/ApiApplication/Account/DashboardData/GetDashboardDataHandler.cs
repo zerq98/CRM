@@ -16,14 +16,12 @@ namespace ApiApplication.Account.DashboardData
     public class GetDashboardDataHandler : IRequestHandler<GetDashboardDataQuery, IActionResult>
     {
         private readonly IUserRepository _userRepository;
-        private readonly IDepartmentRepository _departmentRepository;
         private readonly ITodoTaskRepository _todoTaskRepository;
 
-        public GetDashboardDataHandler(IUserRepository userRepository, IDepartmentRepository departmentRepository,
+        public GetDashboardDataHandler(IUserRepository userRepository,
                                        ITodoTaskRepository todoTaskRepository)
         {
             _userRepository = userRepository;
-            _departmentRepository = departmentRepository;
             _todoTaskRepository = todoTaskRepository;
         }
         public async Task<IActionResult> Handle(GetDashboardDataQuery request, CancellationToken cancellationToken)
@@ -34,14 +32,11 @@ namespace ApiApplication.Account.DashboardData
 
                 if (user != null)
                 {
-                    Department department = await _departmentRepository.GetDepartmentByIdAsync(user.DepartmentId);
-
                     var todoTasks = await _todoTaskRepository.GetTodoTasksForUserWithinDateRangeAsync(DateTime.Now.Date, DateTime.Now.Date, request.UserId);
 
                     var dashboardData = new DashboardDataDto
                     {
                         Name = user.FirstName + " " + user.LastName,
-                        Department = department.Name,
                         Position = user.CompanyPosition,
                         TodoTasks = new List<TodoTaskDto>()
                     };

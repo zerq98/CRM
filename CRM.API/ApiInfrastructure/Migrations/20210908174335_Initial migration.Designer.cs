@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ApiInfrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210905080701_Initial migration")]
+    [Migration("20210908174335_Initial migration")]
     partial class Initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -149,6 +149,11 @@ namespace ApiInfrastructure.Migrations
                         {
                             Id = 3,
                             Name = "IT Administrator"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Trader"
                         });
                 });
 
@@ -176,26 +181,6 @@ namespace ApiInfrastructure.Migrations
                     b.HasIndex("AddressId");
 
                     b.ToTable("Companies");
-                });
-
-            modelBuilder.Entity("ApiDomain.Entity.Department", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CompanyId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CompanyId");
-
-                    b.ToTable("Departments");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.Lead", b =>
@@ -601,11 +586,11 @@ namespace ApiInfrastructure.Migrations
                     b.Property<int>("AddressId")
                         .HasColumnType("int");
 
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
                     b.Property<string>("CompanyPosition")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<int>("DepartmentId")
-                        .HasColumnType("int");
 
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
@@ -615,7 +600,7 @@ namespace ApiInfrastructure.Migrations
 
                     b.HasIndex("AddressId");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasIndex("CompanyId");
 
                     b.HasDiscriminator().HasValue("ApplicationUser");
                 });
@@ -654,17 +639,6 @@ namespace ApiInfrastructure.Migrations
                         .IsRequired();
 
                     b.Navigation("Address");
-                });
-
-            modelBuilder.Entity("ApiDomain.Entity.Department", b =>
-                {
-                    b.HasOne("ApiDomain.Entity.Company", "Company")
-                        .WithMany("Departments")
-                        .HasForeignKey("CompanyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.Lead", b =>
@@ -779,27 +753,22 @@ namespace ApiInfrastructure.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("ApiDomain.Entity.Department", "Department")
-                        .WithMany("Users")
-                        .HasForeignKey("DepartmentId")
-                        .OnDelete(DeleteBehavior.SetNull)
+                    b.HasOne("ApiDomain.Entity.Company", "Company")
+                        .WithMany("Employees")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Address");
 
-                    b.Navigation("Department");
+                    b.Navigation("Company");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.Company", b =>
                 {
-                    b.Navigation("Departments");
+                    b.Navigation("Employees");
 
                     b.Navigation("Leads");
-                });
-
-            modelBuilder.Entity("ApiDomain.Entity.Department", b =>
-                {
-                    b.Navigation("Users");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.Lead", b =>

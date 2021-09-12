@@ -186,6 +186,11 @@ namespace ApiInfrastructure.Repository
             }
         }
 
+        public async Task<List<ApplicationUser>> GetCompanyTraders(int companyId)
+        {
+            return await _userManager.Users.Where(x => x.CompanyId == companyId).ToListAsync();
+        }
+
         public async Task<ApplicationUser> GetUserByEmailAsync(string email)
         {
             return await _userManager.FindByEmailAsync(email);
@@ -199,12 +204,13 @@ namespace ApiInfrastructure.Repository
         public async Task<ApplicationUser> GetUserByLoginAsync(string login)
         {
             var user = await _userManager.FindByNameAsync(login);
-
-            if (user != null)
-            {
-                user.Department = await _context.Departments.FirstOrDefaultAsync(x => x.Id == user.DepartmentId);
-            }
             return user;
+        }
+
+        public async Task<ApplicationUser> GetUserByNameAsync(string name)
+        {
+            List<string> nameList = name.Split(' ').ToList();
+            return await _userManager.Users.FirstOrDefaultAsync(x => x.FirstName == nameList[0] && x.LastName == nameList[1]);
         }
 
         public async Task<List<string>> GetUserClaims(string userId)

@@ -12,5 +12,10 @@ namespace ApiDomain.Interface
         Task<Lead> AddLeadAsync(Lead lead);
 
         Task<List<Lead>> GetAllLeadsAsync(int companyId);
+
+        Task<Lead> GetLeadAsync(int leadId,int companyId);
+        Task<Lead> UpdateAsync(Lead lead);
+        Task RemoveLeadContactAsync(int contactId);
+        Task RemoveActivityAsync(int activityId);
     }
 }

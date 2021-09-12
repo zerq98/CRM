@@ -10,7 +10,7 @@ namespace ApiDomain.Entity
         public string Regon { get; set; }
         public Address Address { get; set; }
         public int AddressId { get; set; }
-        public List<Department> Departments { get; set; }
+        public List<ApplicationUser> Employees { get; set; }
         public List<Lead> Leads { get; set; }
     }
 }

@@ -9,9 +9,9 @@ using System.Threading.Tasks;
 
 namespace ApiApplication.Lead.AddLead
 {
-    public class AddLeadCommand : IRequest<IActionResult>
+    public class UpsertLeadCommand : IRequest<IActionResult>
     {
-        public LeadCreateDto LeadCreateDto { get; set; }
+        public LeadForDetailsDto LeadCreateDto { get; set; }
         public int CompanyId { get; set; }
         public string UserId { get; set; }
     }

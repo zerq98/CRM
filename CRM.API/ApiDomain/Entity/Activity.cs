@@ -11,6 +11,7 @@ namespace ApiDomain.Entity
         public int Id { get; set; }
         public ActivityType ActivityType { get; set; }
         public int ActivityTypeId { get; set; }
+        public DateTime ActivityDate { get; set; }
         public ApplicationUser User { get; set; }
         public string UserId { get; set; }
         public Lead Lead { get; set; }

@@ -8,7 +8,6 @@ namespace ApiInfrastructure
     {
         public DbSet<Address> Addresses { get; set; }
         public DbSet<Company> Companies { get; set; }
-        public DbSet<Department> Departments { get; set; }
         public DbSet<Log> Logs { get; set; }
         public DbSet<ApplicationClaim> ApplicationClaims { get; set; }
         public DbSet<TodoTask> TodoTasks { get; set; }
