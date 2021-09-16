@@ -35,7 +35,7 @@ const callbacks = {
     if (token) {
       return {
         accessToken: token.token,
-        accessTokenExpires: Date.now() + 1*26*60*60*1000,
+        accessTokenExpires: Date.now() + 1*24*60*60*1000,
       };
     }
     if (Date.now() < prevToken.accessTokenExpires) {
@@ -61,7 +61,7 @@ const options = {
     error: '/login'
   },
   session:{
-    maxAge:1*26*60*60
+    maxAge:1*24*60*60
   },
   events:{
     async signIn(req,res){

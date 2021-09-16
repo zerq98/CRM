@@ -65,12 +65,14 @@ namespace CRM.API.Controllers
         public async Task<IActionResult> GetLeadAsync(int leadId)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             var companyId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value;
 
             var command = new GetLeadQuery
             {
                 CompanyId = Convert.ToInt32(companyId),
-                Id=leadId
+                Id=leadId,
+                UserId=userId
             };
 
             return await _mediator.Send(command);

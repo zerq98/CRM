@@ -28,6 +28,7 @@ namespace ApiApplication.Lead.GetLead
             try
             {
                 var traders = await _userRepository.GetCompanyTraders(request.CompanyId);
+                var user = traders.FirstOrDefault(x => x.Id == request.UserId);
                 var responseTraders = new List<string>();
 
                 foreach(var trader in traders)
@@ -65,7 +66,8 @@ namespace ApiApplication.Lead.GetLead
                                 Regon = "",
                                 User = ""
                             },
-                            CompanyTraders = responseTraders
+                            CompanyTraders = responseTraders,
+                            User = user.FirstName+" "+user.LastName
                         }
                     });
                 }
@@ -135,7 +137,8 @@ namespace ApiApplication.Lead.GetLead
                         Data = new LeadDetailsDto
                         {
                             Lead = leadResponse,
-                            CompanyTraders = responseTraders
+                            CompanyTraders = responseTraders,
+                            User = user.FirstName + " " + user.LastName
                         }
                     });
                 }

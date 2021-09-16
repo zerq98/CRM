@@ -104,26 +104,31 @@ namespace ApiInfrastructure
                     new ActivityType
                     {
                         Id=1,
-                        Name="Rozmowa telefoniczna"
+                        Name="Inna aktywność"
                     },
                     new ActivityType
                     {
                         Id=2,
-                        Name="Wiadmość Email"
+                        Name="Rozmowa telefoniczna"
                     },
                     new ActivityType
                     {
                         Id=3,
-                        Name="Rozmowa online"
+                        Name="Wiadmość Email"
                     },
                     new ActivityType
                     {
                         Id=4,
-                        Name="Spotkanie z klientem"
+                        Name="Rozmowa online"
                     },
                     new ActivityType
                     {
                         Id=5,
+                        Name="Spotkanie z klientem"
+                    },
+                    new ActivityType
+                    {
+                        Id=6,
                         Name="Wysłanie oferty"
                     }
                 });

@@ -10,5 +10,6 @@ namespace ApiApplication.DTO
     {
         public LeadForDetailsDto Lead { get; set; }
         public List<string> CompanyTraders { get; set; }
+        public string User { get; set; }
     }
 }

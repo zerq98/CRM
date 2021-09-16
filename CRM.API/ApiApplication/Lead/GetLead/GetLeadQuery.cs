@@ -12,5 +12,6 @@ namespace ApiApplication.Lead.GetLead
     {
         public int Id { get; set; }
         public int CompanyId { get; set; }
+        public string UserId { get; set; }
     }
 }
