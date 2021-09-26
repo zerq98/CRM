@@ -1,13 +1,14 @@
 import NextAuth from "next-auth";
 import { signIn, signOut } from "next-auth/client";
 import Providers from "next-auth/providers";
+import {server} from '../../config'
 
 const providers = [
   Providers.Credentials({
     name: 'Credentials',
     authorize: async (credentials) => {
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
-      const res = await fetch("https://localhost:44395/api/Account/Login", {
+      const res = await fetch(server+"Account/Login", {
             method: 'POST',
             body: JSON.stringify(credentials),
             headers: { 

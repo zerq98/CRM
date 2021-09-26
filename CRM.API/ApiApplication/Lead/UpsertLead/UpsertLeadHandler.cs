@@ -9,7 +9,6 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
-using ApiInfrastructure;
 using Microsoft.EntityFrameworkCore;
 
 namespace ApiApplication.Lead.AddLead
@@ -19,20 +18,43 @@ namespace ApiApplication.Lead.AddLead
         private readonly ILeadRepository _leadRepository;
         private readonly IUserRepository _userRepository;
         private ICompanyRepository _companyRepository;
-        private readonly AppDbContext _context;
+        private ILeadStatusRepository _leadStatusRepository;
+        private readonly IActivityTypeRepository _activityTypeRepository;
 
         public UpsertLeadHandler(ILeadRepository leadRepository,IUserRepository userRepository,
-                              ICompanyRepository companyRepository,AppDbContext appDbContext)
+                              ICompanyRepository companyRepository, ILeadStatusRepository leadStatusRepository,
+                              IActivityTypeRepository activityTypeRepository)
         {
             _leadRepository = leadRepository;
             _userRepository = userRepository;
             _companyRepository = companyRepository;
-            _context = appDbContext;
+            _leadStatusRepository = leadStatusRepository;
+            _activityTypeRepository = activityTypeRepository;
         }
         public async Task<IActionResult> Handle(UpsertLeadCommand request, CancellationToken cancellationToken)
         {
             try
             {
+                if(await _leadRepository.CheckIfRegonExistsAsync(request.LeadCreateDto.Regon, request.LeadCreateDto.Id,request.CompanyId))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 409,
+                        ErrorMessage = "Lead z takim numerem Regon istnieje już w bazie danych."
+                    });
+                }
+
+                if (await _leadRepository.CheckIfNIPExistsAsync(request.LeadCreateDto.NIP, request.LeadCreateDto.Id, request.CompanyId))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 409,
+                        ErrorMessage = "Lead z takim numerem NIP istnieje już w bazie danych."
+                    });
+                }
+
                 var lead = await _leadRepository.GetLeadAsync(request.LeadCreateDto.Id,request.CompanyId);
 
                 if (lead == null)
@@ -47,11 +69,11 @@ namespace ApiApplication.Lead.AddLead
 
                 lead.ModificationDate = DateTime.Now;
                 lead.Company = await _companyRepository.GetByIdAsync(request.CompanyId);
-                lead.LeadStatus = await _context.LeadStatuses.FirstOrDefaultAsync(x => x.Name == request.LeadCreateDto.LeadStatus);
+                lead.LeadStatus = (await _leadStatusRepository.GetLeadStatusesAsync()).FirstOrDefault(x => x.Name == request.LeadCreateDto.LeadStatus);
                 lead.Name = request.LeadCreateDto.Name;
                 lead.NIP = request.LeadCreateDto.NIP;
                 lead.Regon = request.LeadCreateDto.Regon;
-                lead.User = await _userRepository.GetUserByNameAsync(request.LeadCreateDto.User);
+                lead.User = await _userRepository.GetUserByNameAsync(request.LeadCreateDto.User, request.CompanyId);
 
                 lead.LeadAddress.ApartmentNumber = request.LeadCreateDto.LeadAddress.ApartmentNumber;
                 lead.LeadAddress.City = request.LeadCreateDto.LeadAddress.City;
@@ -101,7 +123,7 @@ namespace ApiApplication.Lead.AddLead
                         {
                             lead.Activities.Add(new Activity
                             {
-                                ActivityType = await _context.ActivityTypes.FirstOrDefaultAsync(x => x.Name == activity.ActivityType),
+                                ActivityType = (await _activityTypeRepository.GetActivityTypesAsync()).FirstOrDefault(x => x.Name == activity.ActivityType),
                                 Lead = lead,
                                 User = await _userRepository.GetUserByIdAsync(request.UserId),
                                 ActivityDate=DateTime.Now,

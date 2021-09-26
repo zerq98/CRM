@@ -44,5 +44,10 @@ namespace ApiInfrastructure.Repository
         {
             return await _context.Companies.FirstOrDefaultAsync(x => x.Id == companyId);
         }
+
+        public async Task<Company> GetByNameAsync(string name)
+        {
+            return await _context.Companies.FirstOrDefaultAsync(x => x.CompanyName == name);
+        }
     }
 }

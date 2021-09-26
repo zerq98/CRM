@@ -37,9 +37,6 @@
             "projectReferences": {
               "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj": {
                 "projectPath": "F:\\CRM\\CRM.API\\ApiDomain\\ApiDomain.csproj"
-              },
-              "F:\\CRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj": {
-                "projectPath": "F:\\CRM\\CRM.API\\ApiInfrastructure\\ApiInfrastructure.csproj"
               }
             }
           }

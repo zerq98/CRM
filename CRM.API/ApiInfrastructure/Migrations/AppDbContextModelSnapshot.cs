@@ -360,6 +360,179 @@ namespace ApiInfrastructure.Migrations
                     b.ToTable("Logs");
                 });
 
+            modelBuilder.Entity("ApiDomain.Entity.OpportunityStatus", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("OpportunityStatuses");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Name = "Nowa"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Name = "Modyfikowana"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Name = "Anulowana"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Name = "Zaakceptowana"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Name = "Oferta"
+                        });
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.Product", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("MarkupRate")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UnitOfMeasurement")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("UnitValue")
+                        .HasColumnType("float");
+
+                    b.Property<double>("VatRate")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.ToTable("Products");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.SellOpportunityHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("CompanyId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("LeadId")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("StatusId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("SumGrossValue")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SumMarkupValue")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SumNetValue")
+                        .HasColumnType("float");
+
+                    b.Property<double>("SumVatValue")
+                        .HasColumnType("float");
+
+                    b.Property<string>("TraderId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CompanyId");
+
+                    b.HasIndex("LeadId");
+
+                    b.HasIndex("StatusId");
+
+                    b.HasIndex("TraderId");
+
+                    b.ToTable("SellOpportunityHeaders");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.SellOpportunityPosition", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime>("CreateDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("GrossValue")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Markup")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("ModificationDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("NetValue")
+                        .HasColumnType("float");
+
+                    b.Property<int>("OpportunityHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.Property<double>("VatValue")
+                        .HasColumnType("float");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OpportunityHeaderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("SellOpportunityPositions");
+                });
+
             modelBuilder.Entity("ApiDomain.Entity.TodoTask", b =>
                 {
                     b.Property<int>("Id")
@@ -697,6 +870,69 @@ namespace ApiInfrastructure.Migrations
                     b.Navigation("Lead");
                 });
 
+            modelBuilder.Entity("ApiDomain.Entity.Product", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.Company", "Company")
+                        .WithMany("Products")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Company");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.SellOpportunityHeader", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.Company", "Company")
+                        .WithMany("SellOpportunities")
+                        .HasForeignKey("CompanyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.Lead", "Lead")
+                        .WithMany()
+                        .HasForeignKey("LeadId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.OpportunityStatus", "Status")
+                        .WithMany()
+                        .HasForeignKey("StatusId")
+                        .OnDelete(DeleteBehavior.NoAction)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.ApplicationUser", "Trader")
+                        .WithMany()
+                        .HasForeignKey("TraderId");
+
+                    b.Navigation("Company");
+
+                    b.Navigation("Lead");
+
+                    b.Navigation("Status");
+
+                    b.Navigation("Trader");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.SellOpportunityPosition", b =>
+                {
+                    b.HasOne("ApiDomain.Entity.SellOpportunityHeader", "OpportunityHeader")
+                        .WithMany("Positions")
+                        .HasForeignKey("OpportunityHeaderId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.HasOne("ApiDomain.Entity.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OpportunityHeader");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("ApiDomain.Entity.TodoTask", b =>
                 {
                     b.HasOne("ApiDomain.Entity.ApplicationUser", "User")
@@ -781,6 +1017,10 @@ namespace ApiInfrastructure.Migrations
                     b.Navigation("Employees");
 
                     b.Navigation("Leads");
+
+                    b.Navigation("Products");
+
+                    b.Navigation("SellOpportunities");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.Lead", b =>
@@ -788,6 +1028,11 @@ namespace ApiInfrastructure.Migrations
                     b.Navigation("Activities");
 
                     b.Navigation("LeadContacts");
+                });
+
+            modelBuilder.Entity("ApiDomain.Entity.SellOpportunityHeader", b =>
+                {
+                    b.Navigation("Positions");
                 });
 
             modelBuilder.Entity("ApiDomain.Entity.ApplicationUser", b =>

@@ -10,5 +10,6 @@ namespace ApiDomain.Interface
 
         Task DeleteCompanyAsync(int companyId);
         Task<Company> GetByIdAsync(int companyId);
+        Task<Company> GetByNameAsync(string name);
     }
 }

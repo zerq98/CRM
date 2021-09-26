@@ -55,6 +55,16 @@ namespace ApiApplication.Account.Register
                         });
                     }
 
+                    if(await _companyRepository.GetByNameAsync(request.Data.Company.CompanyName) != null)
+                    {
+                        return new JsonResult(new ApiResponse<object>
+                        {
+                            Code = 409,
+                            ErrorMessage = "Ta firma istnieje w bazie danych.",
+                            Data = null
+                        });
+                    }
+
                     var userAddress = new Address
                     {
                         ApartmentNumber = request.Data.UserAddress.ApartmentNumber,

@@ -17,12 +17,17 @@ namespace ApiApplication.Account.DashboardData
     {
         private readonly IUserRepository _userRepository;
         private readonly ITodoTaskRepository _todoTaskRepository;
+        private readonly IOpportunityRepository _opportunityRepository;
+        private readonly ILeadRepository _leadRepository;
 
         public GetDashboardDataHandler(IUserRepository userRepository,
-                                       ITodoTaskRepository todoTaskRepository)
+                                       ITodoTaskRepository todoTaskRepository,IOpportunityRepository opportunityRepository,
+                                       ILeadRepository leadRepository)
         {
             _userRepository = userRepository;
             _todoTaskRepository = todoTaskRepository;
+            _opportunityRepository = opportunityRepository;
+            _leadRepository = leadRepository;
         }
         public async Task<IActionResult> Handle(GetDashboardDataQuery request, CancellationToken cancellationToken)
         {
@@ -38,7 +43,9 @@ namespace ApiApplication.Account.DashboardData
                     {
                         Name = user.FirstName + " " + user.LastName,
                         Position = user.CompanyPosition,
-                        TodoTasks = new List<TodoTaskDto>()
+                        TodoTasks = new List<TodoTaskDto>(),
+                        UserActivity = await _leadRepository.GetUserActivitiesCountAsync(request.UserId),
+                        SalesData = await _opportunityRepository.GetUserOpportunitiesCountAsync(request.UserId)
                     };
 
                     foreach(var task in todoTasks)

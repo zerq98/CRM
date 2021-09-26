@@ -2,6 +2,7 @@ import Layout from "../components/layout";
 import React, { useState, useEffect, Fragment } from 'react';
 import { getSession, useSession } from "next-auth/client";
 import { Tab, Dialog, Transition } from '@headlessui/react'
+import {server} from './config'
 
 function todoList(data) {
   const [session, loading] = useSession()
@@ -45,7 +46,7 @@ function todoList(data) {
     }
 
 
-    const res = await fetch("https://localhost:44395/api/TodoTask/AddNewTask", {
+    const res = await fetch(server+"TodoTask/AddNewTask", {
       method: 'POST',
       body: JSON.stringify(task),
       headers: {
@@ -88,7 +89,7 @@ function todoList(data) {
 
   async function toggle(id) {
 
-    const res = await fetch("https://localhost:44395/api/TodoTask/MarkAsCompleted?todoTaskId=" + id, {
+    const res = await fetch(server+"TodoTask/MarkAsCompleted?todoTaskId=" + id, {
       method: 'POST',
       body: {},
       headers: {
@@ -114,7 +115,7 @@ function todoList(data) {
 
   async function removeTask(id){
     
-    const res = await fetch("https://localhost:44395/api/TodoTask/Remove?todoTaskId=" + id, {
+    const res = await fetch(server+"TodoTask/Remove?todoTaskId=" + id, {
       method: 'POST',
       body: {},
       headers: {
@@ -310,7 +311,7 @@ export async function getServerSideProps(context) {
     if (process.env.NODE_TLS_REJECT_UNAUTHORIZED !== "0") {
       process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
     }
-    const res = await fetch("https://localhost:44395/api/TodoTask/GetAllUserTasks", {
+    const res = await fetch(server+"TodoTask/GetAllUserTasks", {
       method: 'GET',
       headers: {
         accept: '*/*',

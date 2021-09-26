@@ -17,6 +17,10 @@ namespace ApiInfrastructure
         public DbSet<Lead> Leads { get; set; }
         public DbSet<ActivityType> ActivityTypes { get; set; }
         public DbSet<Activity> Activities { get; set; }
+        public DbSet<OpportunityStatus> OpportunityStatuses { get; set; }
+        public DbSet<SellOpportunityHeader> SellOpportunityHeaders { get; set; }
+        public DbSet<SellOpportunityPosition> SellOpportunityPositions { get; set; }
+        public DbSet<Product> Products { get; set; }
 
         public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
         {

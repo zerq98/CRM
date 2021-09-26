@@ -4,6 +4,7 @@ import { getSession, options, useSession } from "next-auth/client";
 import { Tab, Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
+import {server} from '../config'
 
 function leadData(data) {
   const [session, loading] = useSession()
@@ -214,6 +215,14 @@ function leadData(data) {
 
   function validate(){
     var isOk=true;
+
+    if(lead.leadStatus==='' || lead.leadStatus===undefined){
+      lead.leadStatus = statuses[0]
+    }
+
+    if(lead.user==='' || lead.user===undefined){
+      lead.user = tradersList[0]
+    }
     
     if(lead.name==='' || lead.name===undefined){
       isOk=false
@@ -230,7 +239,7 @@ function leadData(data) {
 
   const handleLeadSave = async function(){
     if (validate()) {
-      const res = await fetch("https://localhost:44395/api/Lead/Upsert", {
+      const res = await fetch(server+"Lead/Upsert", {
           method: 'POST',
           body: JSON.stringify(lead),
           headers: {
@@ -269,13 +278,13 @@ function leadData(data) {
     return(
         <Layout>
             <div className="flex flex-col w-100p h-100p items-center bg-layoutBG xs:p-2 lg:p-7 space-y-2 lg:text-lg xs:text-xs">
-                <div className="flex md:flex-row xs:flex-col w-100p h-100p xs:space-y-2 md:space-x-2 xs:space-x-0 md:space-y-0">
+                <div className="flex md:flex-row xs:flex-col w-100p h-100p xs:space-y-2 md:space-x-2 xs:space-x-0 md:space-y-0 overflow-y-scroll overscroll-contain scrollbar-hide">
                   <div className="flex flex-col xs:w-100p md:w-60p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg p-2 md:space-y-2 ">
-                    <div className="flex md:flex-row xs:flex-col w-100p h-90p xs:space-y-2 md:space-x-2 xs:space-x-0 md:space-y-0">
-                      <div className="flex md:flex-col xs:flex-row border-1 xs:w-100p xs:h-50p md:w-50p md:h-100p p-2">
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                    <div className="flex md:flex-row xs:flex-col w-100p xs:h-95p md:h-90p xs:space-y-2 md:space-x-2 xs:space-x-0 md:space-y-0">
+                      <div className="flex flex-col border-1 xs:w-100p md:w-50p h-100p p-2 overflow-y-scroll overscroll-contain scrollbar-hide">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Nazwa firmy</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required value={lead.name}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required defaultValue={lead.name}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -285,9 +294,9 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>NIP</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required value={lead.nip}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required defaultValue={lead.nip}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -297,9 +306,9 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Regon</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required value={lead.regon}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required defaultValue={lead.regon}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -309,7 +318,7 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Status</p>
                           <select className="w-100p pl-2 rounded-lg focus:outline-none" required
                           onChange={(e)=>{
@@ -329,7 +338,7 @@ function leadData(data) {
                           })}
                           </select>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Handlowiec</p>
                           <select className="w-100p pl-2 rounded-lg focus:outline-none" required 
                           onChange={(e)=>{
@@ -350,10 +359,10 @@ function leadData(data) {
                           </select>
                         </div>
                       </div>
-                      <div className="flex md:flex-col xs:flex-row border-1 xs:w-100p xs:h-50p md:w-50p md:h-100p p-2">
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                      <div className="flex flex-col border-1 xs:w-100p md:w-50p h-100p p-2 overflow-y-scroll overscroll-contain scrollbar-hide">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Miasto</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required value={lead.leadAddress.city}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required defaultValue={lead.leadAddress.city}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -366,9 +375,9 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Ulica</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required value={lead.leadAddress.street}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required defaultValue={lead.leadAddress.street}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -381,9 +390,9 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Kod pocztowy</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required value={lead.leadAddress.postCode}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required defaultValue={lead.leadAddress.postCode}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -396,9 +405,9 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Numer domu</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required value={lead.leadAddress.houseNumber}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" required defaultValue={lead.leadAddress.houseNumber}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -411,9 +420,9 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Numer mieszkania (opcjonalne)</p>
-                          <input className="w-100p pl-2 rounded-lg focus:outline-none" value={lead.leadAddress.apartmentNumber}
+                          <input className="w-100p pl-2 rounded-lg focus:outline-none" defaultValue={lead.leadAddress.apartmentNumber}
                           onChange={(e)=>{
                             var editedLead = {
                               ...lead,
@@ -426,7 +435,7 @@ function leadData(data) {
                             setLead(editedLead)
                           }}></input>
                         </div>
-                        <div className="flex flex-col xs:w-20p md:w-100p xs:h-100p md:h-20p space-y-3">
+                        <div className="flex flex-col w-100p h-20p space-y-3">
                           <p>Województwo</p>
                           <select className="w-100p pl-2 rounded-lg focus:outline-none" required
                           onChange={(e)=>{
@@ -452,7 +461,7 @@ function leadData(data) {
                         </div>
                       </div>
                     </div>
-                    <div className="flex flex-row w-100p h-10p justify-around md:py-2 xs:py-1">
+                    <div className="flex flex-row w-100p md:h-10p xs:h-5p justify-around md:py-2 xs:py-1">
                       <div className="h-100p w-20p text-center flex flex-row justify-center items-center bg-gray rounded-xl hover:bg-white hover:text-gray duration-300 font-bold text-white shadow xs:p-3 md:p-2 cursor-pointer"
                       onClick={handleLeadSave}>
                         Zapisz
@@ -465,7 +474,7 @@ function leadData(data) {
                     </div>
                   </div>
                   <div className="flex flex-col md:w-40p xs:w-100p h-100p space-y-2">
-                    <div className="flex flex-col w-100p h-50p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg space-y-2 p-2">
+                    <div className="flex flex-col w-100p xs:h-100p md:h-50p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg space-y-2 p-2">
                       <div className="flex flex-row w-100p h-10p justify-start items-center space-x-4">
                         <p>Osoby kontaktowe</p>
                         <div className=" h-100p text-center flex flex-row justify-center items-center bg-gray rounded-xl hover:bg-white hover:text-gray duration-300 font-bold text-white shadow p-2 cursor-pointer"
@@ -488,7 +497,7 @@ function leadData(data) {
                       ))}
                       </div>
                     </div>
-                    <div className="flex flex-col w-100p h-50p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg space-y-2 p-2">
+                    <div className="flex flex-col w-100p xs:h-100p md:h-50p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg space-y-2 p-2">
                       <div className="flex flex-row w-100p h-10p justify-start items-center space-x-4">
                         <p>Aktywności u kontrahenta</p>
                         <div className=" h-100p text-center flex flex-row justify-center items-center bg-gray rounded-xl hover:bg-white hover:text-gray duration-300 font-bold text-white shadow p-2 cursor-pointer"
@@ -647,7 +656,7 @@ export async function getServerSideProps(context) {
       if (process.env.NODE_TLS_REJECT_UNAUTHORIZED !== "0") {
         process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
       }
-      const res = await fetch("https://localhost:44395/api/Lead/GetLead?leadId="+context.params.leadId, {
+      const res = await fetch(server+"Lead/GetLead?leadId="+context.params.leadId, {
             method: 'GET',
             headers: {
             accept: '*/*',

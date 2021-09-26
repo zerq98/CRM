@@ -17,6 +17,8 @@ namespace ApiApplication.Helpers.AutoMapper
                 .ForMember(x => x.TaskRange, opt => opt.MapFrom(c => GetTaskRange(c.TaskDate, c.Completed)));
             CreateMap<CreateTodoTaskDto, TodoTask>()
                 .ForMember(x => x.Completed, opt => opt.NullSubstitute(false));
+            CreateMap<ProductUpsertDto, ApiDomain.Entity.Product>().ReverseMap();
+            CreateMap<ApiDomain.Entity.Product, ProductForListDto>();
         }
 
         private string GetTaskRange(DateTime TaskDate,bool completed)

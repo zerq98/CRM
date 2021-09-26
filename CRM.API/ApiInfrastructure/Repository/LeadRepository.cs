@@ -37,16 +37,41 @@ namespace ApiInfrastructure.Repository
                     throw;
                 }
             }
-                return lead;
+            return lead;
         }
 
-        public async Task<List<Lead>> GetAllLeadsAsync(int companyId)
+        public async Task<bool> CheckIfNIPExistsAsync(string nip, int leadId, int companyId)
+        {
+            if (leadId == 0)
+            {
+                return await _context.Leads.FirstOrDefaultAsync(x => x.NIP == nip && x.CompanyId==companyId) != null;
+            }
+            else
+            {
+                return await _context.Leads.FirstOrDefaultAsync(x => x.NIP == nip && x.Id!=leadId && x.CompanyId == companyId) != null;
+            }
+        }
+
+        public async Task<bool> CheckIfRegonExistsAsync(string regon, int leadId,int companyId)
+        {
+            if (leadId == 0)
+            {
+                return await _context.Leads.FirstOrDefaultAsync(x => x.Regon == regon && x.CompanyId == companyId) != null;
+            }
+            else
+            {
+                return await _context.Leads.FirstOrDefaultAsync(x => x.Regon == regon && x.Id != leadId && x.CompanyId == companyId) != null;
+            }
+        }
+
+        public async Task<List<Lead>> GetAllLeadsAsync(int companyId,DateTime DateFrom,DateTime DateTo)
         {
             return await _context.Leads
                 .Include(x=>x.LeadContacts)
                 .Include(x=> x.LeadStatus)
                 .Include(x => x.User)
-                .Where(x => x.CompanyId == companyId).ToListAsync();
+                .Where(x => x.CompanyId == companyId && x.CreateDate.Date>=DateFrom.Date && x.CreateDate.Date<=DateTo.Date)
+                .ToListAsync();
         }
 
         public async Task<Lead> GetLeadAsync(int leadId,int companyId)
@@ -61,6 +86,28 @@ namespace ApiInfrastructure.Repository
                 .ThenInclude(x => x.User)
                 .Include(x => x.User)
                 .FirstOrDefaultAsync(x => x.Id == leadId && x.CompanyId==companyId);
+        }
+
+        public async Task<Lead> GetLeadByNameAsync(string name, int companyId)
+        {
+            var leadName = name.Split(',')[0];
+            var nip = name.Split(',')[1];
+
+            return await _context.Leads.FirstOrDefaultAsync(x => x.Name == leadName && x.NIP == nip && x.CompanyId == companyId);
+        }
+
+        public async Task<List<int>> GetUserActivitiesCountAsync(string userId)
+        {
+            var list = new List<int>();
+
+            list.Add((await _context.Activities.Where(x => x.ActivityTypeId == 1 && x.UserId == userId).ToListAsync()).Count);
+            list.Add((await _context.Activities.Where(x => x.ActivityTypeId == 2 && x.UserId == userId).ToListAsync()).Count);
+            list.Add((await _context.Activities.Where(x => x.ActivityTypeId == 3 && x.UserId == userId).ToListAsync()).Count);
+            list.Add((await _context.Activities.Where(x => x.ActivityTypeId == 4 && x.UserId == userId).ToListAsync()).Count);
+            list.Add((await _context.Activities.Where(x => x.ActivityTypeId == 5 && x.UserId == userId).ToListAsync()).Count);
+            list.Add((await _context.Activities.Where(x => x.ActivityTypeId == 6 && x.UserId == userId).ToListAsync()).Count);
+
+            return list;
         }
 
         public async Task RemoveActivityAsync(int activityId)

@@ -12,5 +12,7 @@ namespace ApiApplication.DTO
         public string Department { get; set; }
         public string Position { get; set; }
         public List<TodoTaskDto> TodoTasks { get; set; }
+        public List<int> UserActivity { get; set; }
+        public List<int> SalesData { get; set; }
     }
 }

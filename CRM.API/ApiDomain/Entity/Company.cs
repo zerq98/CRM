@@ -12,5 +12,7 @@ namespace ApiDomain.Entity
         public int AddressId { get; set; }
         public List<ApplicationUser> Employees { get; set; }
         public List<Lead> Leads { get; set; }
+        public List<SellOpportunityHeader> SellOpportunities { get; set; }
+        public List<Product> Products { get; set; }
     }
 }

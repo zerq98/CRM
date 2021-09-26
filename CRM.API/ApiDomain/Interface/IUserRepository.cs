@@ -29,6 +29,6 @@ namespace ApiDomain.Interface
         Task<List<string>> GetUserClaims(string userId);
 
         Task<List<ApplicationUser>> GetCompanyTraders(int companyId);
-        Task<ApplicationUser> GetUserByNameAsync(string name);
+        Task<ApplicationUser> GetUserByNameAsync(string name,int companyId);
     }
 }

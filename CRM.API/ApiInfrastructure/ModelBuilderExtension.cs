@@ -34,6 +34,21 @@ namespace ApiInfrastructure
                 .WithMany()
                 .HasForeignKey(x => x.LeadStatusId)
                 .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<SellOpportunityHeader>()
+                .HasOne<OpportunityStatus>(x => x.Status)
+                .WithMany()
+                .HasForeignKey(x => x.StatusId)
+                .OnDelete(DeleteBehavior.NoAction);
+            builder.Entity<SellOpportunityPosition>()
+                .HasOne<SellOpportunityHeader>(x => x.OpportunityHeader)
+                .WithMany(x => x.Positions)
+                .HasForeignKey(x => x.OpportunityHeaderId)
+                .OnDelete(DeleteBehavior.Restrict);
+            builder.Entity<SellOpportunityHeader>()
+                .HasOne<Lead>(x => x.Lead)
+                .WithMany()
+                .HasForeignKey(x => x.LeadId)
+                .OnDelete(DeleteBehavior.Restrict);
         }
 
         private static void InitialData(ModelBuilder builder)
@@ -95,6 +110,36 @@ namespace ApiInfrastructure
                     {
                         Id=6,
                         Name="Kontrahent"
+                    }
+                });
+
+            builder.Entity<OpportunityStatus>()
+                .HasData(new OpportunityStatus[]
+                {
+                    new OpportunityStatus
+                    {
+                        Id=1,
+                        Name="Nowa"
+                    },
+                    new OpportunityStatus
+                    {
+                        Id=2,
+                        Name="Modyfikowana"
+                    },
+                    new OpportunityStatus
+                    {
+                        Id=3,
+                        Name="Anulowana"
+                    },
+                    new OpportunityStatus
+                    {
+                        Id=4,
+                        Name="Zaakceptowana"
+                    },
+                    new OpportunityStatus
+                    {
+                        Id=5,
+                        Name="Oferta"
                     }
                 });
 

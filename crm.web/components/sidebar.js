@@ -27,13 +27,19 @@ const Sidebar = () =>{
                     <p className='xs:hidden md:block'>Leady</p>
                 </div>
             </Link>
-            <Link href='/sale'>
+            <Link href='/opportunities'>
                 <div className='w-100p h-10 text-white xs:text-xl md:text-lg lg:text-xl xl:text-2xl 4k:text-4xl font-bold flex flex-row items-center md:space-x-2 xs:px-4 md:px-2 xl:px-3 2xl:px-10p hover:bg-sidebarBGHover cursor-pointer'>
                     <i className='bx bx-target-lock'></i>
                     <p className='xs:hidden md:block'>Szanse</p>
                 </div>
             </Link>
-            <Link href='/order'>
+            <Link href='/productList'>
+                <div className='w-100p h-10 text-white xs:text-xl md:text-lg lg:text-xl xl:text-2xl 4k:text-4xl font-bold flex flex-row items-center md:space-x-2 xs:px-4 md:px-2 xl:px-3 2xl:px-10p hover:bg-sidebarBGHover cursor-pointer'>
+                <i class='bx bxs-archive'></i>
+                    <p className='xs:hidden md:block'>Produkty</p>
+                </div>
+            </Link>
+            <Link href='/orders'>
                 <div className='w-100p h-10 text-white xs:text-xl md:text-lg lg:text-xl xl:text-2xl 4k:text-4xl font-bold flex flex-row items-center md:space-x-2 xs:px-4 md:px-2 xl:px-3 2xl:px-10p hover:bg-sidebarBGHover cursor-pointer'>
                     <i className='bx bxs-cart'></i>
                     <p className='xs:hidden md:block'>Zamówienia</p>

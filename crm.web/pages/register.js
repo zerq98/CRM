@@ -1,5 +1,6 @@
 import 'tailwindcss/tailwind.css'
 import { useRouter } from 'next/router'
+import {server} from './config'
 
 export default function login() {
 
@@ -39,7 +40,7 @@ export default function login() {
         }
 
         if (validate(data, event.target.confirm.value)) {
-            const res = await fetch("https://localhost:44395/api/Account/RegisterCompany", {
+            const res = await fetch(server+"Account/RegisterCompany", {
                 method: 'POST',
                 body: JSON.stringify(data),
                 headers: {

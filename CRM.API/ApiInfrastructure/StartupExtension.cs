@@ -18,6 +18,11 @@ namespace ApiInfrastructure
             services.AddScoped<IAddressRepository, AddressRepository>();
             services.AddScoped<IClaimRepository, ClaimRepository>();
             services.AddScoped<ITodoTaskRepository, TodoTaskRepository>();
+            services.AddScoped<IProductRepository, ProductRepository>();
+            services.AddScoped<IOpportunityStatusRepository, OpportunityStatusRepository>();
+            services.AddScoped<IOpportunityRepository, OpportunityRepository>();
+            services.AddScoped<ILeadStatusRepository, LeadStatusRepository>();
+            services.AddScoped<IActivityTypeRepository, ActivityTypeRepository>();
 
             services.AddIdentity<ApplicationUser, IdentityRole>()
                 .AddEntityFrameworkStores<AppDbContext>()

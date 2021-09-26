@@ -27,7 +27,7 @@ namespace ApiApplication.Lead.GetAllLeads
         {
             try
             {
-                var dbLeads = await _leadRepository.GetAllLeadsAsync(request.CompanyId);
+                var dbLeads = await _leadRepository.GetAllLeadsAsync(request.CompanyId,request.Filters.DateFrom,request.Filters.DateTo);
                 var traders = await _userRepository.GetCompanyTraders(request.CompanyId);
                 var response = new LeadListResponseDto()
                 {
@@ -45,13 +45,30 @@ namespace ApiApplication.Lead.GetAllLeads
                     response.Leads.Add(new LeadForListDto
                     {
                         Id = lead.Id,
-                        Email = lead.LeadContacts.First().Email,
+                        Email = lead.LeadContacts.Count>0?lead.LeadContacts.First().Email:"",
                         User = lead.User.FirstName + " " + lead.User.LastName,
-                        MainContact = lead.LeadContacts.First().Name,
+                        MainContact = lead.LeadContacts.Count > 0 ? lead.LeadContacts.First().Name:"",
                         Name = lead.Name,
                         CreateDate = lead.CreateDate,
                         Status=lead.LeadStatus.Name
                     });
+                }
+
+                if (request.Filters.Name != "")
+                {
+                    response.Leads = response.Leads.Where(x => x.Name.Contains(request.Filters.Name)).ToList();
+                }
+                if (request.Filters.Status != "")
+                {
+                    response.Leads = response.Leads.Where(x => x.Status == request.Filters.Status).ToList();
+                }
+                if (request.Filters.User != "")
+                {
+                    response.Leads = response.Leads.Where(x => x.User.Contains(request.Filters.User)).ToList();
+                }
+                if(request.Filters.Email != "")
+                {
+                    response.Leads = response.Leads.Where(x => x.Email.Contains(request.Filters.Email)).ToList();
                 }
 
                 return new JsonResult(new ApiResponse<LeadListResponseDto>

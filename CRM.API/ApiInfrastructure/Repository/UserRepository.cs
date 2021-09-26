@@ -207,10 +207,10 @@ namespace ApiInfrastructure.Repository
             return user;
         }
 
-        public async Task<ApplicationUser> GetUserByNameAsync(string name)
+        public async Task<ApplicationUser> GetUserByNameAsync(string name,int companyId)
         {
             List<string> nameList = name.Split(' ').ToList();
-            return await _userManager.Users.FirstOrDefaultAsync(x => x.FirstName == nameList[0] && x.LastName == nameList[1]);
+            return await _userManager.Users.FirstOrDefaultAsync(x => x.FirstName == nameList[0] && x.LastName == nameList[1] && companyId==companyId);
         }
 
         public async Task<List<string>> GetUserClaims(string userId)

@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {Bar, Doughnut} from 'react-chartjs-2';
 import Image from 'next/image'
 import { getSession,useSession,signOut } from "next-auth/client";
+import {server} from './config'
 
 function Dashboard(data){
     const [session, loading] = useSession()
@@ -17,17 +18,34 @@ function Dashboard(data){
         "completed":false
         }
     ]);
+    const[salesData,setSalesData] = useState([
+        0,
+        0,
+        0,
+        0,
+        0
+    ])
+    const [activityData,setActivityData]=useState([
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+    ])
 
     useEffect(()=>{
         if(data!== undefined){
             setDashboardData(data.data)
             setTodoList(data.data.todoTasks)
+            setActivityData(data.data.userActivity)
+            setSalesData(data.data.salesData)
         }
     },[])
 
     async function toggle(id){
 
-        const res = await fetch("https://localhost:44395/api/TodoTask/MarkAsCompleted?todoTaskId="+id, {
+        const res = await fetch(server+"TodoTask/MarkAsCompleted?todoTaskId="+id, {
             method: 'POST',
             body:{},
             headers: { 
@@ -52,10 +70,10 @@ function Dashboard(data){
     };
 
     const saleChances={
-        labels: ['Nowa', 'Analiza', 'Oferta', 'Zamknięta', 'Stracona'],
+        labels: ['Nowa', 'Modyfikowana', 'Anulowana', 'Zaakceptowana', 'Oferta'],
         datasets: [{
           label: 'Szanse sprzedaży według statusów',
-          data: [12, 19, 3, 5, 2],
+          data: salesData,
           backgroundColor: [
             'rgba(0, 0, 255, 1)',
             'rgba(255, 69, 0, 1)',
@@ -69,36 +87,44 @@ function Dashboard(data){
 
     const contactTypes = {
         labels: [
-          'Telefon',
-          'Email',
+          'Inna aktywność',
+          'Rozmowa telefoniczna',
+          'Wiadomość Email',
           'Rozmowa online',
-          'Spotkanie z klientem'
+          'Spotkanie z klientem',
+          'Wysłanie oferty'
       ],
       datasets: [{
-        data: [300, 50, 100,30],
+        data: activityData,
         backgroundColor: [
         '#FF2222',
         '#22FF22',
         '#2222FF',
-        '#CDCDCD'
+        '#CDCDCD',
+        '#AAFFAA',
+        '#00DDFF'
         ],
         hoverBackgroundColor: [
         '#FF0000',
         '#00FF00',
         '#0000FF',
-        '#CDCDCD'
+        '#CDCDCD',
+        '#AAFFAA',
+        '#00DDFF'
         ],
         borderColor: [
         'rgba(0,0,0,0)',
         'rgba(0,0,0,0)',
         'rgba(0,0,0,0)',
         'rgba(0,0,0,0)',
+        'rgba(0,0,0,0)',
+        'rgba(0,0,0,0)'
         ],
         hoverOffset:[
-        20,20,20,20
+        20,20,20,20,20,20
         ],
         offset:[
-        10,10,10,10
+        10,10,10,10,10,10
         ]
       }]
       };
@@ -202,7 +228,7 @@ export async function getServerSideProps(context) {
         if(process.env.NODE_TLS_REJECT_UNAUTHORIZED !== "0"){
             process.env.NODE_TLS_REJECT_UNAUTHORIZED = "0";
         }
-        const res = await fetch("https://localhost:44395/api/Account/DashboardInfo", {
+        const res = await fetch(server+"Account/DashboardInfo", {
             method: 'GET',
             headers: { 
               accept: '*/*',
