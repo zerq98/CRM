@@ -512,7 +512,7 @@ namespace ApiInfrastructure.Migrations
                 {
                     { 1, "Inna aktywność" },
                     { 2, "Rozmowa telefoniczna" },
-                    { 3, "Wiadmość Email" },
+                    { 3, "Wiadomość Email" },
                     { 4, "Rozmowa online" },
                     { 5, "Spotkanie z klientem" },
                     { 6, "Wysłanie oferty" }

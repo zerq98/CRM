@@ -59,22 +59,52 @@ namespace ApiInfrastructure
                     new ApplicationClaim
                     {
                         Id=1,
-                        Name="AppAdministrator"
+                        Name="Dodawanie użytkowników"
                     },
                     new ApplicationClaim
                     {
                         Id=2,
-                        Name="CEO"
+                        Name="Usuwanie użytkowników"
                     },
                     new ApplicationClaim
                     {
                         Id=3,
-                        Name="IT Administrator"
+                        Name="Panel administracji"
                     },
                     new ApplicationClaim
                     {
                         Id=4,
-                        Name="Trader"
+                        Name="Przeglądanie leadów"
+                    },
+                    new ApplicationClaim
+                    {
+                        Id=5,
+                        Name="Modyfikacja cudzych leadów"
+                    },
+                    new ApplicationClaim
+                    {
+                        Id=6,
+                        Name="Przeglądanie szans sprzedaży"
+                    },
+                    new ApplicationClaim
+                    {
+                        Id=7,
+                        Name="Modyfikacja cudzych szans sprzedaży"
+                    },
+                    new ApplicationClaim
+                    {
+                        Id=8,
+                        Name="Przeglądanie szans sprzedaży"
+                    },
+                    new ApplicationClaim
+                    {
+                        Id=9,
+                        Name="Przeglądanie produktów"
+                    },
+                    new ApplicationClaim
+                    {
+                        Id=10,
+                        Name="Modyfikacja produktów"
                     }
                 });
 
@@ -159,7 +189,7 @@ namespace ApiInfrastructure
                     new ActivityType
                     {
                         Id=3,
-                        Name="Wiadmość Email"
+                        Name="Wiadomość Email"
                     },
                     new ActivityType
                     {

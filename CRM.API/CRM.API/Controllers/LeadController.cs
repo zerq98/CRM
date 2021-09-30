@@ -50,11 +50,13 @@ namespace CRM.API.Controllers
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
             var companyId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
 
             var command = new GetAllLeadsQuery
             {
                 CompanyId = Convert.ToInt32(companyId),
-                Filters = filtersDto
+                Filters = filtersDto,
+                UserId=userId
             };
 
             return await _mediator.Send(command);

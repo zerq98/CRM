@@ -117,7 +117,7 @@ namespace ApiApplication.Account.Register
                     await _userRepository.AssignClaimsAsync(appClaims, createdUser.Id);
 
                     var token = await _userRepository.GenerateEmailConfirmationTokenAsync(createdUser);
-                    var confirmationLink = $"http://localhost:44395/Account/ConfirmEmail?userId={createdUser.Id}&token={token}";
+                    var confirmationLink = $"http://localhost:3000/ConfirmEmail?userId={createdUser.Id}&token={token}";
 
                     EmailSender sender = new EmailSender();
                     await sender.SendEmailAsync(createdUser.Email, "Konto zostało utworzone",

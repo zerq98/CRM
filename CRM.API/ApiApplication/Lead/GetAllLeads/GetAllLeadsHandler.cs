@@ -27,6 +27,17 @@ namespace ApiApplication.Lead.GetAllLeads
         {
             try
             {
+
+                if(!( await PermissionMonitor.CheckPermissionsAsync(_userRepository,request.UserId,"Przeglądanie leadów")))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 403,
+                        ErrorMessage = "Brak uprawnień"
+                    });
+                }
+
                 var dbLeads = await _leadRepository.GetAllLeadsAsync(request.CompanyId,request.Filters.DateFrom,request.Filters.DateTo);
                 var traders = await _userRepository.GetCompanyTraders(request.CompanyId);
                 var response = new LeadListResponseDto()

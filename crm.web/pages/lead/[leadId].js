@@ -567,7 +567,7 @@ function leadData(data) {
                                 className="shadow-inner w-100p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5">
                                   <option selected disabled>Typ aktywności</option>
                                   <option>Rozmowa telefoniczna</option>
-                                  <option>Wiadomość email</option>
+                                  <option>Wiadomość Email</option>
                                   <option>Rozmowa online</option>
                                   <option>Spotkanie z klientem</option>
                                   <option>Wysłanie oferty</option>

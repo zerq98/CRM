@@ -45,10 +45,10 @@ const Sidebar = () =>{
                     <p className='xs:hidden md:block'>Zamówienia</p>
                 </div>
             </Link>
-            <Link href='/marketing'>
+            <Link href='/administration'>
                 <div className='w-100p h-10 text-white xs:text-xl md:text-lg lg:text-xl xl:text-2xl 4k:text-4xl font-bold flex flex-row items-center md:space-x-2 xs:px-4 md:px-2 xl:px-3 2xl:px-10p hover:bg-sidebarBGHover cursor-pointer'>
                     <i className='bx bxs-network-chart'></i>
-                    <p className='xs:hidden md:block'>Marketing</p>
+                    <p className='xs:hidden md:block truncate'>Administracja</p>
                 </div>
             </Link>
         </div>

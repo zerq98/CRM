@@ -128,7 +128,7 @@ namespace ApiInfrastructure.Repository
             }
             if (filters[2] != "")
             {
-                products = products.Where(x => x.MarkupRate == (Convert.ToDouble(filters[1]) / 100));
+                products = products.Where(x => x.MarkupRate == (Convert.ToDouble(filters[2]) / 100));
             }
 
             return await products

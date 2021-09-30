@@ -134,16 +134,7 @@ function Dashboard(data){
             <div className="flex flex-col w-100p h-100p items-center bg-layoutBG p-7">
                 <div className="w-100p h-20 bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-row items-center justify-between">
                     <div className="flex flex-row items-center">
-                        <div className="h-16 m-2 w-16 relative ">
-                            <Image
-                                src="/blank-profile-picture.svg"
-                                alt="Employee image"
-                                layout="fill"
-                                objectFit="cover"
-                                className="rounded-full"
-                            />
-                        </div>
-                        <div className="flex flex-col">
+                        <div className="flex flex-col ml-5">
                             <div className="xs:text-sm md:text-2xl font-bold ">{dashboardData.name}</div>
                             <div className="xs:text-xs md:text-md flex flex-row justify-between">
                                 <div>{dashboardData.position}</div>
@@ -182,7 +173,7 @@ function Dashboard(data){
                                             color: '#000000'
                                           },
                                           ticks:{
-                                              color: '#000000'
+                                              display: false
                                           }
                                         }
                                       },
@@ -238,6 +229,12 @@ export async function getServerSideProps(context) {
           })
 
         const resData = await res.json()
+
+        if(resData.code===403){
+            context.res.writeHead(302,{Location:"/accessDenied"})
+            context.res.end();
+        }
+
         const data=resData.data
     
         return { props: { data } }

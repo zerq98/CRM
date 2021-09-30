@@ -13,5 +13,6 @@ namespace ApiApplication.Lead.GetAllLeads
     {
         public int CompanyId { get; set; }
         public LeadFiltersDto Filters { get; set; }
+        public string UserId { get; set; }
     }
 }

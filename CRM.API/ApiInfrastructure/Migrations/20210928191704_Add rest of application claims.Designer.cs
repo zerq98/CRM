@@ -4,14 +4,16 @@ using ApiInfrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace ApiInfrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210928191704_Add rest of application claims")]
+    partial class Addrestofapplicationclaims
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,7 +156,7 @@ namespace ApiInfrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "Panel administracji"
+                            Name = "Przeglądanie danych firmy"
                         },
                         new
                         {
@@ -180,16 +182,6 @@ namespace ApiInfrastructure.Migrations
                         {
                             Id = 8,
                             Name = "Przeglądanie szans sprzedaży"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Name = "Przeglądanie produktów"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Name = "Modyfikacja produktów"
                         });
                 });
 

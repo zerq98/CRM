@@ -63,19 +63,8 @@ function todoList(data) {
         return todo
       })
 
-      var today=new Date(Date.now());
-      var taskDate = new Date(task.taskDate)
-      console.log(today)
-      console.log(taskDate)
-      if (taskDate < today.getDate() && !task.completed) {
-        task.taskRange = "Overdue";
-      }else if (taskDate.getDate() === today.getDate()) {
-        task.taskRange = "Today";
-      }else if (taskDate.getDate() >= today.getDate() && taskDate.getDate() <= today.getDate() + 7) {
-        task.taskRange = "This week";
-      }else if (taskDate.getDate() >= today.getDate() && taskDate.getMonth() <= today.getMonth()+1) {
-        task.taskRange = "This month";
-      }
+      task.taskRange=resData.data.taskRange
+      task.id=resData.data.id
 
       console.log(task)
       completeTodo.push(task)
@@ -285,8 +274,8 @@ function todoList(data) {
                     <form className="flex flex-col xs:space-y-5 lg:space-y-10 items-center justify-center h-100p w-100p" onSubmit={event => handleTaskAdd(event)}>
                       <input id="title" name="title" type="text" placeholder="Nazwa zadania" required
                         className="shadow-inner w-100p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5" />
-                      <input id="description" name="description" type="text" placeholder="Opis zadania"
-                        className="shadow-inner w-100p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5" />
+                      <textarea id="description" name="description" type="text" placeholder="Opis zadania"
+                        className="resize-y shadow-inner w-100p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5" />
                       <input id="taskDate" name="taskDate" type="date" defaultValue={Date.now()} required
                         className="shadow-inner w-100p xs:text-sm sm:text-lg md:text-xl xs:h-7 sm:h-8 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5" />
                       <button className='bg-gray rounded-xl hover:bg-white hover:text-gray duration-300 xs:text-sm sm:text-lg md:text-xl font-bold text-white shadow p-2 md:w-70p xs:w-80p'
