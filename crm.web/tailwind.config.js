@@ -143,8 +143,8 @@ module.exports = {
       108: '36rem',
       112: '42rem',
       120: '48rem',
-      fullScreen: '100vh'
-      
+      fullScreenHeight: '100vh',
+      fullScreenWidth:'100vw'
     }
   },
   variants: {
