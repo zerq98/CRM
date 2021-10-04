@@ -12,5 +12,6 @@ namespace ApiApplication.SellOpportunity.GetOpportunity
     {
         public int OpportunityId { get; set; }
         public int CompanyId { get; set; }
+        public string UserId { get; set; }
     }
 }

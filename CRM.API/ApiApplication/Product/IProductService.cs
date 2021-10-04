@@ -10,9 +10,9 @@ namespace ApiApplication.Product
 {
     public interface IProductService
     {
-        Task<IActionResult> AddProductAsync(ProductUpsertDto product);
-        Task<IActionResult> DeleteProductAsync(int productId);
-        Task<IActionResult> EditProductAsync(ProductUpsertDto product);
-        Task<IActionResult> GetAllProductsAsync(int companyId,ProductFiltersDto dto);
+        Task<IActionResult> AddProductAsync(ProductUpsertDto product,string userId);
+        Task<IActionResult> DeleteProductAsync(int productId,string userId);
+        Task<IActionResult> EditProductAsync(ProductUpsertDto product,string userId);
+        Task<IActionResult> GetAllProductsAsync(int companyId,ProductFiltersDto dto,string userId);
     }
 }

@@ -27,6 +27,15 @@ namespace ApiApplication.SellOpportunity.GetAllOpportunities
         {
             try
             {
+                if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, request.UserId, "Modyfikacja cudzych szans sprzedaży")))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 403,
+                        ErrorMessage = "Brak uprawnień"
+                    });
+                }
                 var traders = await _userRepository.GetCompanyTraders(request.CompanyId);
                 var opportunities = new List<SellOpportunityHeader>();
 

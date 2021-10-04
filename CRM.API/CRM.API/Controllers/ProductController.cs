@@ -26,16 +26,19 @@ namespace CRM.API.Controllers
         public async Task<IActionResult> AddProductAsync(ProductUpsertDto dto)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             dto.CompanyId = Convert.ToInt32(claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value);
 
-            return await _productService.AddProductAsync(dto);
+            return await _productService.AddProductAsync(dto,userId);
         }
 
         [HttpDelete("Remove")]
         [Authorize]
         public async Task<IActionResult> RemoveProductAsync(int productId)
         {
-            return await _productService.DeleteProductAsync(productId);
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
+            return await _productService.DeleteProductAsync(productId,userId);
         }
 
         [HttpPatch("Edit")]
@@ -43,9 +46,10 @@ namespace CRM.API.Controllers
         public async Task<IActionResult> EditProductAsync(ProductUpsertDto dto)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             dto.CompanyId = Convert.ToInt32(claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value);
 
-            return await _productService.EditProductAsync(dto);
+            return await _productService.EditProductAsync(dto,userId);
         }
 
         [HttpPost("GetAll")]
@@ -53,9 +57,10 @@ namespace CRM.API.Controllers
         public async Task<IActionResult> GetAllAsync(ProductFiltersDto dto)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             var companyId = Convert.ToInt32(claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value);
 
-            return await _productService.GetAllProductsAsync(companyId,dto);
+            return await _productService.GetAllProductsAsync(companyId,dto,userId);
         }
     }
 }

@@ -31,13 +31,15 @@ namespace CRM.API.Controllers
         public async Task<IActionResult> GetAllOpportunitiesAsync(OpportunitiesFiltersDto dto)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             var companyId = Convert.ToInt32(claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value);
 
             var command = new GetAllOpportunitiesQuery
             {
                 CompanyId = companyId,
                 Filters = dto,
-                GetOrders = false
+                GetOrders = false,
+                UserId=userId
             };
 
             return await _mediator.Send(command);
@@ -48,13 +50,15 @@ namespace CRM.API.Controllers
         public async Task<IActionResult> GetAllOrdersAsync(OpportunitiesFiltersDto dto)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             var companyId = Convert.ToInt32(claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value);
 
             var command = new GetAllOpportunitiesQuery
             {
                 CompanyId = companyId,
                 Filters = dto,
-                GetOrders = true
+                GetOrders = true,
+                UserId=userId
             };
 
             return await _mediator.Send(command);
@@ -65,12 +69,14 @@ namespace CRM.API.Controllers
         public async Task<IActionResult> GetOpportunity(int opportunityId)
         {
             var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             var companyId = Convert.ToInt32(claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "companyId").Value);
 
             var command = new GetOpportunityQuery
             {
                 CompanyId = companyId,
-                OpportunityId=opportunityId
+                OpportunityId=opportunityId,
+                UserId=userId
             };
 
             return await _mediator.Send(command);

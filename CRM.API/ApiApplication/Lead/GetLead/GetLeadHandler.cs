@@ -74,6 +74,19 @@ namespace ApiApplication.Lead.GetLead
 
                 var lead = await _leadRepository.GetLeadAsync(request.Id,request.CompanyId);
 
+                if (lead.UserId != request.UserId)
+                {
+                    if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, request.UserId, "Modyfikacja cudzych leadów")))
+                    {
+                        return new JsonResult(new ApiResponse<object>
+                        {
+                            Data = null,
+                            Code = 403,
+                            ErrorMessage = "Brak uprawnień"
+                        });
+                    }
+                }
+
                 if (lead != null)
                 {
                     var leadResponse = new LeadForDetailsDto

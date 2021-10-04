@@ -14,5 +14,6 @@ namespace ApiApplication.SellOpportunity.GetAllOpportunities
         public int CompanyId { get; set; }
         public OpportunitiesFiltersDto Filters { get; set; }
         public bool GetOrders { get; set; }
+        public string UserId { get; set; }
     }
 }

@@ -9,7 +9,6 @@ const Navbar = () =>{
                     CRM
                 </div>
                 <div className="flex md:flex-row xs:flex-col md:space-x-10 md:space-y-0 xs:space-y-2 xs:space-x-0 h-auto my-auto md:text-2xl xs:text-md">
-                    <a className="text-left place-content-center fit-content h-auto cursor-pointer">Home</a>
                     <Link href="/login">
                         <a className="text-left place-content-center fit-content h-auto cursor-pointer">Logowanie</a>
                     </Link>

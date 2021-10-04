@@ -52,7 +52,7 @@ export default function login() {
             const resData = await res.json()
 
             if (resData.code === 201) {
-                router.push('/registerConfirmed')
+                router.push('/login')
             } else {
                 alert(resData.errorMessage)
                 return 'Wrong data';

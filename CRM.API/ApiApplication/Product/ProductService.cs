@@ -15,16 +15,27 @@ namespace ApiApplication.Product
     {
         private readonly IProductRepository _productRepository;
         private readonly IMapper _mapper;
+        private readonly IUserRepository _userRepository;
 
-        public ProductService(IProductRepository productRepository,IMapper mapper)
+        public ProductService(IProductRepository productRepository,IMapper mapper,IUserRepository userRepository)
         {
             _productRepository = productRepository;
             _mapper = mapper;
+            _userRepository = userRepository;
         }
-        public async Task<IActionResult> AddProductAsync(ProductUpsertDto product)
+        public async Task<IActionResult> AddProductAsync(ProductUpsertDto product,string userId)
         {
             try
             {
+                if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, userId, "Modyfikacja produktów")))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 403,
+                        ErrorMessage = "Brak uprawnień"
+                    });
+                }
                 var productToDB = _mapper.Map<ApiDomain.Entity.Product>(product);
                 return new JsonResult(new ApiResponse<ProductUpsertDto>()
                 {
@@ -44,10 +55,19 @@ namespace ApiApplication.Product
             }
         }
 
-        public async Task<IActionResult> DeleteProductAsync(int productId)
+        public async Task<IActionResult> DeleteProductAsync(int productId,string userId)
         {
             try
             {
+                if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, userId, "Modyfikacja produktów")))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 403,
+                        ErrorMessage = "Brak uprawnień"
+                    });
+                }
                 await _productRepository.DeleteProductAsync(productId);
                 return new JsonResult(new ApiResponse<object>
                 {
@@ -67,10 +87,20 @@ namespace ApiApplication.Product
             }
         }
 
-        public async Task<IActionResult> EditProductAsync(ProductUpsertDto product)
+        public async Task<IActionResult> EditProductAsync(ProductUpsertDto product,string userId)
         {
             try
             {
+                if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, userId, "Modyfikacja produktów")))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 403,
+                        ErrorMessage = "Brak uprawnień"
+                    });
+                }
+
                 ApiDomain.Entity.Product DBProduct = await _productRepository.GetProductByIdAsync(product.Id);
 
                 if (DBProduct != null)
@@ -108,10 +138,19 @@ namespace ApiApplication.Product
             }
         }
 
-        public async Task<IActionResult> GetAllProductsAsync(int companyId,ProductFiltersDto dto)
+        public async Task<IActionResult> GetAllProductsAsync(int companyId,ProductFiltersDto dto,string userId)
         {
             try
             {
+                if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, userId, "Przeglądanie produktów")))
+                {
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 403,
+                        ErrorMessage = "Brak uprawnień"
+                    });
+                }
                 var filterList = new List<string>
                 {
                     dto.Name,

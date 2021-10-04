@@ -36,6 +36,19 @@ namespace ApiApplication.SellOpportunity.GetOpportunity
                 var leads = await _leadRepository.GetAllLeadsAsync(request.CompanyId, new DateTime(2000, 01, 01), new DateTime(2999, 12, 31));
                 var opportunity = await _opportunityRepository.GetOpportunityAsync(request.OpportunityId, request.CompanyId);
 
+                if (opportunity.TraderId != request.UserId)
+                {
+                    if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, request.UserId, "Modyfikacja cudzych szans sprzedaży")))
+                    {
+                        return new JsonResult(new ApiResponse<object>
+                        {
+                            Data = null,
+                            Code = 403,
+                            ErrorMessage = "Brak uprawnień"
+                        });
+                    }
+                }
+
                 var oppoRes = new SellOpportunityDetailsDto();
 
                 if (request.OpportunityId > 0)
