@@ -8,5 +8,6 @@ namespace ApiDomain.Interface
         Task<Address> CreateAddressAsync(Address address);
 
         Task DeleteAddressAsync(int addressId);
+        Task<Address> UpdateAddressAsync(Address userAddress);
     }
 }

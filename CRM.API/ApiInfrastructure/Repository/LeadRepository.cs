@@ -70,6 +70,8 @@ namespace ApiInfrastructure.Repository
                 .Include(x=>x.LeadContacts)
                 .Include(x=> x.LeadStatus)
                 .Include(x => x.User)
+                .Include(x=>x.Activities)
+                .ThenInclude(x=>x.ActivityType)
                 .Where(x => x.CompanyId == companyId && x.CreateDate.Date>=DateFrom.Date && x.CreateDate.Date<=DateTo.Date)
                 .ToListAsync();
         }

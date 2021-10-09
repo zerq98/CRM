@@ -148,8 +148,8 @@ function validate(data, confirmPassword) {
     const oneUpperCase = new RegExp('[A-Z]+')
     const oneLowerCase = new RegExp('[a-z]+')
     const oneDigit = new RegExp('[0-9]+')
-    const oneSpecialChar = new RegExp('[!@#\$&*~]+')
-    const minTenChars = new RegExp('.+')
+    const oneSpecialChar = new RegExp('!\"#\$%&\'()*+,-./:;<=>?@[\\]^_`{|}~')
+    const minTenChars = new RegExp('.{10,0}')
     const postCodePattern = new RegExp('^[0-9]{2}-[0-9]{3}$')
 
     if (!oneUpperCase.test(data.user.password)) {

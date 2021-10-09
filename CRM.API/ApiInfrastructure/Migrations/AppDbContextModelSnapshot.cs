@@ -77,7 +77,7 @@ namespace ApiInfrastructure.Migrations
                         new
                         {
                             Id = 3,
-                            Name = "Wiadmość Email"
+                            Name = "Wiadomość Email"
                         },
                         new
                         {
@@ -179,16 +179,11 @@ namespace ApiInfrastructure.Migrations
                         new
                         {
                             Id = 8,
-                            Name = "Przeglądanie szans sprzedaży"
-                        },
-                        new
-                        {
-                            Id = 9,
                             Name = "Przeglądanie produktów"
                         },
                         new
                         {
-                            Id = 10,
+                            Id = 9,
                             Name = "Modyfikacja produktów"
                         });
                 });
@@ -810,8 +805,14 @@ namespace ApiInfrastructure.Migrations
                     b.Property<string>("FirstName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Gender")
+                        .HasColumnType("bit");
+
                     b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("WorkStartDate")
+                        .HasColumnType("datetime2");
 
                     b.HasIndex("AddressId");
 

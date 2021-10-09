@@ -26,6 +26,8 @@ namespace ApiInfrastructure.Repository
 
                 if (user != null)
                 {
+
+                    await _userManager.RemoveClaimsAsync(user,await _context.ApplicationClaims.Select(x => new System.Security.Claims.Claim(x.Name, x.Name)).ToListAsync());
                     foreach (var claim in claims)
                     {
                         await _userManager.AddClaimAsync(user, new System.Security.Claims.Claim(claim, claim));
@@ -198,7 +200,10 @@ namespace ApiInfrastructure.Repository
 
         public async Task<ApplicationUser> GetUserByIdAsync(string userId)
         {
-            return await _userManager.FindByIdAsync(userId);
+            var user = await _userManager.FindByIdAsync(userId);
+            user.Address = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == user.AddressId);
+
+            return user;
         }
 
         public async Task<ApplicationUser> GetUserByLoginAsync(string login)
@@ -216,6 +221,38 @@ namespace ApiInfrastructure.Repository
         public async Task<List<string>> GetUserClaims(string userId)
         {
             return await _context.UserClaims.Where(x => x.UserId == userId).Select(x => x.ClaimType).ToListAsync();
+        }
+        public async Task<List<string>> GetAppClaims()
+        {
+            return await _context.ApplicationClaims.Select(x=>x.Name).ToListAsync();
+        }
+
+        public async Task<ApplicationUser> UpdateUserAsync(ApplicationUser user, string password)
+        {
+            try
+            {
+                if (password != "")
+                {
+                    var hasher = new PasswordHasher<ApplicationUser>();
+                    var pass = hasher.HashPassword(user, password);
+                    user.PasswordHash = pass;
+                }
+                _context.Users.Update(user);
+                await _context.SaveChangesAsync();
+
+                return user;
+            }
+            catch(Exception ex)
+            {
+                await _context.Logs.AddAsync(new Log
+                {
+                    LogMessage = ex.Message,
+                    ModuleName = "UserRepository/UpdateUserAsync"
+                });
+                await _context.SaveChangesAsync();
+
+                throw;
+            }
         }
     }
 }

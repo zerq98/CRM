@@ -35,19 +35,36 @@ namespace ApiInfrastructure.Repository
             }
         }
 
-        public Task DeleteCompanyAsync(int companyId)
-        {
-            throw new NotImplementedException();
-        }
-
         public async Task<Company> GetByIdAsync(int companyId)
         {
-            return await _context.Companies.FirstOrDefaultAsync(x => x.Id == companyId);
+            return await _context.Companies.Include(x=>x.Address).FirstOrDefaultAsync(x => x.Id == companyId);
         }
 
         public async Task<Company> GetByNameAsync(string name)
         {
             return await _context.Companies.FirstOrDefaultAsync(x => x.CompanyName == name);
+        }
+
+        public async Task UpdateCompanyAsync(Company company)
+        {
+            try
+            {
+                _context.Addresses.Update(company.Address);
+                _context.Companies.Update(company);
+
+                await _context.SaveChangesAsync();
+            }
+            catch (Exception ex)
+            {
+                await _context.Logs.AddAsync(new Log
+                {
+                    LogMessage = ex.Message,
+                    ModuleName = "CompanyRepository/UpdateCompanyAsync"
+                });
+                await _context.SaveChangesAsync();
+
+                throw;
+            }
         }
     }
 }

@@ -7,9 +7,8 @@ namespace ApiDomain.Interface
     public interface ICompanyRepository
     {
         Task<Company> CreateCompanyAsync(Company company);
-
-        Task DeleteCompanyAsync(int companyId);
         Task<Company> GetByIdAsync(int companyId);
         Task<Company> GetByNameAsync(string name);
+        Task UpdateCompanyAsync(Company company);
     }
 }

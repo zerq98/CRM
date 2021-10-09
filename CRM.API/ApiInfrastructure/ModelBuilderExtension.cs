@@ -94,16 +94,11 @@ namespace ApiInfrastructure
                     new ApplicationClaim
                     {
                         Id=8,
-                        Name="Przeglądanie szans sprzedaży"
-                    },
-                    new ApplicationClaim
-                    {
-                        Id=9,
                         Name="Przeglądanie produktów"
                     },
                     new ApplicationClaim
                     {
-                        Id=10,
+                        Id=9,
                         Name="Modyfikacja produktów"
                     }
                 });

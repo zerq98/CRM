@@ -38,5 +38,26 @@ namespace ApiInfrastructure.Repository
         {
             throw new NotImplementedException();
         }
+
+        public async Task<Address> UpdateAddressAsync(Address userAddress)
+        {
+            try
+            {
+                _context.Addresses.Update(userAddress);
+                await _context.SaveChangesAsync();
+                return userAddress;
+            }
+            catch (Exception ex)
+            {
+                await _context.Logs.AddAsync(new Log
+                {
+                    LogMessage = ex.Message,
+                    ModuleName = "AddressRepository/UpdateAddressAsync"
+                });
+                await _context.SaveChangesAsync();
+
+                throw;
+            }
+        }
     }
 }

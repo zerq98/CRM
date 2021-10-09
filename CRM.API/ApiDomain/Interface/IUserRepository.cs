@@ -30,5 +30,7 @@ namespace ApiDomain.Interface
 
         Task<List<ApplicationUser>> GetCompanyTraders(int companyId);
         Task<ApplicationUser> GetUserByNameAsync(string name,int companyId);
+        Task<List<string>> GetAppClaims();
+        Task<ApplicationUser> UpdateUserAsync(ApplicationUser user, string password);
     }
 }

@@ -4,6 +4,7 @@ using ApiDomain.Entity;
 using ApiDomain.Interface;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
@@ -91,9 +92,9 @@ namespace ApiApplication.Account.Register
                     {
                         Address = createdCompanyAddress,
                         CompanyName = request.Data.Company.CompanyName,
-                        NIP = request.Data.Company.NIP,
+                        NIP = "",
                         Employees = new List<ApplicationUser>(),
-                        Regon = request.Data.Company.Regon
+                        Regon = ""
                     };
                     var createdCompany = await _companyRepository.CreateCompanyAsync(company);
 
@@ -109,7 +110,9 @@ namespace ApiApplication.Account.Register
                         NormalizedUserName = request.Data.User.Login,
                         UserName = request.Data.User.Login,
                         PhoneNumber = request.Data.User.PhoneNumber,
-                        Company=createdCompany
+                        Company=createdCompany,
+                        Gender=request.Data.User.Gender,
+                        WorkStartDate=DateTime.Now.Date
                     };
                     var createdUser = await _userRepository.CreateUserAsync(user, request.Data.User.Password);
                     var appClaims = await _claimRepository.GetApplicationClaimsAsync();
