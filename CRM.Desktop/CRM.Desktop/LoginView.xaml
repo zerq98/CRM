@@ -4,8 +4,9 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CRM.Desktop"
+        xmlns:viewHelpers="clr-namespace:CRM.Desktop.Helpers"
         mc:Ignorable="d"
-        Title="LoginView" Height="450" Width="600" MinHeight="450" MinWidth="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
+        Title="LoginView" Name="LoginWindow" Height="450" Width="600" MinHeight="450" MinWidth="600" WindowStartupLocation="CenterScreen" WindowStyle="None">
     <Window.Background>
         <ImageBrush ImageSource="/loginBG.jpeg"/>
     </Window.Background>
@@ -24,7 +25,7 @@
             <RowDefinition Height="40"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
-        <Border Grid.Row="2" Grid.Column="1" CornerRadius="0,0,20,20" Background="#B2FFFFFF">
+        <Border Grid.Row="2" Grid.Column="1" CornerRadius="0,0,10,10" Background="#B2FFFFFF" WindowChrome.IsHitTestVisibleInChrome="True">
             <Grid >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="*"/>
@@ -38,8 +39,34 @@
                     <ColumnDefinition Width="80"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="1" Grid.Row="1" Margin="0" Background="#242424" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource Button.Hovergray}">Zaloguj</Button>
-                <Button Grid.Column="3" Grid.Row="1" Margin="0" Background="#242424" Foreground="White" WindowChrome.IsHitTestVisibleInChrome="True" Style="{DynamicResource Button.Hovergray}">Wyjdź</Button>
+                <Button Grid.Column="1" Grid.Row="1" Margin="0" Background="#242424" Foreground="White" Style="{DynamicResource Button.Hovergray}" Command="{Binding LoginCommand}" CommandParameter="{Binding ElementName=LoginWindow, Mode=OneWay}">Zaloguj</Button>
+                <Button Grid.Column="3" Grid.Row="1" Margin="0" Background="#242424" Foreground="White" Style="{DynamicResource Button.Hovergray}" Command="{Binding ExitCommand}">Wyjdź</Button>
+            </Grid>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10,10,0,0" Background="#B2FFFFFF" WindowChrome.IsHitTestVisibleInChrome="True">
+            <Grid >
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="5"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Content="Nazwa użytkownika" Grid.Row="1" Grid.Column="1" Margin="0" Padding="0"/>
+                <Label Content="Hasło" Grid.Row="5" Grid.Column="1" Margin="0" Padding="0"/>
+                <TextBox Grid.Row="3" Grid.Column="1" Margin="0" Padding="0" Text="{Binding Username,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                <PasswordBox Grid.Row="7" Grid.Column="1" Margin="0" Padding="0"
+                             viewHelpers:PasswordBoxAssistant.BindPassword="True"
+                             viewHelpers:PasswordBoxAssistant.BoundPassword="{Binding Path=Password,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
             </Grid>
         </Border>
     </Grid>

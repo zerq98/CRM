@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CRM.Desktop.View.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,7 @@ namespace CRM.Desktop
         public LoginView()
         {
             InitializeComponent();
+            this.DataContext = new LoginVM();
         }
     }
 }

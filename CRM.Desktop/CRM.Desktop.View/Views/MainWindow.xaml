@@ -1,0 +1,37 @@
+﻿<Window x:Class="CRM.Desktop.View.Views.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM.Desktop.View.Views"
+        mc:Ignorable="d"
+        Title="CRM" MinHeight="450" MinWidth="800" Width="{Binding SideBarWidth,Mode=OneWayToSource}" WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="#242424">
+            <StackPanel Orientation="Vertical" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+                <TextBlock Text="CRM" Foreground="White" TextAlignment="Center" FontSize="55" FontWeight="Bold" Margin="0,0,0,25"></TextBlock>
+                <Button Content="Statystyki" Background="Transparent" Style="{DynamicResource Button.Hovergray}" Foreground="White" FontWeight="Bold" FontSize="28" Command="{Binding ChangeViewCommand}" CommandParameter="Stats"></Button>
+                <Button Content="Użytkownicy" Background="Transparent" Style="{DynamicResource Button.Hovergray}" Foreground="White" FontWeight="Bold" FontSize="28"  Command="{Binding ChangeViewCommand}" CommandParameter="Users"></Button>
+                <Button Content="Dane firmy" Background="Transparent" Style="{DynamicResource Button.Hovergray}" Foreground="White" FontWeight="Bold" FontSize="28"  Command="{Binding ChangeViewCommand}" CommandParameter="Company"></Button>
+                <Button Content="Wyjdź" Background="Transparent" Style="{DynamicResource Button.Hovergray}" Foreground="White" FontWeight="Bold" FontSize="28"  Command="{Binding ExitCommand}"></Button>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1" Background="#326cfc">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="20"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="20"/>
+            </Grid.RowDefinitions>
+            <ContentControl Grid.Row="1" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Content="{Binding ActiveControl,UpdateSourceTrigger=PropertyChanged}"/>
+        </Grid>
+    </Grid>
+</Window>

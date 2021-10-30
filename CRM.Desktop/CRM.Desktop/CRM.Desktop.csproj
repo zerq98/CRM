@@ -11,6 +11,11 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CRM.Desktop.Data\CRM.Desktop.Data.csproj" />
+    <ProjectReference Include="..\CRM.Desktop.View\CRM.Desktop.View.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="loginBG.jpeg" />
   </ItemGroup>
 

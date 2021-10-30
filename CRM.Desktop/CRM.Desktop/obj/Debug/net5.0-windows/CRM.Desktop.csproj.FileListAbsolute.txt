@@ -22,3 +22,15 @@ F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\CRM.Desktop.pdb
 F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\CRM.Desktop.genruntimeconfig.cache
 F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\Style.baml
 F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\App.baml
+F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\CRM.Desktop.Data.dll
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\CRM.Desktop.Data.pdb
+F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\CRM.Desktop.csproj.CopyComplete
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\CRM.Desktop.View.dll
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\CRM.Desktop.View.pdb
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\LiveCharts.dll
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\LiveCharts.Wpf.dll
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.0\System.Drawing.Common.dll
+F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.0\System.Drawing.Common.dll
