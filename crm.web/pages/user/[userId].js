@@ -30,7 +30,7 @@ function oppoData(data) {
     'świętokrzyskie',
     'warmińsko-mazurskie',
     'wielkopolskie',
-    'zachodnio-pomorskie'
+    'zachodniopomorskie'
   ]
 
   function generatePassword() {

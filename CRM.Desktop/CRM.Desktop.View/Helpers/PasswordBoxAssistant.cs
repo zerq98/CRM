@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace CRM.Desktop.Helpers
+namespace CRM.Desktop.View.Helpers
 {
     public static class PasswordBoxAssistant
     {

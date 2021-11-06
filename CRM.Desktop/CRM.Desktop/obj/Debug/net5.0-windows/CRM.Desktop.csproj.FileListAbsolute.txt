@@ -22,7 +22,6 @@ F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\CRM.Desktop.pdb
 F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\CRM.Desktop.genruntimeconfig.cache
 F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\Style.baml
 F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\App.baml
-F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
 F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\CRM.Desktop.Data.dll
 F:\CRM\CRM.Desktop\CRM.Desktop\bin\Debug\net5.0-windows\CRM.Desktop.Data.pdb
 F:\CRM\CRM.Desktop\CRM.Desktop\obj\Debug\net5.0-windows\CRM.Desktop.csproj.CopyComplete

@@ -6,6 +6,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Graphics\addUser.png" />
+    <None Remove="Graphics\man.png" />
+    <None Remove="Graphics\woman.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="LiveCharts" Version="0.9.7" />
     <PackageReference Include="LiveCharts.Wpf" Version="0.9.7" />
     <PackageReference Include="System.Drawing.Common" Version="5.0.2" />
@@ -13,6 +19,16 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CRM.Desktop.Data\CRM.Desktop.Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Graphics\addUser.png" />
+    <Resource Include="Graphics\man.png" />
+    <Resource Include="Graphics\woman.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Validators\" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,134 @@
+﻿<Window x:Class="CRM.Desktop.View.Views.UserDataView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CRM.Desktop.View.Views"
+        xmlns:viewHelpers="clr-namespace:CRM.Desktop.View.Helpers"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="750" Width="800" WindowStartupLocation="CenterScreen" WindowStyle="ToolWindow" Name="Window">
+    <Grid Background="#326cfc">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="40"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="40"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="40"/>
+        </Grid.RowDefinitions>
+        <Border Grid.Row="1" Grid.Column="1" CornerRadius="10,10,10,10">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <StackPanel Orientation="Vertical" Margin="0" Background="#B2FFFFFF">
+                    <TextBlock Text="Dane podstawowe" FontSize="20" Margin="5"></TextBlock>
+                    <TextBlock Text="Imie" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.FirstName,Mode=TwoWay}"/>
+                    <TextBlock Text="Nazwisko" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.LastName,Mode=TwoWay}"/>
+                    <TextBlock Text="Login" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Login,Mode=TwoWay}"/>
+                    <TextBlock Text="Hasło" FontSize="18" Margin="5"></TextBlock>
+                    <PasswordBox Margin="5" FontSize="18"
+                             viewHelpers:PasswordBoxAssistant.BindPassword="True"
+                             viewHelpers:PasswordBoxAssistant.BoundPassword="{Binding Path=User.Password,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"/>
+                    <TextBlock Text="Email" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Email,Mode=TwoWay}"/>
+                    <TextBlock Text="Numer telefonu" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.PhoneNumber,Mode=TwoWay}"/>
+                    <TextBlock Text="Stanowisko" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Department,Mode=TwoWay}"/>
+                    <TextBlock Text="Płeć" FontSize="18" Margin="5"></TextBlock>
+                    <ComboBox SelectedItem="{Binding Gender,Mode=TwoWay}" ItemsSource="{Binding GenderList}" FontSize="18" Margin="5">
+                    </ComboBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="2" CornerRadius="10,10,10,10">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <StackPanel Orientation="Vertical" Margin="0" Background="#B2FFFFFF">
+                    <TextBlock Text="Dane kontaktowe" FontSize="20" Margin="5"></TextBlock>
+                    <TextBlock Text="Kod pocztowy" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Address.PostCode,Mode=TwoWay}"/>
+                    <TextBlock Text="Miasto" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Address.City,Mode=TwoWay}"/>
+                    <TextBlock Text="Ulica" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Address.Street,Mode=TwoWay}"/>
+                    <TextBlock Text="Numer domu" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Address.HouseNumber,Mode=TwoWay}"/>
+                    <TextBlock Text="Numer lokalu" FontSize="18" Margin="5"></TextBlock>
+                    <TextBox Margin="5" FontSize="18" Text="{Binding User.Address.ApartmentNumber,Mode=TwoWay}"/>
+                    <TextBlock Text="Województwo" FontSize="18" Margin="5"></TextBlock>
+                    <ComboBox SelectedItem="{Binding Province,Mode=TwoWay}" ItemsSource="{Binding ProvinceList}" FontSize="18" Margin="5">
+                    </ComboBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Border Grid.Row="1" Grid.Column="3" CornerRadius="10,10,10,10">
+            <ScrollViewer VerticalScrollBarVisibility="Hidden">
+                <StackPanel Orientation="Vertical" Margin="0" Background="#B2FFFFFF">
+                    <TextBlock Text="Uprawnienia" FontSize="20" Margin="5"></TextBlock>
+                    <CheckBox Content="Dodawanie użytkowników" IsChecked="{Binding UserAdding}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Usuwanie użytkowników" IsChecked="{Binding UserRemoving}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Panel administracji" IsChecked="{Binding AdminPanel}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Przeglądanie leadów" IsChecked="{Binding LeadList}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Modyfikacja cudzych leadów" IsChecked="{Binding LeadModification}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Przeglądanie szans sprzedaży" IsChecked="{Binding OppoList}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Modyfikacja cudzych szans" IsChecked="{Binding OppoModification}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Przeglądanie produktów" IsChecked="{Binding ProductList}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                    <CheckBox Content="Modyfikacja produktów" IsChecked="{Binding ProductModification}" Width="180" Margin="0,5">
+                        <CheckBox.LayoutTransform>
+                            <ScaleTransform ScaleX="1.2" ScaleY="1.2"/>
+                        </CheckBox.LayoutTransform>
+                    </CheckBox>
+                </StackPanel>
+            </ScrollViewer>
+        </Border>
+        <Grid Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="200"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Margin="5" Grid.Column="1" Style="{DynamicResource Button.Hovergray}" Background="#242424" Foreground="White" FontSize="18" Command="{Binding SaveCommand}" CommandParameter="{Binding ElementName=Window}">Zapisz</Button>
+            <Button Margin="5" Grid.Column="3" Style="{DynamicResource Button.Hovergray}" Background="#242424" Foreground="White" FontSize="18" Command="{Binding ExitCommand}" CommandParameter="{Binding ElementName=Window}">Anuluj</Button>
+        </Grid>
+    </Grid>
+</Window>

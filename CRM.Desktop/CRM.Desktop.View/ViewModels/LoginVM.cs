@@ -80,6 +80,10 @@ namespace CRM.Desktop.View.ViewModels
                 window.Show();
                 (arg as Window).Close();
             }
+            else
+            {
+                MessageBox.Show("Błędny login lub hasło.\r\nSpróbuj ponownie.", "Błędne dane");
+            }
         }
     }
 }

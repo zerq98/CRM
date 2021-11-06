@@ -54,6 +54,44 @@ namespace CRM.Desktop.Data.Helpers
             }
         }
 
+        public async Task<ResponseModel<UserData>> GetUserDataAsync(string id)
+        {
+            try
+            {
+                HttpResponseMessage response = await webClient.GetAsync($"Administration/GetUserData?userId="+id);
+                response.EnsureSuccessStatusCode();
+                var contentStream = await response.Content.ReadAsStreamAsync();
+
+                var streamReader = new StreamReader(contentStream);
+                var jsonReader = new JsonTextReader(streamReader);
+
+                return serializer.Deserialize<ResponseModel<UserData>>(jsonReader);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<ResponseModel<object>> UpdateCompanyDataAsync(CompanyDataDto company)
+        {
+            try
+            {
+                HttpResponseMessage response = await webClient.PostAsync($"Administration/UpdateCompanyData", new StringContent(JsonConvert.SerializeObject(company), Encoding.UTF8, "application/json"));
+                response.EnsureSuccessStatusCode();
+                var contentStream = await response.Content.ReadAsStreamAsync();
+
+                var streamReader = new StreamReader(contentStream);
+                var jsonReader = new JsonTextReader(streamReader);
+
+                return serializer.Deserialize<ResponseModel<object>>(jsonReader);
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public async Task<ResponseModel<AdministrationDataDto>> GetAdministrationDataAsync()
         {
             try
@@ -68,6 +106,26 @@ namespace CRM.Desktop.Data.Helpers
                 return serializer.Deserialize<ResponseModel<AdministrationDataDto>>(jsonReader);
             }
             catch
+            {
+                return null;
+            }
+        }
+
+        public async Task<ResponseModel<string>> UpsertUserAsync(UserData data)
+        {
+            try
+            {
+                HttpResponseMessage response = await webClient.PostAsync($"Administration/UpsertUser", new StringContent(JsonConvert.SerializeObject(data), Encoding.UTF8, "application/json"));
+
+                response.EnsureSuccessStatusCode();
+                var contentStream = await response.Content.ReadAsStreamAsync();
+
+                var streamReader = new StreamReader(contentStream);
+                var jsonReader = new JsonTextReader(streamReader);
+
+                return serializer.Deserialize<ResponseModel<string>>(jsonReader);
+            }
+            catch (Exception ex)
             {
                 return null;
             }

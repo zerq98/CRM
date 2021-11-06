@@ -10,11 +10,11 @@ none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
 
-2-69159031
+5-1261740338
 
-9-1854964201
+17255938469
 198-855887321
-Views\MainWindow.xaml;Views\StatsView.xaml;
+Views\CompanyDataView.xaml;Views\MainWindow.xaml;Views\StatsView.xaml;Views\UserDataView.xaml;Views\UserListView.xaml;
 
-False
+True
 

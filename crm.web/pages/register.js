@@ -125,7 +125,7 @@ export default function login() {
                                 <option>świętokrzyskie</option>
                                 <option>warmińsko-mazurskie</option>
                                 <option>wielkopolskie</option>
-                                <option>zachodnio-pomorskie</option>
+                                <option>zachodniopomorskie</option>
                             </select>
                             <input id="address2" name="address2" type="text" placeholder="Nr. domu/mieszkania" required
                                 className="shadow-inner xs:w-100p md:w-45p lg:w-40p xs:text-xxs sm:text-lg lg:text-xl xs:h-5 sm:h-7 md:h-9 text-black rounded-lg focus:outline-none xs:pl-2 sm:pl-3 lg:pl-5 mt-2" />

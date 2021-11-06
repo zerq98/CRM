@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
@@ -48,14 +49,21 @@ namespace CRM.Desktop.View.ViewModels
 
         private void ChangeView(object obj)
         {
+            if(ActiveControl is UserListView)
+            {
+                AdministrationData.Users = (ActiveControl.DataContext as UserListVM).UserList.ToList();
+            }
+
             switch (obj.ToString())
             {
                 case "Stats":
                     ActiveControl = new StatsView(AdministrationData.Statistics);
                     break;
                 case "Users":
+                    ActiveControl = new UserListView(AdministrationData.Users,_token);
                     break;
                 case "Company":
+                    ActiveControl = new CompanyDataView(AdministrationData.Company,_token);
                     break;
             }
         }
@@ -92,6 +100,12 @@ namespace CRM.Desktop.View.ViewModels
             if (response != null && response.Data != null)
             {
                 AdministrationData = response.Data;
+            }
+
+            if (AdministrationData == null)
+            {
+                MessageBox.Show("Brak uprawnień do tego modułu.");
+                Environment.Exit(1);
             }
         }
     }

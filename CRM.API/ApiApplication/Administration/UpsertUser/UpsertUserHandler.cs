@@ -67,8 +67,7 @@ namespace ApiApplication.Administration.UpsertUser
                             HouseNumber = request.Dto.Address.HouseNumber,
                             PostCode = request.Dto.Address.PostCode,
                             Province = request.Dto.Address.Province,
-                            Street = request.Dto.Address.Street,
-                            Id = request.Dto.Address.Id
+                            Street = request.Dto.Address.Street
                         };
                         var DBUserAddress = await _addressRepository.CreateAddressAsync(userAddress);
 
@@ -86,63 +85,42 @@ namespace ApiApplication.Administration.UpsertUser
                             PhoneNumber = request.Dto.PhoneNumber,
                             Company = await _companyRepository.GetByIdAsync(request.CompanyId),
                             Gender = request.Dto.Gender,
-                            WorkStartDate = DateTime.Now.Date,
-                            Id = request.Dto.Id
+                            WorkStartDate = DateTime.Now.Date
                         };
                         user = await _userRepository.CreateUserAsync(user, request.Dto.Password);
                     }
                     else
                     {
-                        var userAddress = new Address
-                        {
-                            ApartmentNumber = request.Dto.Address.ApartmentNumber,
-                            City = request.Dto.Address.City,
-                            HouseNumber = request.Dto.Address.HouseNumber,
-                            PostCode = request.Dto.Address.PostCode,
-                            Province = request.Dto.Address.Province,
-                            Street = request.Dto.Address.Street,
-                            Id = request.Dto.Address.Id
-                        };
-                        var DBUserAddress = new Address();
+                        user = await _userRepository.GetUserByIdAsync(request.Dto.Id);
+                        user.Address.PostCode = request.Dto.Address.PostCode;
+                        user.Address.Province = request.Dto.Address.Province;
+                        user.Address.Street = request.Dto.Address.Street;
+                        user.Address.HouseNumber = request.Dto.Address.HouseNumber;
+                        user.Address.City = request.Dto.Address.City;
+                        user.Address.ApartmentNumber = request.Dto.Address.ApartmentNumber;
+                        user.Address = await _addressRepository.UpdateAddressAsync(user.Address);
 
-                        if (userAddress.Id > 0)
-                        {
-                            DBUserAddress = await _addressRepository.UpdateAddressAsync(userAddress);
-                        }
-                        else
-                        {
-                            DBUserAddress = await _addressRepository.CreateAddressAsync(userAddress);
-                        }
+                        user.Email = request.Dto.Email;
+                        user.FirstName = request.Dto.FirstName;
+                        user.Gender = request.Dto.Gender;
+                        user.LastName = request.Dto.LastName;
+                        user.PhoneNumber = request.Dto.PhoneNumber;
+                        user.UserName = request.Dto.Login;
+                        user.NormalizedUserName = request.Dto.Login;
+                        user.NormalizedEmail = request.Dto.Email;
 
-                        user = new ApplicationUser
-                        {
-                            Address = DBUserAddress,
-                            CompanyPosition = "IT Team Leader",
-                            Email = request.Dto.Email,
-                            EmailConfirmed = false,
-                            FirstName = request.Dto.FirstName,
-                            LastName = request.Dto.LastName,
-                            NormalizedEmail = request.Dto.Email,
-                            NormalizedUserName = request.Dto.Login,
-                            UserName = request.Dto.Login,
-                            PhoneNumber = request.Dto.PhoneNumber,
-                            Company = await _companyRepository.GetByIdAsync(request.CompanyId),
-                            Gender = request.Dto.Gender,
-                            WorkStartDate = DateTime.Now.Date,
-                            Id = request.Dto.Id
-                        };
                         user = await _userRepository.UpdateUserAsync(user, request.Dto.Password);
                     }
 
                     var appClaims = await _claimRepository.GetApplicationClaimsAsync();
 
-                    await _userRepository.AssignClaimsAsync(appClaims, user.Id);
+                    await _userRepository.AssignClaimsAsync(request.Dto.Permissions.Where(x=>x.Selected).Select(x=>x.Name).ToList(), user.Id);
 
                     transaction.Commit();
-                    return new JsonResult(new ApiResponse<object>
+                    return new JsonResult(new ApiResponse<string>
                     {
                         Code = 201,
-                        Data = null,
+                        Data = user.Id,
                         ErrorMessage = ""
                     });
                 }

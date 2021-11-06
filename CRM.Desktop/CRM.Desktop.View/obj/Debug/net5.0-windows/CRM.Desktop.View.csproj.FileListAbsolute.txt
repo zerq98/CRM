@@ -21,3 +21,9 @@ F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\CRM.Desktop.View.g.
 F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\StatsView.g.cs
 F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\StatsView.baml
 F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\UserListView.g.cs
+F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\UserListView.baml
+F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\UserDataView.g.cs
+F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\UserDataView.baml
+F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\CompanyDataView.g.cs
+F:\CRM\CRM.Desktop\CRM.Desktop.View\obj\Debug\net5.0-windows\Views\CompanyDataView.baml
