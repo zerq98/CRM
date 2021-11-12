@@ -1,5 +1,4 @@
 F:\CRM\CRM.API\ApiInfrastructure\bin\Debug\net5.0\ApiDomain.dll
-F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.csprojAssemblyReference.cache
 F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.GeneratedMSBuildEditorConfig.editorconfig
 F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.AssemblyInfoInputs.cache
 F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.AssemblyInfo.cs
@@ -34,3 +33,4 @@ C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ref\ApiInfrastructure.dll
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.pdb
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.genruntimeconfig.cache
+F:\CRM\CRM.API\ApiInfrastructure\obj\Debug\net5.0\ApiInfrastructure.csproj.AssemblyReference.cache

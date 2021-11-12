@@ -201,7 +201,10 @@ namespace ApiInfrastructure.Repository
         public async Task<ApplicationUser> GetUserByIdAsync(string userId)
         {
             var user = await _userManager.FindByIdAsync(userId);
-            user.Address = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == user.AddressId);
+            if (user != null)
+            {
+                user.Address = await _context.Addresses.FirstOrDefaultAsync(x => x.Id == user.AddressId);
+            }
 
             return user;
         }

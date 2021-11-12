@@ -1,6 +1,8 @@
-﻿using ApiDomain.Interface;
+﻿using ApiApplication.Helpers;
+using ApiDomain.Interface;
 using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Threading;
 using System.Threading.Tasks;
 
@@ -22,16 +24,38 @@ namespace ApiApplication.Account.ConfirmEmail
                 var user = await _userRepository.GetUserByIdAsync(request.UserId);
                 if (user != null)
                 {
-                    await _userRepository.ConfirmEmailAsync(user, request.Token);
+                    request.Token = request.Token.Replace(" ", "+");
+                    var result = await _userRepository.ConfirmEmailAsync(user, request.Token);
 
-                    return new StatusCodeResult(200);
+                    if (result)
+                    {
+                        return new JsonResult(
+                        new ApiResponse<object>
+                        {
+                            Code = 200,
+                            Data = null,
+                            ErrorMessage = ""
+                        });
+                    }
                 }
 
-                return new StatusCodeResult(404);
+                return new JsonResult(
+                        new ApiResponse<object>
+                        {
+                            Code = 404,
+                            Data = null,
+                            ErrorMessage = "Nie znaleziono użytkownika o takim Id"
+                        });
             }
-            catch
+            catch(Exception ex)
             {
-                return new StatusCodeResult(500);
+                return new JsonResult(
+                        new ApiResponse<object>
+                        {
+                            Code = 500,
+                            Data = null,
+                            ErrorMessage = "Coś poszło nie tak. Skontaktuj się z administratorem."
+                        });
             }
         }
     }

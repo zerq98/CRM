@@ -14,7 +14,6 @@ F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
 F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\System.Diagnostics.DiagnosticSource.dll
 F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\ApiDomain.dll
 F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\ApiInfrastructure.dll
-F:\CRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.csprojAssemblyReference.cache
 F:\CRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.GeneratedMSBuildEditorConfig.editorconfig
 F:\CRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.AssemblyInfoInputs.cache
 F:\CRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.AssemblyInfo.cs
@@ -164,3 +163,4 @@ C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\obj\Debug\
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.genruntimeconfig.cache
 F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
+F:\CRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.csproj.AssemblyReference.cache

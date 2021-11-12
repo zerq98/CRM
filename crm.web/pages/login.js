@@ -19,6 +19,7 @@ export default function login({ providers}){
     
 
     const handleLogin = function (event) {
+        alert('Trwa logowanie, to może potrwać chwilę.')
         event.preventDefault();
         event.stopPropagation();
 

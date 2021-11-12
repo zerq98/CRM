@@ -6,6 +6,7 @@ export default function login() {
 
     const router = useRouter()
     const handleRegister = async function (event) {
+        alert('Trwa tworzenie konta, to może potrwać chwilę.')
         event.preventDefault();
         event.stopPropagation();
 
@@ -61,6 +62,7 @@ export default function login() {
         event.target.login.value = '';
         event.target.mail.value = '';
         event.target.password.value = '';
+        event.target.confirm.value='';
         event.target.firstName.value = '';
         event.target.lastName.value = '';
         event.target.phone.value = '';
@@ -148,8 +150,7 @@ function validate(data, confirmPassword) {
     const oneUpperCase = new RegExp('[A-Z]+')
     const oneLowerCase = new RegExp('[a-z]+')
     const oneDigit = new RegExp('[0-9]+')
-    const oneSpecialChar = new RegExp('!\"#\$%&\'()*+,-./:;<=>?@[\\]^_`{|}~')
-    const minTenChars = new RegExp('.{10,0}')
+    const minTenChars = new RegExp('.{10,}')
     const postCodePattern = new RegExp('^[0-9]{2}-[0-9]{3}$')
 
     if (!oneUpperCase.test(data.user.password)) {
@@ -164,10 +165,32 @@ function validate(data, confirmPassword) {
         isValid = false;
         message += '-hasło powinno zawierać przynajmniej 1 cyfrę\r\n'
     }
-    if (!oneSpecialChar.test(data.user.password)) {
-        isValid = false;
-        message += '-hasło powinno zawierać przynajmniej 1 znak specjalny (!@#$&*~)\r\n'
+
+    const regex = /[!\"#\$%&\'()*+,-.\/:;<=>\?\@\]\[\\\{^_`|\}~]+/gm;
+    const str = data.user.password;
+    let m;
+    var isSpecialChar=false;
+
+    while ((m = regex.exec(str)) !== null) {
+        // This is necessary to avoid infinite loops with zero-width matches
+        if (m.index === regex.lastIndex) {
+            regex.lastIndex++;
+        }
+        
+        // The result can be accessed through the `m`-variable.
+        m.forEach((match, groupIndex) => {
+            
+        });
+        if(m!==null){
+            isSpecialChar=true;
+        }
     }
+
+    if (!isSpecialChar) {
+        isValid = false;
+        message += '-hasło powinno zawierać przynajmniej 1 znak specjalny (!\"#\$%&\'()*+,-./:;<=>\?@\]\[\\\{^_`|\}~)\r\n'
+    }
+
     if (!minTenChars.test(data.user.password)) {
         isValid = false;
         message += '-hasło powinno zawierać przynajmniej 10 znaków\r\n'
@@ -180,6 +203,7 @@ function validate(data, confirmPassword) {
         isValid = false;
         message += '-kod pocztowy musi być w formacie 00-000\r\n'
     }
+    
 
     if (!isValid) {
         alert(message);
