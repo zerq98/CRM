@@ -99,6 +99,10 @@ function todoList(data) {
       return todo
     })
 
+    if(resData.code!==200){
+      alert(resData.errorMessage)
+    }
+
     setTodoList(completeSelectedTodo)
   };
 
@@ -119,6 +123,8 @@ function todoList(data) {
       setTodoList(todoList.filter(function (task){
         return task.id!==id
       }))
+    }else{
+      alert(resData.errorMessage)
     }
   }
 
@@ -312,6 +318,10 @@ export async function getServerSideProps(context) {
 
     const resData = await res.json()
     const data = resData.data
+
+    if(resData.code!==200){
+      alert(resData.errorMessage)
+    }
 
     return { props: { data } }
   } else {

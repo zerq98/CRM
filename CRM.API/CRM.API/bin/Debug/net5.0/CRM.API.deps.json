@@ -357,26 +357,41 @@
           "lib/netstandard2.0/AutoMapper.Extensions.Microsoft.DependencyInjection.dll": {}
         }
       },
-      "FluentValidation/10.0.4": {
+      "FluentValidation/10.3.4": {
         "runtime": {
           "lib/net5.0/FluentValidation.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "10.0.4.0"
+            "fileVersion": "10.3.4.0"
           }
         },
         "compile": {
           "lib/net5.0/FluentValidation.dll": {}
         }
       },
-      "FluentValidation.DependencyInjectionExtensions/10.0.4": {
+      "FluentValidation.AspNetCore/10.3.4": {
         "dependencies": {
-          "FluentValidation": "10.0.4",
+          "FluentValidation": "10.3.4",
+          "FluentValidation.DependencyInjectionExtensions": "10.3.4"
+        },
+        "runtime": {
+          "lib/net5.0/FluentValidation.AspNetCore.dll": {
+            "assemblyVersion": "9.0.0.0",
+            "fileVersion": "10.3.4.0"
+          }
+        },
+        "compile": {
+          "lib/net5.0/FluentValidation.AspNetCore.dll": {}
+        }
+      },
+      "FluentValidation.DependencyInjectionExtensions/10.3.4": {
+        "dependencies": {
+          "FluentValidation": "10.3.4",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
         },
         "runtime": {
           "lib/netstandard2.1/FluentValidation.DependencyInjectionExtensions.dll": {
             "assemblyVersion": "9.0.0.0",
-            "fileVersion": "10.0.4.0"
+            "fileVersion": "10.3.4.0"
           }
         },
         "compile": {
@@ -404,8 +419,8 @@
       },
       "MediatR.Extensions.FluentValidation.AspNetCore/1.2.0": {
         "dependencies": {
-          "FluentValidation": "10.0.4",
-          "FluentValidation.DependencyInjectionExtensions": "10.0.4",
+          "FluentValidation": "10.3.4",
+          "FluentValidation.DependencyInjectionExtensions": "10.3.4",
           "MediatR": "9.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "5.0.0"
         },
@@ -1635,6 +1650,9 @@
           "ApiDomain": "1.0.0",
           "AutoMapper": "10.1.1",
           "AutoMapper.Extensions.Microsoft.DependencyInjection": "8.1.1",
+          "FluentValidation": "10.3.4",
+          "FluentValidation.AspNetCore": "10.3.4",
+          "FluentValidation.DependencyInjectionExtensions": "10.3.4",
           "MediatR": "9.0.0",
           "MediatR.Extensions.FluentValidation.AspNetCore": "1.2.0",
           "MediatR.Extensions.Microsoft.DependencyInjection": "9.0.0",
@@ -3353,19 +3371,26 @@
       "path": "automapper.extensions.microsoft.dependencyinjection/8.1.1",
       "hashPath": "automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512"
     },
-    "FluentValidation/10.0.4": {
+    "FluentValidation/10.3.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-LqEYHuF5gXBJzG9/aUQS50TJP5cZgh/twvPLV7iTtFFGF6isGBkNXOhr9VwmSjlFRIVOqcMtkGuHwuPbU+XpoQ==",
-      "path": "fluentvalidation/10.0.4",
-      "hashPath": "fluentvalidation.10.0.4.nupkg.sha512"
+      "sha512": "sha512-hsGRtnhTlCrRbxIOkKp6rCBtkq3UV0i31ckcJtd5j1i99zqLgbQGcbxK0SMU63DIto94f++uIdRpoycu8ySnDQ==",
+      "path": "fluentvalidation/10.3.4",
+      "hashPath": "fluentvalidation.10.3.4.nupkg.sha512"
     },
-    "FluentValidation.DependencyInjectionExtensions/10.0.4": {
+    "FluentValidation.AspNetCore/10.3.4": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-Er3mswiJ8wM0mXoLyKZ16pNQReqeqtq8mN0vJOSgtMfhKql1PlZndjFHNL6XsSJTEkHOymX4uOv0CUVA8Gq9Lw==",
-      "path": "fluentvalidation.dependencyinjectionextensions/10.0.4",
-      "hashPath": "fluentvalidation.dependencyinjectionextensions.10.0.4.nupkg.sha512"
+      "sha512": "sha512-YxJ6YH8Oh/DIyHHbjLdQkITGpksihDbznqEbKJy+uPfphdWwtlzaVSx1XyLotSj/bkPXOdLL8w5FPh1TA0Acpw==",
+      "path": "fluentvalidation.aspnetcore/10.3.4",
+      "hashPath": "fluentvalidation.aspnetcore.10.3.4.nupkg.sha512"
+    },
+    "FluentValidation.DependencyInjectionExtensions/10.3.4": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-LS0opGF4r/upI92Y+bToBzFqHYrfuHDWz9z9DN2hUn+/tmt9lN8n0bevyswabdKlTwL6s8vMhVQxHXM8wjOAbQ==",
+      "path": "fluentvalidation.dependencyinjectionextensions/10.3.4",
+      "hashPath": "fluentvalidation.dependencyinjectionextensions.10.3.4.nupkg.sha512"
     },
     "Humanizer.Core/2.8.26": {
       "type": "package",

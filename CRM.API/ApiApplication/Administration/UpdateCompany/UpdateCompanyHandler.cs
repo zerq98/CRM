@@ -1,4 +1,5 @@
 ﻿using ApiApplication.Helpers;
+using ApiApplication.Validators;
 using ApiDomain.Entity;
 using ApiDomain.Interface;
 using MediatR;
@@ -27,6 +28,25 @@ namespace ApiApplication.Administration.UpdateCompany
         {
             try
             {
+                var validator = new UpdateCompanyValidator();
+                var result = validator.Validate(request.Dto);
+                if (!result.IsValid)
+                {
+                    var errorMsg = "";
+
+                    foreach (var err in result.Errors)
+                    {
+                        errorMsg += err.ErrorMessage + "\r\n";
+                    }
+
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Code = 406,
+                        ErrorMessage = errorMsg,
+                        Data = null
+                    });
+                }
+
                 if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, request.UserId, "Panel administracji")))
                 {
                     return new JsonResult(new ApiResponse<object>

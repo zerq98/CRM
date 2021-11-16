@@ -1,4 +1,5 @@
 ﻿using ApiApplication.Helpers;
+using ApiApplication.Validators;
 using ApiDomain.Entity;
 using ApiDomain.Interface;
 using MediatR;
@@ -34,6 +35,26 @@ namespace ApiApplication.SellOpportunity.UpsertOpportunity
         {
             try
             {
+                var validator = new SellOpportunityDetailsValidator();
+                var result = validator.Validate(request.SellOpportunity);
+
+                if (!result.IsValid)
+                {
+                    var errorMsg = "";
+
+                    foreach (var err in result.Errors)
+                    {
+                        errorMsg += err.ErrorMessage + "\r\n";
+                    }
+
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Data = null,
+                        Code = 406,
+                        ErrorMessage = errorMsg
+                    });
+                }
+
                 var opportunity = await _opportunityRepository.GetOpportunityAsync(request.SellOpportunity.Id, request.CompanyId);
 
                 if (opportunity == null)

@@ -40,25 +40,24 @@ export default function login() {
             }
         }
 
-        if (validate(data, event.target.confirm.value)) {
-            const res = await fetch(server+"Account/RegisterCompany", {
-                method: 'POST',
-                body: JSON.stringify(data),
-                headers: {
-                    accept: '*/*',
-                    "Content-Type": "application/json"
-                }
-            })
-
-            const resData = await res.json()
-
-            if (resData.code === 201) {
-                router.push('/login')
-            } else {
-                alert(resData.errorMessage)
-                return 'Wrong data';
+        const res = await fetch(server+"Account/RegisterCompany", {
+            method: 'POST',
+            body: JSON.stringify(data),
+            headers: {
+                accept: '*/*',
+                "Content-Type": "application/json"
             }
+        })
+
+        const resData = await res.json()
+
+        if (resData.code === 201) {
+            router.push('/login')
+        } else {
+            alert(resData.errorMessage)
+            return 'Wrong data';
         }
+
         event.target.login.value = '';
         event.target.mail.value = '';
         event.target.password.value = '';
@@ -142,72 +141,4 @@ export default function login() {
             </div>
         </div>
     )
-}
-
-function validate(data, confirmPassword) {
-    var isValid = true;
-    var message = 'Błędne dane:\r\n'
-    const oneUpperCase = new RegExp('[A-Z]+')
-    const oneLowerCase = new RegExp('[a-z]+')
-    const oneDigit = new RegExp('[0-9]+')
-    const minTenChars = new RegExp('.{10,}')
-    const postCodePattern = new RegExp('^[0-9]{2}-[0-9]{3}$')
-
-    if (!oneUpperCase.test(data.user.password)) {
-        isValid = false;
-        message += '-hasło powinno zawierać przynajmniej 1 dużą literę\r\n'
-    }
-    if (!oneLowerCase.test(data.user.password)) {
-        isValid = false;
-        message += '-hasło powinno zawierać przynajmniej 1 małą literę\r\n'
-    }
-    if (!oneDigit.test(data.user.password)) {
-        isValid = false;
-        message += '-hasło powinno zawierać przynajmniej 1 cyfrę\r\n'
-    }
-
-    const regex = /[!\"#\$%&\'()*+,-.\/:;<=>\?\@\]\[\\\{^_`|\}~]+/gm;
-    const str = data.user.password;
-    let m;
-    var isSpecialChar=false;
-
-    while ((m = regex.exec(str)) !== null) {
-        // This is necessary to avoid infinite loops with zero-width matches
-        if (m.index === regex.lastIndex) {
-            regex.lastIndex++;
-        }
-        
-        // The result can be accessed through the `m`-variable.
-        m.forEach((match, groupIndex) => {
-            
-        });
-        if(m!==null){
-            isSpecialChar=true;
-        }
-    }
-
-    if (!isSpecialChar) {
-        isValid = false;
-        message += '-hasło powinno zawierać przynajmniej 1 znak specjalny (!\"#\$%&\'()*+,-./:;<=>\?@\]\[\\\{^_`|\}~)\r\n'
-    }
-
-    if (!minTenChars.test(data.user.password)) {
-        isValid = false;
-        message += '-hasło powinno zawierać przynajmniej 10 znaków\r\n'
-    }
-    if (data.user.password !== confirmPassword) {
-        isValid = false;
-        message += '-hasło oraz potwierdzenie hasła powinny być takie same\r\n'
-    }
-    if (!postCodePattern.test(data.companyAddress.postCode)) {
-        isValid = false;
-        message += '-kod pocztowy musi być w formacie 00-000\r\n'
-    }
-    
-
-    if (!isValid) {
-        alert(message);
-    }
-
-    return isValid;
 }

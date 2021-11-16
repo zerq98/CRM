@@ -1,5 +1,6 @@
 ﻿using ApiApplication.Administration.GetAdministrationData;
 using ApiApplication.Administration.GetUserData;
+using ApiApplication.Administration.RemoveUser;
 using ApiApplication.Administration.UpdateCompany;
 using ApiApplication.Administration.UpsertUser;
 using ApiApplication.DTO;
@@ -88,6 +89,22 @@ namespace CRM.API.Controllers
             {
                 Dto = dto,
                 UserId = userId
+            };
+
+            return await _mediator.Send(command);
+        }
+
+        [HttpPost("RemoveUser")]
+        [Authorize]
+        public async Task<IActionResult> RemoveUserAsync(string userId)
+        {
+            var claimsIdentity = this.User.Identity as ClaimsIdentity;
+            var adminId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
+
+            var command = new RemoveUserCommand
+            {
+                UserId = userId,
+                AdminId = adminId
             };
 
             return await _mediator.Send(command);

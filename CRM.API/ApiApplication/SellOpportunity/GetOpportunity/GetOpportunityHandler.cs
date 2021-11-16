@@ -36,7 +36,7 @@ namespace ApiApplication.SellOpportunity.GetOpportunity
                 var leads = await _leadRepository.GetAllLeadsAsync(request.CompanyId, new DateTime(2000, 01, 01), new DateTime(2999, 12, 31));
                 var opportunity = await _opportunityRepository.GetOpportunityAsync(request.OpportunityId, request.CompanyId);
 
-                if (opportunity.TraderId != request.UserId)
+                if (opportunity!=null && opportunity.TraderId != request.UserId)
                 {
                     if (!(await PermissionMonitor.CheckPermissionsAsync(_userRepository, request.UserId, "Modyfikacja cudzych szans sprzedaży")))
                     {

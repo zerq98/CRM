@@ -74,6 +74,8 @@ function opportunities(data) {
       const resData = await res.json()
       if (resData.code === 200) {
         setOppoList(resData.data.sellOpportunities)
+      }else{
+        alert(resData.errorMessage)
       }
   }
 
@@ -193,6 +195,10 @@ export async function getServerSideProps(context) {
       
       const resData = await res.json()
       const data = resData.data
+
+      if(resData.code!==200){
+        alert(resData.errorMessage)
+      }
   
       return { props: { data } }
     } else {

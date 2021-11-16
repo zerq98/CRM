@@ -1,5 +1,6 @@
 ﻿using ApiApplication.DTO;
 using ApiApplication.Helpers;
+using ApiApplication.Validators;
 using ApiDomain.Interface;
 using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
@@ -36,13 +37,35 @@ namespace ApiApplication.Product
                         ErrorMessage = "Brak uprawnień"
                     });
                 }
-                var productToDB = _mapper.Map<ApiDomain.Entity.Product>(product);
-                return new JsonResult(new ApiResponse<ProductUpsertDto>()
+                var validator = new ProductValidator();
+                var result = validator.Validate(product);
+
+                if (result.IsValid)
                 {
-                    Code = 201,
-                    ErrorMessage = "",
-                    Data = _mapper.Map<ProductUpsertDto>(await _productRepository.AddProductAsync(productToDB))
-                });
+                    var productToDB = _mapper.Map<ApiDomain.Entity.Product>(product);
+                    return new JsonResult(new ApiResponse<ProductUpsertDto>()
+                    {
+                        Code = 201,
+                        ErrorMessage = "",
+                        Data = _mapper.Map<ProductUpsertDto>(await _productRepository.AddProductAsync(productToDB))
+                    });
+                }
+                else
+                {
+                    var errorMsg = "";
+
+                    foreach(var err in result.Errors)
+                    {
+                        errorMsg += err.ErrorMessage + "\r\n";
+                    }
+
+                    return new JsonResult(new ApiResponse<ProductUpsertDto>()
+                    {
+                        Code = 406,
+                        ErrorMessage = errorMsg,
+                        Data = null
+                    });
+                }
             }
             catch
             {

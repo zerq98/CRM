@@ -405,6 +405,11 @@ export async function getServerSideProps(context) {
         })
         const resData = await res.json()
         const data = resData.data
+
+        if(resData.code!==200){
+          alert(resData.errorMessage)
+        }
+
         return { props: { data } }
     } else {
       context.res.writeHead(302, { Location: "/login" })

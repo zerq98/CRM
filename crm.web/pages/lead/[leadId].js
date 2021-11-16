@@ -238,27 +238,25 @@ function leadData(data) {
   }
 
   const handleLeadSave = async function(){
-    if (validate()) {
-      const res = await fetch(server+"Lead/Upsert", {
-          method: 'POST',
-          body: JSON.stringify(lead),
-          headers: {
-              accept: '*/*',
-              "Content-Type": "application/json",
-              "Authorization": "Bearer " + session.accessToken
-          }
-      })
-
-      const resData = await res.json()
-
-      if (resData.code === 201) {
-          router.push('/leadList')
-      } else {
-          alert(resData.errorMessage)
-          return 'Wrong data';
+    const res = await fetch(server+"Lead/Upsert", {
+      method: 'POST',
+      body: JSON.stringify(lead),
+      headers: {
+          accept: '*/*',
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + session.accessToken
       }
+  })
+
+  const resData = await res.json()
+
+  if (resData.code === 201) {
+      router.push('/leadList')
+  } else {
+      alert(resData.errorMessage)
+      return 'Wrong data';
   }
-  }
+}
 
   useEffect(() => {
     if (data !== undefined ) {
@@ -666,6 +664,11 @@ export async function getServerSideProps(context) {
         })
         const resData = await res.json()
         const data = resData.data
+
+        if(resData.code!==200){
+          alert(resData.errorMessage)
+        }
+
         return { props: { data } }
     } else {
       context.res.writeHead(302, { Location: "/login" })

@@ -65,6 +65,8 @@ function leadList(data) {
       const resData = await res.json()
       if (resData.code === 200) {
         setLeadList(resData.data.leads)
+      }else{
+        alert(resData.errorMessage)
       }
   }
 
@@ -190,6 +192,10 @@ export async function getServerSideProps(context) {
       
       const resData = await res.json()
       const data = resData.data
+
+      if(resData.code!==200){
+        alert(resData.errorMessage)
+      }
   
       return { props: { data } }
     } else {

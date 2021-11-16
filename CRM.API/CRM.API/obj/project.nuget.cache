@@ -1,13 +1,14 @@
 {
   "version": 2,
-  "dgSpecHash": "uRoyZw4oqoKIG7UUAMQ3oJ18ac1RRWWCN2gC2eS8vvy4IGrwpnECAofYhgZwsMK1f27o7PhJuwWbw/nWSa7Mgg==",
+  "dgSpecHash": "6hJPLun0fSUkCYyTwAU8y+J05wZQ4BcU3QWuXzNLKplWT3VsHIqTgdUCYNJjQE8G55I6pqB5GIQ/3vV1HxtlWw==",
   "success": true,
   "projectFilePath": "F:\\CRM\\CRM.API\\CRM.API\\CRM.API.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\crompp\\.nuget\\packages\\automapper\\10.1.1\\automapper.10.1.1.nupkg.sha512",
     "C:\\Users\\crompp\\.nuget\\packages\\automapper.extensions.microsoft.dependencyinjection\\8.1.1\\automapper.extensions.microsoft.dependencyinjection.8.1.1.nupkg.sha512",
-    "C:\\Users\\crompp\\.nuget\\packages\\fluentvalidation\\10.0.4\\fluentvalidation.10.0.4.nupkg.sha512",
-    "C:\\Users\\crompp\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.0.4\\fluentvalidation.dependencyinjectionextensions.10.0.4.nupkg.sha512",
+    "C:\\Users\\crompp\\.nuget\\packages\\fluentvalidation\\10.3.4\\fluentvalidation.10.3.4.nupkg.sha512",
+    "C:\\Users\\crompp\\.nuget\\packages\\fluentvalidation.aspnetcore\\10.3.4\\fluentvalidation.aspnetcore.10.3.4.nupkg.sha512",
+    "C:\\Users\\crompp\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\10.3.4\\fluentvalidation.dependencyinjectionextensions.10.3.4.nupkg.sha512",
     "C:\\Users\\crompp\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\crompp\\.nuget\\packages\\mediatr\\9.0.0\\mediatr.9.0.0.nupkg.sha512",
     "C:\\Users\\crompp\\.nuget\\packages\\mediatr.extensions.fluentvalidation.aspnetcore\\1.2.0\\mediatr.extensions.fluentvalidation.aspnetcore.1.2.0.nupkg.sha512",

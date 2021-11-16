@@ -51,6 +51,8 @@ function productList(data) {
       setProductList(productList.filter(function (product){
         return product.id!==id
       }))
+    }else{
+      alert(resData.errorMessage)
     }
   }
 
@@ -87,6 +89,8 @@ function productList(data) {
       const resData = await res.json()
       if (resData.code === 200) {
         setProductList(resData.data)
+      }else{
+        alert(resData.errorMessage)
       }
   }
 
@@ -346,6 +350,10 @@ export async function getServerSideProps(context) {
       const resData = await res.json()
       const data = resData.data
   
+      if(resData.code!==200){
+        alert(resData.errorMessage)
+      }
+
       return { props: { data } }
     } else {
       context.res.writeHead(302, { Location: "/login" })

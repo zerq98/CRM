@@ -1,5 +1,6 @@
 ﻿using ApiApplication.DTO;
 using ApiApplication.Helpers.AutoMapper;
+using ApiApplication.Validators;
 using ApiDomain.Entity;
 using ApiDomain.Interface;
 using AutoMapper;
@@ -49,7 +50,11 @@ namespace ApiApplication.TodoTasks
         {
             try
             {
-                return await _todoTaskRepository.MarkTodoTaskAsFinishedAsync(todoTaskId);
+                if (todoTaskId > 0)
+                {
+                    return await _todoTaskRepository.MarkTodoTaskAsFinishedAsync(todoTaskId);
+                }
+                return false;
             }
             catch
             {
@@ -61,7 +66,11 @@ namespace ApiApplication.TodoTasks
         {
             try
             {
-                return await _todoTaskRepository.RemoveTodoTaskAsync(todoTaskId);
+                if (todoTaskId > 0)
+                {
+                    return await _todoTaskRepository.RemoveTodoTaskAsync(todoTaskId);
+                }
+                return false;
             }
             catch
             {

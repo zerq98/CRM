@@ -1,4 +1,5 @@
 ﻿using ApiApplication.Helpers;
+using ApiApplication.Validators;
 using ApiDomain.Entity;
 using ApiDomain.Interface;
 using MediatR;
@@ -36,6 +37,25 @@ namespace ApiApplication.Administration.UpsertUser
             {
                 try
                 {
+                    var validator = new UserUpsertValidator();
+                    var result = validator.Validate(request.Dto);
+                    if (!result.IsValid)
+                    {
+                        var errorMsg = "";
+
+                        foreach (var err in result.Errors)
+                        {
+                            errorMsg += err.ErrorMessage + "\r\n";
+                        }
+
+                        return new JsonResult(new ApiResponse<object>
+                        {
+                            Code = 406,
+                            ErrorMessage = errorMsg,
+                            Data = null
+                        });
+                    }
+
                     if (request.Dto.Id=="" && await _userRepository.GetUserByEmailAsync(request.Dto.Email) != null)
                     {
                         return new JsonResult(new ApiResponse<object>

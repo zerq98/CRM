@@ -164,3 +164,4 @@ C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\obj\Debug\
 F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 C:\Users\MTrybula\Desktop\prywatne projekty\GamifyCRM\CRM.API\CRM.API\bin\Debug\net5.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
 F:\CRM\CRM.API\CRM.API\obj\Debug\net5.0\CRM.API.csproj.AssemblyReference.cache
+F:\CRM\CRM.API\CRM.API\bin\Debug\net5.0\FluentValidation.AspNetCore.dll

@@ -236,6 +236,10 @@ export async function getServerSideProps(context) {
         }
 
         const data=resData.data
+
+        if(resData.code!==200){
+            alert(resData.errorMessage)
+        }
     
         return { props: { data } }
     }else{

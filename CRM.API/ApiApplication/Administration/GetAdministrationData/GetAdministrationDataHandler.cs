@@ -117,7 +117,7 @@ namespace ApiApplication.Administration.GetAdministrationData
                     administrationData.Users.Add(new UserForAdministrationDto
                     {
                         Id = user.Id,
-                        CanDelete = (user.Id == request.UserId),
+                        CanDelete = (user.Id != request.UserId),
                         Department = user.CompanyPosition,
                         Name = user.FirstName + " " + user.LastName,
                         StartDate = user.WorkStartDate.ToString("dd.MM.yyyy"),

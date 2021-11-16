@@ -88,104 +88,6 @@ function todoList(data) {
     }
   }, [])
 
-  function closeModal(userId) {
-    setIsOpen(false)
-  }
-
-  function openModal(userId) {
-    setIsOpen(true)
-  }
-
-  async function handleTaskAdd(event) {
-    event.preventDefault();
-    event.stopPropagation();
-
-    console.log(event)
-    const task = {
-      title: event.target.title.value,
-      description: event.target.description.value,
-      taskDate: event.target.taskDate.value,
-      taskRange: '',
-      completed: false
-    }
-
-
-    const res = await fetch(server + "TodoTask/AddNewTask", {
-      method: 'POST',
-      body: JSON.stringify(task),
-      headers: {
-        accept: '*/*',
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + session.accessToken
-      }
-    })
-
-    const resData = await res.json()
-
-    if (resData.code === 201) {
-      const completeTodo = todoList.map((todo) => {
-        return todo
-      })
-
-      task.taskRange = resData.data.taskRange
-      task.id = resData.data.id
-
-      console.log(task)
-      completeTodo.push(task)
-      setTodoList(completeTodo)
-      alert('Dodano nowe zadanie')
-      closeModal();
-    } else {
-      alert(resData.errorMessage)
-    }
-  }
-
-  async function toggle(id) {
-
-    const res = await fetch(server + "TodoTask/MarkAsCompleted?todoTaskId=" + id, {
-      method: 'POST',
-      body: {},
-      headers: {
-        accept: '*/*',
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + session.accessToken
-      }
-    })
-    const resData = await res.json()
-
-    const completeSelectedTodo = todoList.map((todo) => {
-      if (todo.id === id && resData.code === 200) {
-        return {
-          ...todo,
-          completed: true
-        }
-      }
-      return todo
-    })
-
-    setTodoList(completeSelectedTodo)
-  };
-
-  async function removeUser(id) {
-
-    const res = await fetch(server + "TodoTask/Remove?todoTaskId=" + id, {
-      method: 'POST',
-      body: {},
-      headers: {
-        accept: '*/*',
-        "Content-Type": "application/json",
-        "Authorization": "Bearer " + session.accessToken
-      }
-    })
-    const resData = await res.json()
-
-    if (resData.code === 200) {
-      setTodoList(todoList.filter(function (task) {
-        return task.id !== id
-      }))
-    }
-  }
-
   function changeTrashSet(e) {
     e.target.className = "bx bx-trash"
   }
@@ -298,6 +200,34 @@ function todoList(data) {
     'wielkopolskie',
     'zachodnio-pomorskie'
   ]
+
+  function changeTrashSet(e) {
+    e.target.className = "bx bx-trash"
+  }
+  function changeTrashUnset(e) {
+    e.target.className = "bx bxs-trash"
+  }
+
+  async function removeUser(id){
+    const res = await fetch(server+"Administration/RemoveUser?userId=" + id, {
+      method: 'POST',
+      body: {},
+      headers: {
+        accept: '*/*',
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + session.accessToken
+      }
+    })
+    const resData = await res.json()
+
+    if(resData.code === 200){
+      setUserList(userList.filter(function (user){
+        return user.id!==id
+      }))
+    }else{
+      alert('Użytkownik ma przypisane szanse sprzedaży. \r\nZmień handlowca na szansach tego użytkownika, żeby móc go usunąć.')
+    }
+  }
 
   async function handleDataSave() {
     const res = await fetch(server + "Administration/UpdateCompanyData", {
@@ -469,6 +399,7 @@ function todoList(data) {
             </Tab.Panel>
             <Tab.Panel className="w-100p h-100p bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg flex flex-col flex-nowrap items-center p-2 scrollbar-hide overflow-auto overscroll-contain space-y-2">
               {userList.map((user) => (
+                <div className="flex flex-row w-100p items-center cursor-pointer">
                 <Link href={"/user/" + user.id}>
                   <div className="flex flex-row w-100p items-center space-x-4 cursor-pointer hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white rounded-lg">
                     {user.gender ? <i class='bx bx-female'></i> : <i class='bx bx-male'></i>}
@@ -481,6 +412,8 @@ function todoList(data) {
                     </div>
                   </div>
                 </Link>
+                {user.canDelete? <i className='bx bxs-trash' onClick={() => removeUser(user.id)} onMouseOver={changeTrashSet} onMouseLeave={changeTrashUnset}></i> : <div></div>}
+                </div>
               ))}
               <Link href={"/user/0"}>
                 <div className="flex flex-row w-100p items-center space-x-4 cursor-pointer hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white rounded-lg">
@@ -586,6 +519,10 @@ export async function getServerSideProps(context) {
 
     const resData = await res.json()
     const data = resData.data
+
+    if(resData.code!==200){
+      alert(resData.errorMessage)
+    }
 
     return { props: { data } }
   } else {

@@ -1,6 +1,7 @@
 ﻿using ApiApplication.DTO;
 using ApiApplication.Helpers;
 using ApiApplication.TodoTasks;
+using ApiApplication.Validators;
 using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Cors;
@@ -33,7 +34,7 @@ namespace CRM.API.Controllers
 
             var response = new ApiResponse<bool>();
 
-            response.Code = result?200:400;
+            response.Code = result?200:404;
             response.Data = result;
             response.ErrorMessage = "";
 
@@ -68,13 +69,29 @@ namespace CRM.API.Controllers
             var userId = claimsIdentity.Claims.ToList().FirstOrDefault(x => x.Type == "id").Value;
             createTodoTaskDto.UserId = userId;
 
-            var result = await _todoTaskService.AddTodoTaskAsync(createTodoTaskDto);
+            TodoTaskDto result = null;
+            var errors = "";
+
+            var validator = new CreateTodoTaskValidator();
+            var valRes = validator.Validate(createTodoTaskDto);
+
+            if (valRes.IsValid)
+            {
+                result = await _todoTaskService.AddTodoTaskAsync(createTodoTaskDto);
+            }
+            else
+            {
+                foreach(var error in valRes.Errors)
+                {
+                    errors += error.ErrorMessage + "\r\n";
+                }
+            }
 
             var response = new ApiResponse<TodoTaskDto>();
 
-            response.Code = result!=null?201:500;
+            response.Code = result!=null?201:valRes.IsValid?406:500;
             response.Data = result;
-            response.ErrorMessage = result!=null?"":"Coś poszło nie tak, sprawdź wszystkie dane i spróbuj ponownie.";
+            response.ErrorMessage = result!=null?"":valRes.IsValid?"Coś poszło nie tak, sprawdź wszystkie dane i spróbuj ponownie.":errors;
 
             return new JsonResult(response);
         }
@@ -88,9 +105,9 @@ namespace CRM.API.Controllers
 
             var response = new ApiResponse<bool>();
 
-            response.Code = result ? 200 : 400;
+            response.Code = result ? 200 : 404;
             response.Data = result;
-            response.ErrorMessage = "";
+            response.ErrorMessage = "Nie znaleziono ";
 
             return new JsonResult(response);
         }

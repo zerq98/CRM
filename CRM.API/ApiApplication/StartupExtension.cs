@@ -1,5 +1,7 @@
 ﻿using ApiApplication.Product;
 using ApiApplication.TodoTasks;
+using ApiApplication.Validators;
+using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;

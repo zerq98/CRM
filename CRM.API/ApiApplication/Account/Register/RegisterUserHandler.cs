@@ -1,5 +1,6 @@
 ﻿using ApiApplication.Helpers;
 using ApiApplication.Helpers.Email;
+using ApiApplication.Validators;
 using ApiDomain.Entity;
 using ApiDomain.Interface;
 using MediatR;
@@ -36,6 +37,26 @@ namespace ApiApplication.Account.Register
             {
                 try
                 {
+                    var validator = new RegisterDataValidator();
+                    var result = validator.Validate(request.Data);
+
+                    if (!result.IsValid)
+                    {
+                        var errorMsg = "";
+
+                        foreach (var err in result.Errors)
+                        {
+                            errorMsg += err.ErrorMessage + "\r\n";
+                        }
+
+                        return new JsonResult(new ApiResponse<object>
+                        {
+                            Code = 406,
+                            ErrorMessage = errorMsg,
+                            Data = null
+                        });
+                    }
+
                     if (await _userRepository.GetUserByEmailAsync(request.Data.User.Email) != null)
                     {
                         return new JsonResult(new ApiResponse<object>

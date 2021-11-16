@@ -10,6 +10,7 @@ using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using ApiApplication.Validators;
 
 namespace ApiApplication.Lead.AddLead
 {
@@ -35,7 +36,26 @@ namespace ApiApplication.Lead.AddLead
         {
             try
             {
-                if(await _leadRepository.CheckIfRegonExistsAsync(request.LeadCreateDto.Regon, request.LeadCreateDto.Id,request.CompanyId))
+                var validator = new UpsertLeadValidator();
+                var result = validator.Validate(request.LeadCreateDto);
+                if (!result.IsValid)
+                {
+                    var errorMsg = "";
+
+                    foreach (var err in result.Errors)
+                    {
+                        errorMsg += err.ErrorMessage + "\r\n";
+                    }
+
+                    return new JsonResult(new ApiResponse<object>
+                    {
+                        Code = 406,
+                        ErrorMessage = errorMsg,
+                        Data = null
+                    });
+                }
+
+                if (await _leadRepository.CheckIfRegonExistsAsync(request.LeadCreateDto.Regon, request.LeadCreateDto.Id,request.CompanyId))
                 {
                     return new JsonResult(new ApiResponse<object>
                     {
