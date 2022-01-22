@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react';
 import {Bar, Doughnut} from 'react-chartjs-2';
 import Image from 'next/image'
 import { getSession,useSession,signOut } from "next-auth/client";
-import {server} from './config'
+import {server} from '../server'
 
 function Dashboard(data){
     const [session, loading] = useSession()

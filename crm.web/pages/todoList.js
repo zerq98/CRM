@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import React, { useState, useEffect, Fragment } from 'react';
 import { getSession, useSession } from "next-auth/client";
 import { Tab, Dialog, Transition } from '@headlessui/react'
-import {server} from './config'
+import {server} from '../server'
 
 function todoList(data) {
   const [session, loading] = useSession()

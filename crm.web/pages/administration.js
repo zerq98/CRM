@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import React, { useState, useEffect, Fragment } from 'react';
 import { getSession, useSession } from "next-auth/client";
 import { Tab } from '@headlessui/react'
-import { server } from '../config'
+import { server } from '../server'
 import Link from 'next/link'
 import { Bar, Doughnut } from 'react-chartjs-2';
 

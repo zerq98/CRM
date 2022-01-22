@@ -4,7 +4,7 @@ import { getSession, options, useSession } from "next-auth/client";
 import { Tab, Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import {server} from '../config'
+import {server} from '../server'
 
 function oppoData(data) {
   const [session, loading] = useSession()

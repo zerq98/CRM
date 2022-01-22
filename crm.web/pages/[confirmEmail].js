@@ -1,7 +1,7 @@
 import Link from "next/link";
 import react, { useEffect } from "react";
 import { useRouter } from 'next/router'
-import {server} from './config'
+import {server} from '../server'
 
 
 export default function EmailConfirmation (){

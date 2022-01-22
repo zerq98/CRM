@@ -3,7 +3,7 @@ import React, { useState, useEffect, Fragment } from 'react';
 import { getSession, options, useSession } from "next-auth/client";
 import { Tab, Dialog, Transition } from '@headlessui/react'
 import Link from 'next/link'
-import {server} from './config'
+import {server} from '../server'
 
 function leadList(data) {
   const [session, loading] = useSession()
