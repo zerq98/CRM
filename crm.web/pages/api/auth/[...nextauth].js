@@ -1,7 +1,7 @@
 import NextAuth from "next-auth";
 import { signIn, signOut } from "next-auth/client";
 import Providers from "next-auth/providers";
-import {server} from '../../config'
+import {server} from '../../../config'
 
 const providers = [
   Providers.Credentials({
