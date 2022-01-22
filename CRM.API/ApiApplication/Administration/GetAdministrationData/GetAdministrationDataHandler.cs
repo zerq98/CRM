@@ -81,8 +81,8 @@ namespace ApiApplication.Administration.GetAdministrationData
                     Regon = company.Regon
                 };
 
-                var oppos = await _opportunityRepository.GetAllOpportunitiesAsync(request.CompanyId, new List<string> {"","","" }, new DateTime(DateTime.Now.Year, 1, 1), new DateTime(DateTime.Now.Year, 12, 31));
-                oppos.AddRange(await _opportunityRepository.GetAllOrdersAsync(request.CompanyId, new List<string> { "", "" }, new DateTime(DateTime.Now.Year, 1, 1), new DateTime(DateTime.Now.Year, 12, 31)));
+                var oppos = await _opportunityRepository.GetAllOpportunitiesAsync(request.CompanyId, new List<string> {"","","" }, new DateTime(DateTime.Now.Year-1, 1, 1), new DateTime(DateTime.Now.Year, 12, 31));
+                oppos.AddRange(await _opportunityRepository.GetAllOrdersAsync(request.CompanyId, new List<string> { "", "" }, new DateTime(DateTime.Now.Year-1, 1, 1), new DateTime(DateTime.Now.Year, 12, 31)));
 
                 foreach(var oppo in oppos)
                 {

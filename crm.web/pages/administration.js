@@ -2,7 +2,7 @@ import Layout from "../components/layout";
 import React, { useState, useEffect, Fragment } from 'react';
 import { getSession, useSession } from "next-auth/client";
 import { Tab } from '@headlessui/react'
-import { server } from './config'
+import { server } from '../config'
 import Link from 'next/link'
 import { Bar, Doughnut } from 'react-chartjs-2';
 
@@ -269,6 +269,11 @@ function todoList(data) {
                 : "hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white rounded-lg h-100p w-100p"}>
               Dane firmy
             </Tab>
+            <div className="hover:bg-opacity-45 hover:backdrop-filter hover:backdrop-blur-lg hover:bg-white rounded-lg h-100p w-100p cursor-pointer">
+                <Link href="C:/CRM_Desktop.zip" download>
+                  Pobierz na desktop
+                </Link>
+              </div>
           </Tab.List>
           <Tab.Panels className="md:h-100p xs:h-85p w-100p">
             <Tab.Panel className="bg-opacity-35 backdrop-filter backdrop-blur-lg bg-white rounded-lg w-100p h-100p scrollbar-hide overflow-auto overscroll-y-contain">

@@ -69,46 +69,6 @@ function oppoData(data) {
           "province":""
       },
       "permissions":[
-        {
-            "name":"Dodawanie użytkowników",
-            "selected":false
-        },
-        {
-            "name":"Usuwanie użytkowników",
-            "selected":false
-        },
-        {
-            "name":"Panel administracji",
-            "selected":false
-        },
-        {
-            "name":"Przeglądanie leadów",
-            "selected":false
-        },
-        {
-            "name":"Modyfikacja cudzych leadów",
-            "selected":false
-        },
-        {
-            "name":"Przeglądanie szans sprzedaży",
-            "selected":false
-        },
-        {
-            "name":"Modyfikacja cudzych szans sprzedaży",
-            "selected":false
-        },
-        {
-            "name":"Przeglądanie szans sprzedaży",
-            "selected":false
-        },
-        {
-            "name":"Przeglądanie produktów",
-            "selected":false
-        },
-        {
-            "name":"Modyfikacja produktów",
-            "selected":false
-        }
       ]
   })
 
@@ -134,7 +94,7 @@ function oppoData(data) {
   }
 
   useEffect(() => {
-    if (data !== undefined && data.data!==null) {
+    if (data !== undefined) {
         setUser(data.data)
     }else{
         var newUser = {
@@ -201,7 +161,6 @@ function oppoData(data) {
         setUser(newUser)
     }
   }, [])
-
     return(
         <Layout>
             <div className="w-100p h-100p items-center bg-layoutBG p-7 lg:text-lg xs:text-xs overflow-y-scroll overscroll-contain scrollbar-hide">

@@ -1,0 +1,26 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "70069d95-e240-4449-8e7c-59134ed561a8": {
+      "ProjectGuid": "70069d95-e240-4449-8e7c-59134ed561a8",
+      "DisplayName": "ApiApplication",
+      "ColorIndex": 0
+    },
+    "1cd71aec-e4ed-46a6-aa6f-ea7d136eb6c7": {
+      "ProjectGuid": "1cd71aec-e4ed-46a6-aa6f-ea7d136eb6c7",
+      "DisplayName": "ApiDomain",
+      "ColorIndex": 1
+    },
+    "54c4ea66-a44c-4d68-8dcc-209fb1523599": {
+      "ProjectGuid": "54c4ea66-a44c-4d68-8dcc-209fb1523599",
+      "DisplayName": "ApiInfrastructure",
+      "ColorIndex": 2
+    },
+    "aa73bf49-b5da-4523-afa7-286c39f1576b": {
+      "ProjectGuid": "aa73bf49-b5da-4523-afa7-286c39f1576b",
+      "DisplayName": "CRM.API",
+      "ColorIndex": 3
+    }
+  },
+  "NextColorIndex": 4
+}

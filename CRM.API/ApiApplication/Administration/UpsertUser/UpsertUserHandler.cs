@@ -94,7 +94,7 @@ namespace ApiApplication.Administration.UpsertUser
                         user = new ApplicationUser
                         {
                             Address = DBUserAddress,
-                            CompanyPosition = "IT Team Leader",
+                            CompanyPosition = request.Dto.Department,
                             Email = request.Dto.Email,
                             EmailConfirmed = false,
                             FirstName = request.Dto.FirstName,
@@ -128,6 +128,7 @@ namespace ApiApplication.Administration.UpsertUser
                         user.UserName = request.Dto.Login;
                         user.NormalizedUserName = request.Dto.Login;
                         user.NormalizedEmail = request.Dto.Email;
+                        user.CompanyPosition = request.Dto.Department;
 
                         user = await _userRepository.UpdateUserAsync(user, request.Dto.Password);
                     }

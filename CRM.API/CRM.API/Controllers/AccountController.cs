@@ -63,26 +63,26 @@ namespace CRM.API.Controllers
             return await _mediator.Send(command);
         }
 
-        [HttpPost("ProfilePicture"),RequestSizeLimit(3145728)]
-        public async Task<IActionResult> UploadPicture()
-        {
-            var response = new ApiResponse<object>();
+        //[HttpPost("ProfilePicture"),RequestSizeLimit(3145728)]
+        //public async Task<IActionResult> UploadPicture()
+        //{
+        //    var response = new ApiResponse<object>();
 
-            if (FileUploader.UploadFile(Request.Form.Files[0]))
-            {
-                response.Code = 201;
-                response.Data = null;
-                response.ErrorMessage = "";
-            }
-            else
-            {
-                response.Code = 500;
-                response.Data = null;
-                response.ErrorMessage = "Nie udało się zaktualizować zdjęcia";
-            }
+        //    if (FileUploader.UploadFile(Request.Form.Files[0]))
+        //    {
+        //        response.Code = 201;
+        //        response.Data = null;
+        //        response.ErrorMessage = "";
+        //    }
+        //    else
+        //    {
+        //        response.Code = 500;
+        //        response.Data = null;
+        //        response.ErrorMessage = "Nie udało się zaktualizować zdjęcia";
+        //    }
 
-            return new JsonResult(response);
-        }
+        //    return new JsonResult(response);
+        //}
 
         [HttpGet("DashboardInfo")]
         [Authorize]
